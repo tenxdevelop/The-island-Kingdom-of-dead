@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class MapGenerator : MonoBehaviour
 {
-    private const int MAX_CHUNK_SIZE = 241;
+    public const int MAX_CHUNK_SIZE = 241;
     public enum DrawMode
     {
         None,
@@ -59,7 +59,6 @@ public class MapGenerator : MonoBehaviour
     {
         return autoUpdate;
     }
-
 
     private Color[] GenerateColorMap(float[,] heightMap)
     {
