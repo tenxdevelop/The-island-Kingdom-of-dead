@@ -14,10 +14,21 @@ namespace TheIslandKOD
         /// <param name="persistance">Height noise map</param>
         /// <param name="lacunarity">coordinate scale</param>
         /// <returns>noiseMap type float[,]</returns>
-        public static float[,] GenerateNoiseMap(int mapWidth, int mapHeight, float scale, int octaves, float persistance, float lacunarity)
+        public static float[,] GenerateNoiseMap(int mapWidth, int mapHeight, float scale, int seed,
+                                                int octaves, float persistance, float lacunarity, Vector2 offset)
         {
             float[,] noiseMap = new float[mapWidth, mapHeight];
 
+            Vector2[] octavesOffsets = new Vector2[octaves];
+            System.Random random = new System.Random(seed); 
+            for (int i = 0; i < octaves; i++)
+            {
+                float offsetX = random.Next(-100000, 100000) + offset.x;
+                float offsetY = random.Next(-100000, 100000) + offset.y;
+                 
+                octavesOffsets[i] = new Vector2(offsetX, offsetY);
+                
+            }
             // check scale that is not zero 
             if (scale <= 0)
             {
@@ -26,6 +37,9 @@ namespace TheIslandKOD
 
             float maxNoiseHeight = float.MinValue;
             float minNoiseHeight = float.MaxValue;
+
+            float halfWidth = mapWidth / 2f;
+            float halfHeight = mapHeight / 2f;
 
             //Initialize noiseMap
             for (int y = 0; y < mapHeight; y++)
@@ -39,8 +53,8 @@ namespace TheIslandKOD
                     for (int i = 0; i < octaves; i++)
                     {
 
-                        float sampleX = x / scale * frequancy;
-                        float sampleY = y / scale * frequancy;
+                        float sampleX = (x-halfWidth) / scale * frequancy + octavesOffsets[i].x;
+                        float sampleY = (y-halfHeight) / scale * frequancy + octavesOffsets[i].y;
 
                         float perlinValue = Mathf.PerlinNoise(sampleX, sampleY) * 2 - 1;
                         noiseHeight += perlinValue * amplitude;
@@ -63,6 +77,7 @@ namespace TheIslandKOD
                 }
             }
 
+            //smoothing noise map 
             for (int y = 0; y < mapHeight; y++)
             {
                 for (int x = 0; x < mapWidth; x++)
