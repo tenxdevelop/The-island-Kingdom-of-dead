@@ -8,6 +8,7 @@ namespace TheIslandKOD
         public static MeshData GenerateTerrainMesh(float[,] heightMap, float heightMultiplier, 
                                                    AnimationCurve heightCurve, int levelOfDetail)
         {
+            AnimationCurve animationCurve = new AnimationCurve(heightCurve.keys);
             int mapWidth = heightMap.GetLength(0);
             int mapHeight = heightMap.GetLength(1);
 
@@ -24,12 +25,11 @@ namespace TheIslandKOD
             {
                 for (int x = 0; x < mapWidth; x+= meshSimplificationIncrement)
                 {
-                    lock (heightCurve)
-                    {
-                        meshData.vertices[vertexIndex] = new Vector3(topLeftX + x,
-                                                                     heightCurve.Evaluate(heightMap[x, y]) * heightMultiplier,
-                                                                     topLeftZ - y);
-                    }
+                    
+                    meshData.vertices[vertexIndex] = new Vector3(topLeftX + x,
+                                                                 animationCurve.Evaluate(heightMap[x, y]) * heightMultiplier,
+                                                                 topLeftZ - y);
+                    
                     meshData.uvs[vertexIndex] = new Vector2(x / (float)mapWidth, y / (float)mapHeight);
 
                     if (x < mapWidth - 1 && y < mapHeight - 1)
