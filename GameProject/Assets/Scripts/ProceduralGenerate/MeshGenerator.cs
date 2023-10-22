@@ -24,9 +24,12 @@ namespace TheIslandKOD
             {
                 for (int x = 0; x < mapWidth; x+= meshSimplificationIncrement)
                 {
-                    meshData.vertices[vertexIndex] = new Vector3(topLeftX + x, 
-                                                                 heightCurve.Evaluate(heightMap[x, y]) * heightMultiplier, 
-                                                                 topLeftZ - y);
+                    lock (heightCurve)
+                    {
+                        meshData.vertices[vertexIndex] = new Vector3(topLeftX + x,
+                                                                     heightCurve.Evaluate(heightMap[x, y]) * heightMultiplier,
+                                                                     topLeftZ - y);
+                    }
                     meshData.uvs[vertexIndex] = new Vector2(x / (float)mapWidth, y / (float)mapHeight);
 
                     if (x < mapWidth - 1 && y < mapHeight - 1)
