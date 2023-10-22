@@ -45,7 +45,7 @@ public class EndlessTerrain : MonoBehaviour
             m_viewerPositionOld = m_viewerPosition;
             UpdateVisibleChunks();
         }
-
+        
     }
 
     private void UpdateVisibleChunks()

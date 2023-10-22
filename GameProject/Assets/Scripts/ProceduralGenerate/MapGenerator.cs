@@ -12,7 +12,8 @@ public class MapGenerator : MonoBehaviour
         None,
         ColorMap,
         NoiseMap,
-        Mesh
+        Mesh,
+        FalloffMap
 
     }
     [SerializeField] private DrawMode m_drawMode = DrawMode.None;
@@ -31,16 +32,18 @@ public class MapGenerator : MonoBehaviour
     [SerializeField] private float m_heightMultiplier = 10f;
     [SerializeField] private AnimationCurve m_heightCurve;
     [SerializeField] private Vector2 m_offsetNoiseMap = Vector2.zero;
-    [SerializeField] private bool autoUpdate = false;
+    [SerializeField] private bool m_useFalloffMap = false;
+    [SerializeField] private bool m_autoUpdate = false;
 
     [SerializeField] private TerrainType[] m_regions;
 
+    private float[,] m_falloffMap;
 
     private Queue<MapThreadInfo<MapData>> m_mapDataThreadInfoQueue = new Queue<MapThreadInfo<MapData>>();
     private Queue<MapThreadInfo<MeshData>> m_meshDataThreadInfoQueue = new Queue<MapThreadInfo<MeshData>>();
     public bool GetAutoUpdate()
     {
-        return autoUpdate;
+        return m_autoUpdate;
     }
 
     public void DrawMapInEditor()
@@ -60,7 +63,12 @@ public class MapGenerator : MonoBehaviour
             mapDisplay.DrawMesh(MeshGenerator.GenerateTerrainMesh(mapData.heightMap, m_heightMultiplier, m_heightCurve, m_editorPreViewLevelOfDetail),
                                 TextureGenerator.TextureFromColorMap(mapData.colorMap, MAX_CHUNK_SIZE, MAX_CHUNK_SIZE));
         }
+        else if (m_drawMode == DrawMode.FalloffMap)
+        {
 
+            mapDisplay.DrawTexture(TextureGenerator.TextureFromHeightMap(FalloffGenerator.GenerateFalloffMap(MAX_CHUNK_SIZE)));
+
+        }
     }
 
     public void RequestMapData(Vector2 centre, Action<MapData> callback)
@@ -83,6 +91,10 @@ public class MapGenerator : MonoBehaviour
         new Thread(threadStart).Start();
     }
 
+    private void OnValidate()
+    {
+        m_falloffMap = FalloffGenerator.GenerateFalloffMap(MAX_CHUNK_SIZE);
+    }
     private void Update()
     {
         if (m_mapDataThreadInfoQueue.Count > 0)
@@ -143,6 +155,11 @@ public class MapGenerator : MonoBehaviour
         {
             for (int x = 0; x < width; x++)
             {
+                if (m_useFalloffMap)
+                {
+                    heightMap[x, y] = Mathf.Clamp01(heightMap[y, x] - m_falloffMap[x, y]);
+                }
+
                 float currentHeight = heightMap[x, y];
                 for (int i = 0; i < m_regions.Length; i++)
                 {
