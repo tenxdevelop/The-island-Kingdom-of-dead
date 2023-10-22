@@ -13,5 +13,11 @@ public class MapGenerateEditor : Editor
         {
             mapGenerator.GenerateMap();
         }
+
+        if (mapGenerator.GetAutoUpdate())
+        {
+            mapGenerator.GenerateMap();
+        }
+
     }
 }
