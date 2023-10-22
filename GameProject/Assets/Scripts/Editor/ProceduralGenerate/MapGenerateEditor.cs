@@ -19,8 +19,7 @@ public class MapGenerateEditor : Editor
         {
             mapGenerator.DrawMapInEditor();
         }
-
-        
+ 
 
     }
 }

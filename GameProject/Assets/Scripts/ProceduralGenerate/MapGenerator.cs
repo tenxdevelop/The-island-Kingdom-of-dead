@@ -16,6 +16,7 @@ public class MapGenerator : MonoBehaviour
 
     }
     [SerializeField] private DrawMode m_drawMode = DrawMode.None;
+    [SerializeField] private Noise.NormalizeMode m_normalizeMode = Noise.NormalizeMode.Local;
     [Range(0, 6)]
     [SerializeField] private int m_editorPreViewLevelOfDetail = 0;
     [SerializeField] private int m_mapWidth = 10;
@@ -125,7 +126,7 @@ public class MapGenerator : MonoBehaviour
 
     private MapData GenerateMapData(Vector2 centre)
     {
-        float[,] noiseMap = Noise.GenerateNoiseMap(MAX_CHUNK_SIZE, MAX_CHUNK_SIZE, m_noiseScale, m_seed,
+        float[,] noiseMap = Noise.GenerateNoiseMap(MAX_CHUNK_SIZE, MAX_CHUNK_SIZE, m_noiseScale, m_seed, m_normalizeMode,
                                                    m_octaves, m_persistance, m_lacunarity, centre + m_offsetNoiseMap);
 
         Color[] colorMap = GenerateColorMap(noiseMap);
@@ -145,9 +146,12 @@ public class MapGenerator : MonoBehaviour
                 float currentHeight = heightMap[x, y];
                 for (int i = 0; i < m_regions.Length; i++)
                 {
-                    if (currentHeight <= m_regions[i].height)
+                    if (currentHeight >= m_regions[i].height)
                     {
                         colorMap[y * width + x] = m_regions[i].color;
+                    }
+                    else
+                    {
                         break;
                     }
                 }
