@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class MapGenerator : MonoBehaviour
 {
+    private const int MAX_CHUNK_SIZE = 241;
     public enum DrawMode
     {
         None,
@@ -12,6 +13,8 @@ public class MapGenerator : MonoBehaviour
 
     }
     [SerializeField] private DrawMode m_drawMode = DrawMode.None;
+    [Range(0, 6)]
+    [SerializeField] private int m_levelOfDetail = 0;
     [SerializeField] private int m_mapWidth = 10;
     [SerializeField] private int m_mapHeight = 10;
     [Range(1, 100)]
@@ -21,6 +24,8 @@ public class MapGenerator : MonoBehaviour
     [Range(0f, 1f)]
     [SerializeField] private float m_persistance = 1f;
     [SerializeField] private float m_lacunarity = 0.5f;
+    [SerializeField] private float m_heightMultiplier = 10f;
+    [SerializeField] private AnimationCurve m_heightCurve;
     [SerializeField] private Vector2 m_offsetNoiseMap = Vector2.zero;
     [SerializeField] private bool autoUpdate = false;
 
@@ -28,7 +33,7 @@ public class MapGenerator : MonoBehaviour
     
     public void GenerateMap()
     {
-        float[,] noiseMap = Noise.GenerateNoiseMap(m_mapWidth, m_mapHeight, m_noiseScale, m_seed,
+        float[,] noiseMap = Noise.GenerateNoiseMap(MAX_CHUNK_SIZE, MAX_CHUNK_SIZE, m_noiseScale, m_seed,
                                                    m_octaves, m_persistance, m_lacunarity, m_offsetNoiseMap);
 
 
@@ -41,12 +46,12 @@ public class MapGenerator : MonoBehaviour
         }
         else if (m_drawMode == DrawMode.ColorMap)
         {
-            mapDisplay.DrawTexture(TextureGenerator.TextureFromColorMap(colorMap, m_mapWidth, m_mapHeight));
+            mapDisplay.DrawTexture(TextureGenerator.TextureFromColorMap(colorMap, MAX_CHUNK_SIZE, MAX_CHUNK_SIZE));
         }
         else if (m_drawMode == DrawMode.Mesh)
         {
-            mapDisplay.DrawMesh(MeshGenerator.GenerateTerrainMesh(noiseMap),
-                                TextureGenerator.TextureFromColorMap(colorMap, m_mapWidth, m_mapHeight));
+            mapDisplay.DrawMesh(MeshGenerator.GenerateTerrainMesh(noiseMap, m_heightMultiplier, m_heightCurve, m_levelOfDetail),
+                                TextureGenerator.TextureFromColorMap(colorMap, MAX_CHUNK_SIZE, MAX_CHUNK_SIZE));
         }
     }
 
@@ -55,27 +60,20 @@ public class MapGenerator : MonoBehaviour
         return autoUpdate;
     }
 
-    private void OnValidate()
-    {
-        if(m_mapHeight < 1)
-            m_mapHeight = 1;
-        if(m_mapWidth < 1)
-            m_mapWidth = 1;
 
-    }
     private Color[] GenerateColorMap(float[,] heightMap)
     {
-        Color[] colorMap = new Color[m_mapWidth * m_mapHeight];
-        for (int y = 0; y < m_mapHeight; y++)
+        Color[] colorMap = new Color[MAX_CHUNK_SIZE * MAX_CHUNK_SIZE];
+        for (int y = 0; y < MAX_CHUNK_SIZE; y++)
         {
-            for (int x = 0; x < m_mapWidth; x++)
+            for (int x = 0; x < MAX_CHUNK_SIZE; x++)
             {
                 float currentHeight = heightMap[x, y];
                 for (int i = 0; i < m_regions.Length; i++)
                 {
                     if (currentHeight <= m_regions[i].height)
                     {
-                        colorMap[y * m_mapWidth + x] = m_regions[i].color;
+                        colorMap[y * MAX_CHUNK_SIZE + x] = m_regions[i].color;
                         break;
                     }
                 }
