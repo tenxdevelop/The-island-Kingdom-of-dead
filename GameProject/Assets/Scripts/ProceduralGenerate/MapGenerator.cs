@@ -6,7 +6,7 @@ using System.Threading;
 
 public class MapGenerator : MonoBehaviour
 {
-    public const int MAX_CHUNK_SIZE = 241;
+    public const int MAX_CHUNK_SIZE = 239;
     public enum DrawMode
     {
         None,
@@ -136,7 +136,7 @@ public class MapGenerator : MonoBehaviour
 
     private MapData GenerateMapData(Vector2 centre)
     {
-        float[,] noiseMap = Noise.GenerateNoiseMap(MAX_CHUNK_SIZE, MAX_CHUNK_SIZE, m_noiseScale, m_seed, m_normalizeMode,
+        float[,] noiseMap = Noise.GenerateNoiseMap(MAX_CHUNK_SIZE + 2, MAX_CHUNK_SIZE + 2, m_noiseScale, m_seed, m_normalizeMode,
                                                    m_octaves, m_persistance, m_lacunarity, centre + m_offsetNoiseMap);
 
         Color[] colorMap = GenerateColorMap(noiseMap);

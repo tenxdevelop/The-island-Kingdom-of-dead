@@ -128,8 +128,8 @@ namespace TheIslandKOD
             m_mapData = GetFalloffMap(mapData);
             m_mapDataReceived = true;
 
-            Texture2D texture = TextureGenerator.TextureFromColorMap(m_mapData.colorMap, MapGenerator.MAX_CHUNK_SIZE,
-                                                                     MapGenerator.MAX_CHUNK_SIZE);
+            Texture2D texture = TextureGenerator.TextureFromColorMap(m_mapData.colorMap, MapGenerator.MAX_CHUNK_SIZE + 2,
+                                                                     MapGenerator.MAX_CHUNK_SIZE + 2);
             m_meshRenderer.material.mainTexture = texture;
 
             float viewerDstFromNearestEddge = Mathf.Sqrt(bounds.SqrDistance(m_generateMap.GetViewPosition()));

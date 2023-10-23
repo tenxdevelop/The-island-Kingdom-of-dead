@@ -24,8 +24,8 @@ namespace TheIslandKOD
 
         private static float Evaluate(float value)
         {
-            float ValueA = 3;
-            float ValueB = 2.3f;
+            float ValueA = 4;
+            float ValueB = 4.7f;
 
             return Mathf.Pow(value, ValueA) / (Mathf.Pow(value, ValueA) + Mathf.Pow((ValueB - ValueB * value), ValueA));
         }
