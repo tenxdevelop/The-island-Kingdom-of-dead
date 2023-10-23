@@ -23,7 +23,9 @@ namespace TheIslandKOD
         private LODMesh[] m_lodMeshes;
 
         private MapData m_mapData;
-        private GenerateMap m_mapGenerator;
+        private float[,] m_falloffMap;
+        private GenerateMap m_generateMap;
+        private MapGenerator m_mapGenerator;
 
         private MeshFilter m_meshFilter;
         private MeshRenderer m_meshRenderer;
@@ -31,10 +33,12 @@ namespace TheIslandKOD
         private bool m_mapDataReceived;
         private int m_previousLODIndex = -1;
         public Chunk(Vector2 coordinate, int size, LODInfo[] detailsLevels, Transform parent, 
-                     MapGenerator mapGenerator, GenerateMap generateMap)
+                     MapGenerator mapGenerator, GenerateMap generateMap, float[,] falloffMap)
         {
             m_detailLevels = detailsLevels;
-            m_mapGenerator = generateMap;
+            m_generateMap = generateMap;
+            m_falloffMap = falloffMap;
+            m_mapGenerator = mapGenerator;
 
             m_position = coordinate * size;
             Vector3 positionV3 = new Vector3(m_position.x, 0, m_position.y);
@@ -46,6 +50,7 @@ namespace TheIslandKOD
 
             m_meshObject.transform.parent = parent;
             m_meshObject.transform.position = positionV3;
+            
 
             SetVisible(false);
 
@@ -117,17 +122,31 @@ namespace TheIslandKOD
 
         private void OnMapDataReceived(MapData mapData)
         {
-            m_mapData = mapData;
+
+            m_mapData = GetFalloffMap(mapData);
             m_mapDataReceived = true;
 
-            Texture2D texture = TextureGenerator.TextureFromColorMap(mapData.colorMap, MapGenerator.MAX_CHUNK_SIZE,
+            Texture2D texture = TextureGenerator.TextureFromColorMap(m_mapData.colorMap, MapGenerator.MAX_CHUNK_SIZE,
                                                                      MapGenerator.MAX_CHUNK_SIZE);
             m_meshRenderer.material.mainTexture = texture;
 
-            float viewerDstFromNearestEddge = Mathf.Sqrt(bounds.SqrDistance(m_mapGenerator.GetViewPosition()));
-            bool isVisible = viewerDstFromNearestEddge <= m_mapGenerator.GetMaxViewDst();
+            float viewerDstFromNearestEddge = Mathf.Sqrt(bounds.SqrDistance(m_generateMap.GetViewPosition()));
+            bool isVisible = viewerDstFromNearestEddge <= m_generateMap.GetMaxViewDst();
             UpdateChunk(isVisible, viewerDstFromNearestEddge);
         }
 
+        private MapData GetFalloffMap(MapData mapData)
+        {
+            float[,] heightMap = mapData.heightMap;
+            for (int y = 0; y < heightMap.GetLength(1); y++)
+            {
+                for (int x = 0; x < heightMap.GetLength(0); x++)
+                {
+                    heightMap[x, y] = Mathf.Clamp01(heightMap[x, y] - m_falloffMap[x, y]);
+                }
+            }
+
+            return new MapData(heightMap, m_mapGenerator.GenerateColorMap(heightMap));
+        }
     }
 }

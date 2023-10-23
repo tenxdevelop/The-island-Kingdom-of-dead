@@ -1,18 +1,19 @@
+using JetBrains.Annotations;
 using System.Collections.Generic;
 using TheIslandKOD;
 using UnityEngine;
 
 public class GenerateMap : MonoBehaviour
 {
-    [SerializeField] private int m_widthMap = 4;
-    [SerializeField] private int m_heightMap = 4;
+    [SerializeField] private int m_sizeMap = 2;
     [SerializeField] private int m_chunkSize = 240;
     [SerializeField] private float m_maxViewDst = 600;
     [SerializeField] private LODInfo[] m_detailLevels;
-
+    
     [SerializeField] private Transform m_viewer;
 
     private Vector2 m_viewerPosition;
+    private float[,] m_falloffMap;
 
     private Dictionary<Vector2, Chunk> m_terrainChunkDictionary = new Dictionary<Vector2, Chunk>();
     public static List<Chunk> terrainChunksVisibleLastUpdate = new List<Chunk>();
@@ -31,7 +32,8 @@ public class GenerateMap : MonoBehaviour
     private void Start()
     {
         m_mapGenerator = GetComponent<MapGenerator>();
-        GenerateTerrainMap(m_chunkSize);
+        m_falloffMap = FalloffGenerator.GenerateFalloffMap((m_chunkSize+1) * (m_sizeMap+1));
+        GenerateTerrainMap(m_chunkSize, m_falloffMap);
     }
 
     private void Update()
@@ -51,9 +53,9 @@ public class GenerateMap : MonoBehaviour
         int currentChunkCoordX = Mathf.RoundToInt(m_viewerPosition.x / m_chunkSize);
         int currentChunkCoordY = Mathf.RoundToInt(m_viewerPosition.y / m_chunkSize);
 
-        for (int yOffset = 0; yOffset <= m_heightMap; yOffset++)
+        for (int yOffset = 0; yOffset <= m_sizeMap; yOffset++)
         {
-            for (int xOffset = 0; xOffset <= m_widthMap; xOffset++)
+            for (int xOffset = 0; xOffset <= m_sizeMap; xOffset++)
             {
                 Vector2 chunkCoordinate = new Vector2(xOffset, yOffset);
                 Chunk chunk = m_terrainChunkDictionary[chunkCoordinate];
@@ -65,16 +67,35 @@ public class GenerateMap : MonoBehaviour
         }
 
     }
-    private void GenerateTerrainMap(int chunkSize)
+    private void GenerateTerrainMap(int chunkSize, float[,] falloffMap)
     {
 
-        for (int yOffset = 0; yOffset <= m_heightMap; yOffset++)
+        for (int yOffset = 0; yOffset <= m_sizeMap; yOffset++)
         {
-            for (int xOffset = 0; xOffset <= m_widthMap; xOffset++)
+            for (int xOffset = 0; xOffset <= m_sizeMap; xOffset++)
             {
                 Vector2 chunkCoordinate = new Vector2(xOffset, yOffset);
-                m_terrainChunkDictionary.Add(chunkCoordinate, new Chunk(chunkCoordinate, chunkSize, m_detailLevels, transform, m_mapGenerator, this));
+                float[,] currentFalloffMap = GetFalloffMapOffset(m_falloffMap, m_chunkSize, m_sizeMap, chunkCoordinate);
+                m_terrainChunkDictionary.Add(chunkCoordinate, new Chunk(chunkCoordinate, chunkSize, m_detailLevels, transform, 
+                                                                        m_mapGenerator, this, currentFalloffMap));
             }
         }
+    }
+
+
+    private float[,] GetFalloffMapOffset(float[,] falloffMap, int chunkSize,int sizeMap, Vector2 chunkCoordinate)
+    {
+        int xOffset = (chunkSize+1) * (int)chunkCoordinate.x;
+        int yOffset = (chunkSize+1) * (sizeMap - (int)chunkCoordinate.y);
+        float[,] mapOffset = new float[chunkSize + 1, chunkSize + 1];
+        for (int y = 0; y < mapOffset.GetLength(1); y++)
+        {
+            for (int x = 0; x < mapOffset.GetLength(0); x++)
+            {
+                mapOffset[x,y] = falloffMap[x + xOffset,y + yOffset];
+            }
+        }
+        
+        return mapOffset;
     }
 }
