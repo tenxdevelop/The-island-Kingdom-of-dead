@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace TheIslandKOD
 {
@@ -33,7 +34,7 @@ namespace TheIslandKOD
         private bool m_mapDataReceived;
         private int m_previousLODIndex = -1;
         public Chunk(Vector2 coordinate, int size, LODInfo[] detailsLevels, Transform parent, 
-                     MapGenerator mapGenerator, GenerateMap generateMap, float[,] falloffMap)
+                     MapGenerator mapGenerator, GenerateMap generateMap, float[,] falloffMap, float scale)
         {
             m_detailLevels = detailsLevels;
             m_generateMap = generateMap;
@@ -49,8 +50,9 @@ namespace TheIslandKOD
             m_meshRenderer = m_meshObject.AddComponent<MeshRenderer>();
 
             m_meshObject.transform.parent = parent;
-            m_meshObject.transform.position = positionV3;
-            
+            m_meshObject.transform.position = positionV3 * scale;
+            m_meshObject.transform.localScale = Vector3.one * scale;
+
 
             SetVisible(false);
 

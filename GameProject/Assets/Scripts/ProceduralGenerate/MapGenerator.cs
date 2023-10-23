@@ -20,8 +20,6 @@ public class MapGenerator : MonoBehaviour
     [SerializeField] private Noise.NormalizeMode m_normalizeMode = Noise.NormalizeMode.Local;
     [Range(0, 6)]
     [SerializeField] private int m_editorPreViewLevelOfDetail = 0;
-    [SerializeField] private int m_mapWidth = 10;
-    [SerializeField] private int m_mapHeight = 10;
     [Range(1, 100)]
     [SerializeField] private int m_octaves = 2;
     [SerializeField] private int m_seed = 0;

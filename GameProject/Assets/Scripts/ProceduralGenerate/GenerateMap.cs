@@ -6,14 +6,15 @@ using UnityEngine;
 public class GenerateMap : MonoBehaviour
 {
     [SerializeField] private int m_sizeMap = 2;
+    [SerializeField] private float m_scale = 1f;
     [SerializeField] private int m_chunkSize = 240;
-    [SerializeField] private float m_maxViewDst = 600;
     [SerializeField] private LODInfo[] m_detailLevels;
     
     [SerializeField] private Transform m_viewer;
 
     private Vector2 m_viewerPosition;
     private float[,] m_falloffMap;
+    private float m_maxViewDst;
 
     private Dictionary<Vector2, Chunk> m_terrainChunkDictionary = new Dictionary<Vector2, Chunk>();
     public static List<Chunk> terrainChunksVisibleLastUpdate = new List<Chunk>();
@@ -31,6 +32,7 @@ public class GenerateMap : MonoBehaviour
     }
     private void Start()
     {
+        m_maxViewDst = m_detailLevels[m_detailLevels.Length - 1].visibleDstThreshold;
         m_mapGenerator = GetComponent<MapGenerator>();
         m_falloffMap = FalloffGenerator.GenerateFalloffMap((m_chunkSize+1) * (m_sizeMap+1));
         GenerateTerrainMap(m_chunkSize, m_falloffMap);
@@ -38,7 +40,7 @@ public class GenerateMap : MonoBehaviour
 
     private void Update()
     {
-        m_viewerPosition = new Vector2(m_viewer.position.x, m_viewer.position.z);
+        m_viewerPosition = new Vector2(m_viewer.position.x, m_viewer.position.z) / m_scale;
         UpdateVisibleChunks();
     }
 
@@ -77,7 +79,7 @@ public class GenerateMap : MonoBehaviour
                 Vector2 chunkCoordinate = new Vector2(xOffset, yOffset);
                 float[,] currentFalloffMap = GetFalloffMapOffset(m_falloffMap, m_chunkSize, m_sizeMap, chunkCoordinate);
                 m_terrainChunkDictionary.Add(chunkCoordinate, new Chunk(chunkCoordinate, chunkSize, m_detailLevels, transform, 
-                                                                        m_mapGenerator, this, currentFalloffMap));
+                                                                        m_mapGenerator, this, currentFalloffMap, m_scale));
             }
         }
     }
