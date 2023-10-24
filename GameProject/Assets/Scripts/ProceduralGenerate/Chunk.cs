@@ -30,6 +30,7 @@ namespace TheIslandKOD
 
         private MeshFilter m_meshFilter;
         private MeshRenderer m_meshRenderer;
+        private MeshCollider m_meshCollider;
 
         private bool m_mapDataReceived;
         private int m_previousLODIndex = -1;
@@ -48,6 +49,7 @@ namespace TheIslandKOD
             m_meshObject = new GameObject("TerrainChunk" + number++);
             m_meshFilter = m_meshObject.AddComponent<MeshFilter>();
             m_meshRenderer = m_meshObject.AddComponent<MeshRenderer>();
+            m_meshCollider = m_meshObject.AddComponent<MeshCollider>();
 
             m_meshObject.transform.parent = parent;
             m_meshObject.transform.position = positionV3 * scale;
@@ -100,6 +102,7 @@ namespace TheIslandKOD
                         {
                             m_previousLODIndex = lodIndex;
                             m_meshFilter.mesh = lodMesh.mesh;
+                            m_meshCollider.sharedMesh = lodMesh.mesh;
                         }
                         else if (!lodMesh.hasRequestedMesh)
                         {
