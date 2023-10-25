@@ -16,7 +16,7 @@ namespace TheIslandKOD
         
         int GetItemAmount(Type itemType);
 
-        bool Add(object sender, IInventoryItem item);
+        bool TryToAdd(object sender, IInventoryItem item);
         void Remove(object sender, Type itemType, int amount = 1);
         bool HasItem(Type itemType, out IInventoryItem item);
 
