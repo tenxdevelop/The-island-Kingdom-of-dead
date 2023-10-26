@@ -72,7 +72,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 23
+    m_Bits: 87
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -188,6 +188,8 @@ GameObject:
   - component: {fileID: 5606391484286212569}
   - component: {fileID: 3726148530833337300}
   - component: {fileID: 7710139161104539488}
+  - component: {fileID: 6335129944822679839}
+  - component: {fileID: 8336622633430603177}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -278,6 +280,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_camera: {fileID: 6863898851828179921}
+  m_uIInventory: {fileID: 0}
   m_xSensitivity: 30
   m_ySensitivity: 30
   m_MaxAngleScroll: 85
+--- !u!114 &6335129944822679839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8253399262752702555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69aabd10e3ac3ff4e96f2d9051a006df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_distance: 3
+  m_layerRaycastMask:
+    serializedVersion: 2
+    m_Bits: 64
+--- !u!114 &8336622633430603177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8253399262752702555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c63ce10691bee3946b98732543c4f6b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_textPrompt: {fileID: 0}

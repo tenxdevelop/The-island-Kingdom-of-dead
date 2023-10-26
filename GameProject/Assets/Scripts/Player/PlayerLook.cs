@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerLook : MonoBehaviour
 {
+    
     [SerializeField] private Camera m_camera;
     [SerializeField] private UIInventory m_uIInventory;
 
@@ -12,6 +13,12 @@ public class PlayerLook : MonoBehaviour
     private float m_xRotation = 0f;
 
     private bool m_isOpenInventory = false;
+    public Camera Camera => m_camera;
+
+    private void Start()
+    {
+        Cursor.visible = false;
+    }
     public void ProcessLook(Vector2 mouseScoll)
     {
         if (!m_isOpenInventory)

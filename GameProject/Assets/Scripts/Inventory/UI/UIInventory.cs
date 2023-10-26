@@ -4,22 +4,46 @@ using UnityEngine;
 
 public class UIInventory : MonoBehaviour
 {
-    [SerializeField] private InventoryItemInfo m_appleInfo;
-    [SerializeField] private InventoryItemInfo m_pepperInfo;
-    
-    public InventoryWithSlots inventory => m_inventoryTester.inventory;
+    [SerializeField] private int m_capacity;
 
-    private InventoryTester m_inventoryTester;
+    private UIInventorySlot[] m_uISlots;
+    private PlayerInventory m_playerInventory;
+
+    public InventoryWithSlots inventory => m_playerInventory.inventory;
+
     private void Start()
     {
-        var uISlots = GetComponentsInChildren<UIInventorySlot>();
-        m_inventoryTester = new InventoryTester(m_appleInfo, m_pepperInfo, uISlots);
-        m_inventoryTester.FillSlots();
+        m_uISlots = GetComponentsInChildren<UIInventorySlot>();
+        m_playerInventory = new PlayerInventory(m_capacity);
+        inventory.OnInventoryStateChangedEvent += OnInventoryStateChanged;
+
+        SetupInventoryUI(inventory);
         SetVisible(false);
     }
 
     public void SetVisible(bool visible)
     {
         gameObject.SetActive(visible);
+    }
+
+    private void SetupInventoryUI(InventoryWithSlots inventory)
+    {
+        var allSlots = inventory.GetAllSlots();
+        var allSlotsCount = allSlots.Length;
+        for (int i = 0; i < allSlotsCount; i++)
+        {
+            var slot = allSlots[i];
+            var uISlot = m_uISlots[i];
+            uISlot.SetSlot(slot);
+            uISlot.Refresh();
+        }
+    }
+
+    private void OnInventoryStateChanged(object obj)
+    {
+        foreach (var uISlot in m_uISlots)
+        {
+            uISlot.Refresh();
+        }
     }
 }

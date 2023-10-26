@@ -9,6 +9,8 @@ public class InputManager : MonoBehaviour
 
     private PlayerMovement m_playerMovement;
     private PlayerLook m_playerLook;
+
+    public PlayerInput.OnFootActions OnFoot => m_onFoot;
     private void Awake()
     {
         m_playerInput = new PlayerInput();
