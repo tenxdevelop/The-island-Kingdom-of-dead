@@ -1,6 +1,6 @@
 using TheIslandKOD;
 using UnityEngine;
-using UnityEngine.Experimental.AI;
+
 
 public class UIInventory : MonoBehaviour
 {
@@ -15,6 +15,11 @@ public class UIInventory : MonoBehaviour
         var uISlots = GetComponentsInChildren<UIInventorySlot>();
         m_inventoryTester = new InventoryTester(m_appleInfo, m_pepperInfo, uISlots);
         m_inventoryTester.FillSlots();
+        SetVisible(false);
     }
 
+    public void SetVisible(bool visible)
+    {
+        gameObject.SetActive(visible);
+    }
 }

@@ -10,6 +10,8 @@ namespace TheIslandKOD
 
         int maxItemsInInventorySlot { get; }
 
+        ItemType itemType { get; }
+
         Sprite spriteIcon { get; }
     }
 }

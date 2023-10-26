@@ -21,6 +21,8 @@ public class InputManager : MonoBehaviour
     {
         m_playerMovement.ProcessMove(m_onFoot.Movement.ReadValue<Vector2>());
         m_onFoot.Jump.performed += ctx => m_playerMovement.Jump();
+        m_onFoot.LookInventory.performed += ctx => m_playerLook.ProcessLookInventory();
+
     }
 
     private void LateUpdate()
