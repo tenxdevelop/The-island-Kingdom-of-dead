@@ -9,7 +9,7 @@ namespace TheIslandKOD
 
         public event Action<object, IInventoryItem, int> OnInventoryItemAddedEvent;
         public event Action<object, Type, int> OnInventoryItemRemovedEvent;
-
+        public event Action<object> OnInventoryStateChangedEvent;
         public int capacity { get; set; }
 
         public bool isFull => m_slots.All(slot => slot.isFull);
@@ -48,7 +48,7 @@ namespace TheIslandKOD
         public IInventoryItem[] GetEquippedItems()
         {
             var equippedItems = new List<IInventoryItem>();
-            foreach (var slot in m_slots.FindAll(slot => !slot.isEmpty && slot.item.isEquipped))
+            foreach (var slot in m_slots.FindAll(slot => !slot.isEmpty && slot.item.state.isEquipped))
             {
                 equippedItems.Add(slot.item);
             }
@@ -96,18 +96,20 @@ namespace TheIslandKOD
                 var slot = slotWithItemType[i];
                 if (slot.amount >= amountToRemove)
                 {
-                    slot.item.amount -= amountToRemove;
+                    slot.item.state.amount -= amountToRemove;
                     if (slot.amount <= 0)
                     {
                         slot.Clear();
                     }
                     OnInventoryItemRemovedEvent?.Invoke(sender, itemType, amountToRemove);
+                    OnInventoryStateChangedEvent?.Invoke(sender);
                     break;
                 }
                 int amountRemoved = slot.amount;
                 amountToRemove -= slot.amount;
                 slot.Clear();
                 OnInventoryItemRemovedEvent?.Invoke(sender, itemType, amountRemoved);
+                OnInventoryStateChangedEvent?.Invoke(sender);
             }
         }
 
@@ -117,23 +119,61 @@ namespace TheIslandKOD
                                                            slot.itemType == item.type);
             if (slotWithSameItemButNotEmpty != null)
             {
-                return AddToSlot(sender, slotWithSameItemButNotEmpty, item);
+                return TryToAddToSlot(sender, slotWithSameItemButNotEmpty, item);
             }
             var emptySlot = m_slots.Find(slot => slot.isEmpty);
             if (emptySlot != null)
             {
-                return AddToSlot(sender, emptySlot, item);
+                return TryToAddToSlot(sender, emptySlot, item);
             }
 
             return false;
         }
-        private bool AddToSlot(object sender, IInventorySlot slot, IInventoryItem item)
+
+        public void TransitFromSlotToSlot(object sender, IInventorySlot fromSlot, IInventorySlot toSlot)
         {
-            bool fits = slot.amount + item.amount <= item.maxItemsInInventorySlot;
-            int amountToAdd = fits ? item.amount : item.maxItemsInInventorySlot - slot.amount;
+            if (fromSlot.isEmpty)
+                return;
+
+            if (toSlot.isFull)
+                return;
+
+            if (!toSlot.isEmpty && fromSlot.itemType != toSlot.itemType)
+                return;
+            
+            int slotCapacity = fromSlot.capacity;
+            bool fits = fromSlot.amount + toSlot.amount <= slotCapacity;
+            int amountToAdd = (fits) ? fromSlot.amount : slotCapacity - toSlot.amount;
+            int amountLeft = fromSlot.amount - amountToAdd;
+
+            if (toSlot.isEmpty)
+            {
+                toSlot.SetItem(fromSlot.item);
+                fromSlot.Clear();
+                OnInventoryStateChangedEvent?.Invoke(sender);
+            }
+
+            toSlot.item.state.amount += amountToAdd;
+            if (fits)
+            {
+                fromSlot.Clear();
+
+            }
+            else
+            {
+                fromSlot.item.state.amount = amountLeft;
+            }
+            OnInventoryStateChangedEvent?.Invoke(sender);
+        }
+
+
+        public bool TryToAddToSlot(object sender, IInventorySlot slot, IInventoryItem item)
+        {
+            bool fits = slot.amount + item.state.amount <= item.info.maxItemsInInventorySlot;
+            int amountToAdd = fits ? item.state.amount : item.info.maxItemsInInventorySlot - slot.amount;
             int amountLeft = slot.amount - amountToAdd;
             var itemClone = item.Clone();
-            itemClone.amount = amountToAdd;
+            itemClone.state.amount = amountToAdd;
 
             if (slot.isEmpty)
             {
@@ -141,15 +181,16 @@ namespace TheIslandKOD
             }
             else
             {
-                slot.item.amount += amountToAdd;           
+                slot.item.state.amount += amountToAdd;           
             }
             OnInventoryItemAddedEvent?.Invoke(sender, item, amountToAdd);
+            OnInventoryStateChangedEvent?.Invoke(sender);
 
             if (amountLeft <= 0)
             {
                 return true;
             }
-            item.amount = amountLeft;           
+            item.state.amount = amountLeft;           
             return TryToAdd(sender, item);
         }
 

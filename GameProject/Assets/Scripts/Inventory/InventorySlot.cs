@@ -4,7 +4,7 @@ namespace TheIslandKOD
 {
     public class InventorySlot : IInventorySlot
     {
-        public bool isFull => amount == capacity;
+        public bool isFull => !isEmpty && amount == capacity;
 
         public bool isEmpty => item == null;
 
@@ -12,27 +12,25 @@ namespace TheIslandKOD
 
         public Type itemType => item.type;
 
-        public int amount => (isEmpty) ? 0 : item.amount;
+        public int amount => (isEmpty) ? 0 : item.state.amount;
 
         public int capacity { get; private set; }
 
         public void Clear()
         {
-            if (!isEmpty)
+            if (isEmpty)
                 return;
 
-            item.amount = 0;
+            item.state.amount = 0;
             item = null;
 
         }
 
         public void SetItem(IInventoryItem item)
         {
-            if (!isEmpty)
-                return;
-
+            
             this.item = item;
-            this.capacity = item.maxItemsInInventorySlot;
+            this.capacity = item.info.maxItemsInInventorySlot;
         }
     }
 }
