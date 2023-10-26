@@ -28,7 +28,8 @@ namespace TheIslandKOD
 
         public void SetItem(IInventoryItem item)
         {
-            
+            if (!isEmpty)
+                return;
             this.item = item;
             this.capacity = item.info.maxItemsInInventorySlot;
         }
