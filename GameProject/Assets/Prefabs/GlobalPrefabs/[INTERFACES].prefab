@@ -2768,7 +2768,7 @@ GameObject:
   - component: {fileID: 5310639258028811395}
   - component: {fileID: 8610993683048123686}
   m_Layer: 5
-  m_Name: UISlot (3)
+  m_Name: UISlot3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3581,7 +3581,7 @@ GameObject:
   - component: {fileID: 5418621223376283304}
   - component: {fileID: 900637841082844686}
   m_Layer: 5
-  m_Name: UISlot (5)
+  m_Name: UISlot5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4123,6 +4123,7 @@ GameObject:
   - component: {fileID: 8150773828601588859}
   - component: {fileID: 1474326539823479970}
   - component: {fileID: 2517995565066255729}
+  - component: {fileID: 3071655064423759473}
   m_Layer: 5
   m_Name: QuickSlotPanel
   m_TagString: Untagged
@@ -4152,8 +4153,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: -458.6}
-  m_SizeDelta: {x: 705.22, y: 100}
+  m_AnchoredPosition: {x: 0, y: -463.40002}
+  m_SizeDelta: {x: 713.3, y: 114.6}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &8150773828601588859
 CanvasRenderer:
@@ -4176,7 +4177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 0.23137255}
+  m_Color: {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4217,6 +4218,27 @@ MonoBehaviour:
   m_Spacing: {x: 20, y: 20}
   m_Constraint: 1
   m_ConstraintCount: 6
+--- !u!114 &3071655064423759473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3616861087308820692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7a5ddcfe937af64798cc4ae223e0de8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_quickSlots:
+  - {fileID: 5358193286610538859}
+  - {fileID: 8758271767237947780}
+  - {fileID: 7554525443833798677}
+  - {fileID: 2728054554260207311}
+  - {fileID: 6429988750824898675}
+  - {fileID: 3393614925978741680}
+  m_notSelectedSprite: {fileID: 21300000, guid: 5cdd6d7976c1e04408e483341d4bfc35, type: 3}
+  m_selectedSprite: {fileID: 21300000, guid: c97ddb7f344bb0a4792ea7224730c992, type: 3}
 --- !u!1 &3770116593531931107
 GameObject:
   m_ObjectHideFlags: 0
@@ -5471,6 +5493,7 @@ GameObject:
   - component: {fileID: 3211188382830694121}
   - component: {fileID: 8298533914174432943}
   - component: {fileID: 3544101318896744149}
+  - component: {fileID: 7788328998437865230}
   m_Layer: 5
   m_Name: InventoryBackGroundPanel
   m_TagString: Untagged
@@ -5535,6 +5558,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7788328998437865230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4824507552100827443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef8c8e515ba0d1846be24d49ea34d5d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_playerPosition: {fileID: 0}
 --- !u!1 &4835328981008667605
 GameObject:
   m_ObjectHideFlags: 0
@@ -6155,7 +6191,7 @@ GameObject:
   - component: {fileID: 1249706054077848471}
   - component: {fileID: 1730505053984601726}
   m_Layer: 5
-  m_Name: UISlot
+  m_Name: UISlot0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6202,7 +6238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6886792, g: 0.6886792, b: 0.6886792, a: 0.7882353}
+  m_Color: {r: 0.6886792, g: 0.6886792, b: 0.6886792, a: 0.9098039}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7565,7 +7601,7 @@ GameObject:
   - component: {fileID: 8267088997138828220}
   - component: {fileID: 3756341957952916663}
   m_Layer: 5
-  m_Name: UISlot (4)
+  m_Name: UISlot4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8509,7 +8545,7 @@ GameObject:
   - component: {fileID: 6490447520439518042}
   - component: {fileID: 525885865824618806}
   m_Layer: 5
-  m_Name: UISlot (2)
+  m_Name: UISlot2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9879,7 +9915,7 @@ GameObject:
   - component: {fileID: 9136052431528329705}
   - component: {fileID: 5933585849233567906}
   m_Layer: 5
-  m_Name: UISlot (1)
+  m_Name: UISlot1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

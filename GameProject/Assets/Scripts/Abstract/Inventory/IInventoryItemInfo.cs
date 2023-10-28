@@ -13,5 +13,6 @@ namespace TheIslandKOD
         ItemType itemType { get; }
 
         Sprite spriteIcon { get; }
+        GameObject prefab { get; }
     }
 }

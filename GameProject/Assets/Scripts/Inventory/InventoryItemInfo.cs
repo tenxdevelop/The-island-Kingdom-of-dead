@@ -19,6 +19,7 @@ namespace TheIslandKOD
         [SerializeField] private string m_desctription;
         [SerializeField] private int m_maxItemsInInventorySlot;
         [SerializeField] private Sprite m_sprite;
+        [SerializeField] private GameObject m_prefab;
         [SerializeField] private ItemType m_itemType;
 
         public string id => m_id;
@@ -32,7 +33,7 @@ namespace TheIslandKOD
         public ItemType itemType => m_itemType;
 
         public Sprite spriteIcon => m_sprite;
-
+        public GameObject prefab => m_prefab;
     }
 
 }
