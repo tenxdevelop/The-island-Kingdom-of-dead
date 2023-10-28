@@ -5,7 +5,7 @@ using UnityEngine;
 public class UIInventory : MonoBehaviour
 {
     [SerializeField] private int m_capacity;
-
+    [SerializeField] private GameObject m_gridInventory;
     private UIInventorySlot[] m_uISlots;
     private PlayerInventory m_playerInventory;
 
@@ -23,7 +23,7 @@ public class UIInventory : MonoBehaviour
 
     public void SetVisible(bool visible)
     {
-        gameObject.SetActive(visible);
+        m_gridInventory.SetActive(visible);
     }
 
     private void SetupInventoryUI(InventoryWithSlots inventory)

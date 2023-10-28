@@ -5,7 +5,6 @@ public class Health : InteractableRaycast
 {
     [SerializeField] private InventoryItemInfo m_info;
     [SerializeField] private UIInventory m_uIInventory;
-    private string m_tagUIInventory = "UIInventory";
     
     protected override void Interact()
     {
