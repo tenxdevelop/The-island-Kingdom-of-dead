@@ -6,7 +6,6 @@ public class UIInventorySlot : UISlot
 {
 
     [SerializeField] private UIInventoryItem m_uIInventoryItem;
-
     public IInventorySlot slot { get; private set; }
 
     private UIInventory m_uIInventory;
