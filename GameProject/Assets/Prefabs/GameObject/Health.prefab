@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 4722496511629944161}
   - component: {fileID: 7146089543762054787}
   - component: {fileID: 1872147737132582977}
-  - component: {fileID: 3712937777291688314}
+  - component: {fileID: 3987155471995732398}
+  - component: {fileID: 4583371041313976555}
   m_Layer: 6
   m_Name: Health
   m_TagString: Untagged
@@ -31,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -73.3, y: 16.74, z: -308.21}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.68421, y: 0.65722, z: 0.69045}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -119,10 +120,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30dd5c24169557a4bb240d3e8b6a6f9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  promptMessage: Use to health up
+  promptMessage: Apple
   m_info: {fileID: 11400000, guid: 18c8aa2a17712864c9d45a30b1d3517b, type: 2}
-  m_uIInventory: {fileID: 0}
---- !u!54 &3712937777291688314
+--- !u!54 &3987155471995732398
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -149,3 +149,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4583371041313976555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2352965288553588872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8554abdfb0165d499b4d77829384e90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -1,15 +1,26 @@
+using TheIslandKOD;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class UIDropItem : MonoBehaviour, IDropHandler
 {
     private UIInventory m_uIInventory;
-    [SerializeField] private Transform m_playerPosition;
-
+    private Transform m_playerPosition;
+    private ReferenceSystem m_referenceSystem;
     private Vector3 m_positionPrefab;
+    [SerializeField] private Vector3 m_positionOffset;
+    
+    private float m_distanceDrop = 0.8f;
     private void Awake()
     {
         m_uIInventory = GetComponentInParent<UIInventory>();
+        
+    }
+    private void Start()
+    {
+        m_referenceSystem = ReferenceSystem.instance;
+        m_playerPosition = m_referenceSystem.player.GetComponent<PlayerLook>().itemDropPosition.transform;
         
     }
     public void OnDrop(PointerEventData eventData)
@@ -18,12 +29,15 @@ public class UIDropItem : MonoBehaviour, IDropHandler
         var otherSlotUI = otherItemUI.GetComponentInParent<UIInventorySlot>(); 
         var inventory = m_uIInventory.inventory;
 
-        inventory.Remove(this, otherItemUI.item.type, otherItemUI.item.state.amount);
-        m_positionPrefab = m_playerPosition.position + Vector3.forward;
+        m_positionPrefab = m_playerPosition.position + m_positionOffset;
         if (otherItemUI.item.info.prefab != null)
         {
-            Instantiate(otherItemUI.item.info.prefab, m_positionPrefab, m_playerPosition.rotation);
+            var prefab = Instantiate(otherItemUI.item.info.prefab, m_positionPrefab, m_playerPosition.rotation);
+            prefab.GetComponent<InteractableItemState>().state = otherItemUI.item.state.Clone();
         }
+
+        inventory.Remove(this, otherItemUI.item.type, otherItemUI.item.state.amount);
+        
         otherSlotUI.Refresh();
     }
 }

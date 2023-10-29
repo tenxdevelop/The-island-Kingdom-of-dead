@@ -6,10 +6,11 @@ namespace TheIslandKOD
     {
 
         IInventoryItemInfo info { get; }
-        IInfentoryItemState state { get; }
+        IInventoryItemState state { get; }
         Type type { get; }
         
         IInventoryItem Clone();
-
+        void OnEnable();
+        void OnDisable();
     }
 }

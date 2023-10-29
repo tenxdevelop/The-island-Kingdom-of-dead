@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2519458420316068398
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 694494091913653719}
+  m_Layer: 0
+  m_Name: itemDropPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &694494091913653719
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2519458420316068398}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.15, y: 0.08, z: 2.59}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3248009101891726201}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2868924907562273296
 GameObject:
   m_ObjectHideFlags: 0
@@ -190,6 +221,7 @@ GameObject:
   - component: {fileID: 7710139161104539488}
   - component: {fileID: 6335129944822679839}
   - component: {fileID: 8336622633430603177}
+  - component: {fileID: 6210143246733472160}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -212,6 +244,7 @@ Transform:
   m_Children:
   - {fileID: 845356989477319288}
   - {fileID: 5690593307176276149}
+  - {fileID: 694494091913653719}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &8394158260035098362
@@ -267,7 +300,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 469c24d183978eb4e9cf4884b01fbaca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_uIQuickSlot: {fileID: 0}
 --- !u!114 &7710139161104539488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,8 +312,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0877fcb14c6ff82449c697379e64df30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemDropPosition: {fileID: 694494091913653719}
   m_camera: {fileID: 6863898851828179921}
-  m_uIInventory: {fileID: 0}
   m_xSensitivity: 30
   m_ySensitivity: 30
   m_MaxAngleScroll: 85
@@ -314,3 +346,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_textPrompt: {fileID: 0}
+--- !u!114 &6210143246733472160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8253399262752702555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3ac490431822ae41b17006bbec09160, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_capacity: 30

@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace TheIslandKOD
 {
@@ -6,16 +7,42 @@ namespace TheIslandKOD
     {
         public IInventoryItemInfo info { get; }
 
-        public IInfentoryItemState state { get; }
+        public IInventoryItemState state { get; }
 
         public Type type => GetType();
 
+        private UIQuickSlot m_uIQuickSlot;
         public Apple(IInventoryItemInfo info)
         {
             this.info = info;
             state = new InventoryItemState();
+            m_uIQuickSlot = UIQuickSlot.instance;
+            
         }
 
+        public void OnEnable()
+        {
+            m_uIQuickSlot.OnQuickSlotActiveChangedEvent += OnQuickSlotChangedEvent;
+        }
+
+        public void OnDisable()
+        {
+            m_uIQuickSlot.OnQuickSlotActiveChangedEvent -= OnQuickSlotChangedEvent;
+        }
+
+        private void OnQuickSlotChangedEvent(InventoryWithSlots inventory, IInventorySlot slot, bool isActive)
+        {
+            
+            if (!slot.isEmpty)
+            {
+                if (slot.itemType == type)
+                {
+                    Debug.Log("eat " + slot.item.info.title);
+                    inventory.Remove(this, slot.itemType);
+                }
+            }
+           
+        }
         public IInventoryItem Clone()
         {
             var cloneApple = new Apple(info);

@@ -4,10 +4,10 @@ namespace TheIslandKOD
 {   
     
     [Serializable]
-    public class InventoryItemState : IInfentoryItemState
+    public class InventoryItemState : IInventoryItemState
     {
-        public int itemAmount;
-        public bool isItemEquipped;
+        private int itemAmount;
+        private bool isItemEquipped;
         public bool isEquipped { get => isItemEquipped; set => isItemEquipped = value; }
         public int amount { get => itemAmount; set => itemAmount = value; }
 
@@ -20,6 +20,11 @@ namespace TheIslandKOD
         {
             itemAmount = amount;
             isItemEquipped = isEquipped;
+        }
+
+        public IInventoryItemState Clone()
+        {
+            return new InventoryItemState(itemAmount, isItemEquipped);
         }
     }
 }

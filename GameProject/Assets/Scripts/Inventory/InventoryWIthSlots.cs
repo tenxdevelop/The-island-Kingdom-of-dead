@@ -99,6 +99,7 @@ namespace TheIslandKOD
                     slot.item.state.amount -= amountToRemove;
                     if (slot.amount <= 0)
                     {
+                        slot.item.OnDisable();
                         slot.Clear();
                     }
                     OnInventoryItemRemovedEvent?.Invoke(sender, itemType, amountToRemove);
@@ -107,6 +108,7 @@ namespace TheIslandKOD
                 }
                 int amountRemoved = slot.amount;
                 amountToRemove -= slot.amount;
+                slot.item.OnDisable();
                 slot.Clear();
                 OnInventoryItemRemovedEvent?.Invoke(sender, itemType, amountRemoved);
                 OnInventoryStateChangedEvent?.Invoke(sender);
@@ -177,7 +179,8 @@ namespace TheIslandKOD
 
             if (slot.isEmpty)
             {
-                slot.SetItem(itemClone);              
+                slot.SetItem(itemClone);
+                slot.item.OnEnable();
             }
             else
             {

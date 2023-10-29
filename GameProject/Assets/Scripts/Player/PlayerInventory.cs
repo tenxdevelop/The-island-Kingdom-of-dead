@@ -4,16 +4,17 @@ using UnityEngine;
 namespace TheIslandKOD
 
 {
-    public class PlayerInventory 
+    public class PlayerInventory : MonoBehaviour
     {
-        public InventoryWithSlots inventory { get; }
+        
+        [SerializeField] private int m_capacity;
 
-        private int m_capacity;
-        public PlayerInventory(int capacity)
+        public InventoryWithSlots inventory { get; private set; }
+   
+        private void Start()
         {
-            m_capacity = capacity;
-
             inventory = new InventoryWithSlots(m_capacity);
         }
+        
     }
 }

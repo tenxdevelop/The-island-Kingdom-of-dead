@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class PlayerLook : MonoBehaviour
 {
-    
+    public Transform itemDropPosition;
+
     [SerializeField] private Camera m_camera;
-    [SerializeField] private UIInventory m_uIInventory;
+    
 
     [SerializeField] private float m_xSensitivity = 30f;
     [SerializeField] private float m_ySensitivity = 30f;
@@ -13,11 +14,14 @@ public class PlayerLook : MonoBehaviour
     private float m_xRotation = 0f;
 
     private bool m_isOpenInventory = false;
+
+    private UIInventory m_uIInventory;
     public Camera Camera => m_camera;
 
     private void Start()
     {
         Cursor.visible = false;
+        m_uIInventory = UIInventory.instance;
     }
     public void ProcessLook(Vector2 mouseScoll)
     {

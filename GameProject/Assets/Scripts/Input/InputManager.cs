@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    [SerializeField] private UIQuickSlot m_uIQuickSlot;
+    private UIQuickSlot m_uIQuickSlot;
     private PlayerInput m_playerInput;
     private PlayerInput.OnFootActions m_onFoot;
     private PlayerInput.InventoryActions m_inventoryActions;
@@ -20,7 +20,10 @@ public class InputManager : MonoBehaviour
         m_playerMovement = GetComponent<PlayerMovement>();
         m_playerLook = GetComponent<PlayerLook>();
     }
-    
+    private void Start()
+    {
+        m_uIQuickSlot = UIQuickSlot.instance;
+    }
     private void FixedUpdate()
     {
         m_playerMovement.ProcessMove(m_onFoot.Movement.ReadValue<Vector2>());

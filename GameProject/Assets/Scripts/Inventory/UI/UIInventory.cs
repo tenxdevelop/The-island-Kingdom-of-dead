@@ -4,17 +4,30 @@ using UnityEngine;
 
 public class UIInventory : MonoBehaviour
 {
-    [SerializeField] private int m_capacity;
+    public static UIInventory instance;
+
+
     [SerializeField] private GameObject m_gridInventory;
+
     private UIInventorySlot[] m_uISlots;
     private PlayerInventory m_playerInventory;
 
     public InventoryWithSlots inventory => m_playerInventory.inventory;
 
+    private ReferenceSystem m_referenceSystem;
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(instance);
+        }
+        instance = this;
+    }
     private void Start()
     {
         m_uISlots = GetComponentsInChildren<UIInventorySlot>();
-        m_playerInventory = new PlayerInventory(m_capacity);
+        m_referenceSystem = ReferenceSystem.instance;
+        m_playerInventory = m_referenceSystem.player.GetComponent<PlayerInventory>();
         inventory.OnInventoryStateChangedEvent += OnInventoryStateChanged;
 
         SetupInventoryUI(inventory);
