@@ -11,7 +11,6 @@ public class UIDropItem : MonoBehaviour, IDropHandler
     private Vector3 m_positionPrefab;
     [SerializeField] private Vector3 m_positionOffset;
     
-    private float m_distanceDrop = 0.8f;
     private void Awake()
     {
         m_uIInventory = GetComponentInParent<UIInventory>();

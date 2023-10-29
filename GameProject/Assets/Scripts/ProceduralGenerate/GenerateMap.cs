@@ -5,7 +5,6 @@ using UnityEngine;
 public class GenerateMap : MonoBehaviour
 {
     [SerializeField] private int m_sizeMap = 2;
-    [SerializeField] private float m_scale = 1f;
     
     [SerializeField] private LODInfo[] m_detailLevels;
     
@@ -45,7 +44,7 @@ public class GenerateMap : MonoBehaviour
 
     private void Update()
     {
-        m_viewerPosition = new Vector2(m_viewer.position.x, m_viewer.position.z) / m_scale;
+        m_viewerPosition = new Vector2(m_viewer.position.x, m_viewer.position.z) / m_mapGenerator.terrainData.uniformScale;
         UpdateVisibleChunks();
     }
 
@@ -84,7 +83,7 @@ public class GenerateMap : MonoBehaviour
                 Vector2 chunkCoordinate = new Vector2(xOffset, yOffset);
                 float[,] currentFalloffMap = GetFalloffMapOffset(m_falloffMap, m_chunkSizeFalloffMap, m_sizeMap, chunkCoordinate);
                 m_terrainChunkDictionary.Add(chunkCoordinate, new Chunk(chunkCoordinate, chunkSize, m_detailLevels, transform, 
-                                                                        m_mapGenerator, this, currentFalloffMap, m_scale));
+                                                                        m_mapGenerator, this, currentFalloffMap, m_mapGenerator.terrainData.uniformScale));
             }
         }
     }

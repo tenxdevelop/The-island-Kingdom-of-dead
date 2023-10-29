@@ -130,13 +130,11 @@ namespace TheIslandKOD
             m_mapData = GetFalloffMap(mapData);
             m_mapDataReceived = true;
 
-            Texture2D texture = TextureGenerator.TextureFromColorMap(m_mapData.colorMap, MapGenerator.MAX_CHUNK_SIZE + 2,
-                                                                     MapGenerator.MAX_CHUNK_SIZE + 2);
-            m_meshRenderer.material.mainTexture = texture;
-
+            
             float viewerDstFromNearestEddge = Mathf.Sqrt(bounds.SqrDistance(m_generateMap.GetViewPosition()));
             bool isVisible = viewerDstFromNearestEddge <= m_generateMap.GetMaxViewDst();
             UpdateChunk(isVisible, viewerDstFromNearestEddge);
+
         }
 
         private MapData GetFalloffMap(MapData mapData)
@@ -150,7 +148,7 @@ namespace TheIslandKOD
                 }
             }
 
-            return new MapData(heightMap, m_mapGenerator.GenerateColorMap(heightMap));
+            return new MapData(heightMap);
         }
     }
 }
