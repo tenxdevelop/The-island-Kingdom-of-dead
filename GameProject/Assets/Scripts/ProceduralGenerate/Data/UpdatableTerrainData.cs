@@ -1,4 +1,5 @@
 using System;
+using UnityEditor;
 using UnityEngine;
 
 public class UpdatableTerrainData : ScriptableObject
@@ -11,6 +12,7 @@ public class UpdatableTerrainData : ScriptableObject
 
     public void NotifyOfUpdatedValues()
     {
+        EditorApplication.update -= NotifyOfUpdatedValues;
         OnValuesUpdatedEvent?.Invoke();
     }
 
@@ -18,7 +20,7 @@ public class UpdatableTerrainData : ScriptableObject
     {
         if (autoUpdate)
         {
-            NotifyOfUpdatedValues();
+            EditorApplication.update += NotifyOfUpdatedValues;
         }
     }
 }

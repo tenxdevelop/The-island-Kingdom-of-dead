@@ -11,6 +11,7 @@ public class UpdatableTerrainDataEditor : Editor
         if (GUILayout.Button("Generate Map"))
         {
             data.NotifyOfUpdatedValues();
+            EditorUtility.SetDirty(target);
         }
     }
 }

@@ -12,4 +12,7 @@ public class TerrainData : UpdatableTerrainData
     public float heightMultiplier => m_heightMultiplier;
     public AnimationCurve heightCurve => m_heightCurve;
     public bool useFalloffMap => m_useFalloffMap;
+
+    public float minHeight => m_uniformScale * m_heightMultiplier * m_heightCurve.Evaluate(0);
+    public float maxHeight => m_uniformScale * m_heightMultiplier * m_heightCurve.Evaluate(1);
 }

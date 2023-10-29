@@ -154,27 +154,45 @@ public class MapGenerator : MonoBehaviour
         float[,] noiseMap = Noise.GenerateNoiseMap(MAX_CHUNK_SIZE + 2, MAX_CHUNK_SIZE + 2, m_noiseData.noiseScale, m_noiseData.seed, m_noiseData.normalizeMode,
                                                    m_noiseData.octaves, m_noiseData.persistance, m_noiseData.lacunarity, centre + m_noiseData.offsetNoiseMap);
 
+        noiseMap = GenerateFalloffMap(noiseMap);
+
+        m_textureData.UpdatedMeshHeights(m_terrainMaterial, m_terrainData.minHeight, m_terrainData.maxHeight);
+
+        return new MapData(noiseMap);
+    }
+
+    private float[,] GenerateFalloffMap(float[,] heightMap)
+    {
+        int height = heightMap.GetLength(1);
+        int width = heightMap.GetLength(0);
+        float[,] result = new float[width, height];
+        for (int y = 0; y < height; y++)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                result[x, y] = heightMap[x, y];
+            }
+        }
         if (m_terrainData.useFalloffMap)
         {
             if (m_falloffMap == null)
             {
                 m_falloffMap = FalloffGenerator.GenerateFalloffMap(MAX_CHUNK_SIZE + 2);
             }
-            for (int y = 0; y < noiseMap.GetLength(1); y++)
+            for (int y = 0; y < height; y++)
             {
-                for (int x = 0; x < noiseMap.GetLength(0); x++)
+                for (int x = 0; x < width; x++)
                 {
                     if (m_terrainData.useFalloffMap)
                     {
-                        noiseMap[x, y] = Mathf.Clamp01(noiseMap[y, x] - m_falloffMap[x, y]);
+                        result[x, y] = Mathf.Clamp01(result[y, x] - m_falloffMap[x, y]);
                     }
                 }
 
             }
         }
-        return new MapData(noiseMap);
+        return result;
     }
-
     private struct MapThreadInfo<T>
     {
         public readonly Action<T> callback;
