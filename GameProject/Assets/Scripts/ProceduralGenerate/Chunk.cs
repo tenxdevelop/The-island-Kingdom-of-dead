@@ -33,7 +33,7 @@ namespace TheIslandKOD
 
         private bool m_mapDataReceived;
         private int m_previousLODIndex = -1;
-        public Chunk(Vector2 coordinate, int size, LODInfo[] detailsLevels, Transform parent, 
+        public Chunk(Vector2 coordinate, int size, LODInfo[] detailsLevels, Transform parent, Material material,
                      MapGenerator mapGenerator, GenerateMap generateMap, float[,] falloffMap, float scale)
         {
             m_detailLevels = detailsLevels;
@@ -53,7 +53,7 @@ namespace TheIslandKOD
             m_meshObject.transform.parent = parent;
             m_meshObject.transform.position = positionV3 * scale;
             m_meshObject.transform.localScale = Vector3.one * scale;
-
+            m_meshRenderer.sharedMaterial = material;
 
             SetVisible(false);
 

@@ -11,8 +11,11 @@ public class Health : InteractableRaycast
     private void Start()
     {
         state = GetComponent<InteractableItemState>().state;
+        
         m_referenceSystem = ReferenceSystem.instance;
-        m_playerInventory = m_referenceSystem.player.GetComponent<PlayerInventory>();
+            
+        m_playerInventory = m_referenceSystem.player.GetComponent<PlayerInventory>();     
+        
     }
     protected override void Interact()
     {

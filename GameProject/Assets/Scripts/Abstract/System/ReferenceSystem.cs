@@ -14,17 +14,11 @@ public class ReferenceSystem : MonoBehaviour
             Destroy(instance);
         }
         instance = this;
+        FindObjects();
     }
-    private void Start()
+
+    private void FindObjects()
     {
         player = GameObject.FindGameObjectWithTag(TAG_PLAYER);
-    }
-    private void Update()
-    {
-        if (player == null)
-        {
-            player = GameObject.FindGameObjectWithTag(TAG_PLAYER);
-        }
-
     }
 }

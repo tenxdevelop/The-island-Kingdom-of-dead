@@ -34,12 +34,14 @@ public class MapGenerator : MonoBehaviour
     private Queue<MapThreadInfo<MeshData>> m_meshDataThreadInfoQueue = new Queue<MapThreadInfo<MeshData>>();
 
     public TerrainData terrainData => m_terrainData;
+    public Material terrainMaterial => m_terrainMaterial;
     public bool GetAutoUpdate() => m_autoUpdate;
    
     public void DrawMapInEditor()
     {
+        m_textureData.UpdatedMeshHeights(m_terrainMaterial, m_terrainData.minHeight, m_terrainData.maxHeight);
         MapData mapData = GenerateMapData(Vector2.zero);
-        MapDisplay mapDisplay = GetComponent<MapDisplay>();
+        MapDisplay mapDisplay = gameObject.GetComponent<MapDisplay>();
         if (m_drawMode == DrawMode.NoiseMap)
         {
             mapDisplay.DrawTexture(TextureGenerator.TextureFromHeightMap(mapData.heightMap));
@@ -115,7 +117,11 @@ public class MapGenerator : MonoBehaviour
         }
     }
 
-
+    private void Awake()
+    {
+        m_textureData.ApplyToMaterial(m_terrainMaterial);
+        m_textureData.UpdatedMeshHeights(m_terrainMaterial, m_terrainData.minHeight, m_terrainData.maxHeight);
+    }
     private void OnValuesUpdated()
     {
         if (!Application.isPlaying)
@@ -155,8 +161,6 @@ public class MapGenerator : MonoBehaviour
                                                    m_noiseData.octaves, m_noiseData.persistance, m_noiseData.lacunarity, centre + m_noiseData.offsetNoiseMap);
 
         noiseMap = GenerateFalloffMap(noiseMap);
-
-        m_textureData.UpdatedMeshHeights(m_terrainMaterial, m_terrainData.minHeight, m_terrainData.maxHeight);
 
         return new MapData(noiseMap);
     }

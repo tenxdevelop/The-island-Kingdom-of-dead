@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81193b43fd82cd04d98b9e970fc0bdb1, type: 3}
   m_Name: IslandTerrain
   m_EditorClassIdentifier: 
-  m_autoUpdate: 1
-  m_uniformScale: 5
-  m_heightMultiplier: 34.98
+  m_autoUpdate: 0
+  m_uniformScale: 4
+  m_heightMultiplier: 30.08
   m_heightCurve:
     serializedVersion: 2
     m_Curve:
@@ -28,8 +28,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.20518324
-      value: 0.0223881
+      time: 0.25808546
+      value: 0.086230874
       inSlope: 0.46557176
       outSlope: 0.46557176
       tangentMode: 0
@@ -37,26 +37,26 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.40871164
-      value: 0.18755366
-      inSlope: 0.7911195
-      outSlope: 0.7911195
+      time: 0.43358347
+      value: 0.14128901
+      inSlope: 0.21976781
+      outSlope: 0.21976781
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.17230654
-      outWeight: 0.1842832
+      outWeight: 0.26707226
     - serializedVersion: 3
-      time: 0.602165
-      value: 0.31429142
-      inSlope: 0.9671732
-      outSlope: 0.9671732
+      time: 0.5969737
+      value: 0.27428705
+      inSlope: 0.5680951
+      outSlope: 0.5680951
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.19788802
-      outWeight: 0.24031246
+      inWeight: 0.21163961
+      outWeight: 0.22995985
     - serializedVersion: 3
-      time: 0.7651077
-      value: 0.40217522
+      time: 0.78482205
+      value: 0.40690544
       inSlope: 0.39791343
       outSlope: 0.39791343
       tangentMode: 0
@@ -64,8 +64,8 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.35612553
     - serializedVersion: 3
-      time: 0.8729057
-      value: 0.5984176
+      time: 0.87394327
+      value: 0.5410293
       inSlope: 0.61627233
       outSlope: 0.61627233
       tangentMode: 0
@@ -73,8 +73,8 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.24145652
     - serializedVersion: 3
-      time: 1
-      value: 1
+      time: 0.9979248
+      value: 0.82738113
       inSlope: 2
       outSlope: 2
       tangentMode: 0

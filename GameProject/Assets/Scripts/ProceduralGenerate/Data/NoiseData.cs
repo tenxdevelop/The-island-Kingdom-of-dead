@@ -21,7 +21,7 @@ public class NoiseData : UpdatableTerrainData
     public float persistance => m_persistance;
     public float lacunarity => m_lacunarity;
     public Vector2 offsetNoiseMap => m_offsetNoiseMap;
-
+#if UNITY_EDITOR
     protected override void OnValidate()
     {
         if (m_lacunarity < 1)
@@ -34,4 +34,5 @@ public class NoiseData : UpdatableTerrainData
         }
         base.OnValidate();
     }
+#endif
 }

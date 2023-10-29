@@ -9,7 +9,7 @@ public class UpdatableTerrainData : ScriptableObject
     [SerializeField] private bool m_autoUpdate;
 
     public bool autoUpdate => m_autoUpdate;
-
+#if UNITY_EDITOR
     public void NotifyOfUpdatedValues()
     {
         EditorApplication.update -= NotifyOfUpdatedValues;
@@ -23,4 +23,5 @@ public class UpdatableTerrainData : ScriptableObject
             EditorApplication.update += NotifyOfUpdatedValues;
         }
     }
+#endif
 }

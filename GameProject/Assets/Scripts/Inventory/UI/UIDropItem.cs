@@ -18,9 +18,10 @@ public class UIDropItem : MonoBehaviour, IDropHandler
     }
     private void Start()
     {
+    
         m_referenceSystem = ReferenceSystem.instance;
-        m_playerPosition = m_referenceSystem.player.GetComponent<PlayerLook>().itemDropPosition.transform;
-        
+        m_playerPosition = m_referenceSystem.player.GetComponent<PlayerLook>().itemDropPosition.transform;   
+       
     }
     public void OnDrop(PointerEventData eventData)
     {

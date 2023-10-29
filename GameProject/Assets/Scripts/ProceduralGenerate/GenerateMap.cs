@@ -82,7 +82,7 @@ public class GenerateMap : MonoBehaviour
             {
                 Vector2 chunkCoordinate = new Vector2(xOffset, yOffset);
                 float[,] currentFalloffMap = GetFalloffMapOffset(m_falloffMap, m_chunkSizeFalloffMap, m_sizeMap, chunkCoordinate);
-                m_terrainChunkDictionary.Add(chunkCoordinate, new Chunk(chunkCoordinate, chunkSize, m_detailLevels, transform, 
+                m_terrainChunkDictionary.Add(chunkCoordinate, new Chunk(chunkCoordinate, chunkSize, m_detailLevels, transform, m_mapGenerator.terrainMaterial,
                                                                         m_mapGenerator, this, currentFalloffMap, m_mapGenerator.terrainData.uniformScale));
             }
         }

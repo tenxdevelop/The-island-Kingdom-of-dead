@@ -26,8 +26,11 @@ public class UIInventory : MonoBehaviour
     private void Start()
     {
         m_uISlots = GetComponentsInChildren<UIInventorySlot>();
+
         m_referenceSystem = ReferenceSystem.instance;
         m_playerInventory = m_referenceSystem.player.GetComponent<PlayerInventory>();
+
+
         inventory.OnInventoryStateChangedEvent += OnInventoryStateChanged;
 
         SetupInventoryUI(inventory);

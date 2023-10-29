@@ -12,35 +12,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ace91d192f691a4491b7dc00726f9e6, type: 3}
   m_Name: IslandTextureData
   m_EditorClassIdentifier: 
-  m_autoUpdate: 1
+  m_autoUpdate: 0
   m_layers:
   - texture: {fileID: 2800000, guid: 65bccdac972c4134b91fc3cd8e1f2947, type: 3}
     tint: {r: 0.9433962, g: 0.8687981, b: 0.13705942, a: 0}
     tintStrength: 0
     startHeight: 0
     blendStrength: 0
-    textureScale: 6
+    textureScale: 8
   - texture: {fileID: 2800000, guid: 70275e65a226c5448849e434b364a73e, type: 3}
     tint: {r: 0.42976967, g: 0.9150943, b: 0.18474545, a: 0}
     tintStrength: 0
-    startHeight: 0.106
+    startHeight: 0.064
     blendStrength: 0.09
-    textureScale: 5
+    textureScale: 7
   - texture: {fileID: 2800000, guid: 875b9427053ce1842b756d0e98895bc5, type: 3}
     tint: {r: 0.5188679, g: 0.33459535, b: 0.08027764, a: 0}
     tintStrength: 0
-    startHeight: 0.279
+    startHeight: 0.302
     blendStrength: 0.121
-    textureScale: 4
+    textureScale: 6
   - texture: {fileID: 2800000, guid: a89260878af79db44a40033a33f1edf1, type: 3}
     tint: {r: 0.3301887, g: 0.2130983, b: 0.047970798, a: 0}
     tintStrength: 0
     startHeight: 0.368
     blendStrength: 0.146
-    textureScale: 4
+    textureScale: 6
   - texture: {fileID: 2800000, guid: 737e5c9b9329fba42b470b1e6032d27e, type: 3}
     tint: {r: 1, g: 1, b: 1, a: 0}
     tintStrength: 0
     startHeight: 0.615
     blendStrength: 0.253
-    textureScale: 4
+    textureScale: 6
