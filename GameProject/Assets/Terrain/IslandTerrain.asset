@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81193b43fd82cd04d98b9e970fc0bdb1, type: 3}
   m_Name: IslandTerrain
   m_EditorClassIdentifier: 
-  m_autoUpdate: 0
+  m_autoUpdate: 1
   m_uniformScale: 5
-  m_heightMultiplier: 34.7
+  m_heightMultiplier: 34.98
   m_heightCurve:
     serializedVersion: 2
     m_Curve:
@@ -28,8 +28,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.24667703
-      value: 0.036509596
+      time: 0.20518324
+      value: 0.0223881
       inSlope: 0.46557176
       outSlope: 0.46557176
       tangentMode: 0
@@ -37,26 +37,26 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.47407472
-      value: 0.15217629
-      inSlope: 0.1340786
-      outSlope: 0.1340786
+      time: 0.40871164
+      value: 0.18755366
+      inSlope: 0.7911195
+      outSlope: 0.7911195
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.20886949
+      inWeight: 0.17230654
       outWeight: 0.1842832
     - serializedVersion: 3
-      time: 0.6623436
-      value: 0.26474786
-      inSlope: 0.124055505
-      outSlope: 0.124055505
+      time: 0.602165
+      value: 0.31429142
+      inSlope: 0.9671732
+      outSlope: 0.9671732
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.09252386
+      inWeight: 0.19788802
+      outWeight: 0.24031246
     - serializedVersion: 3
-      time: 0.795198
-      value: 0.40452507
+      time: 0.7651077
+      value: 0.40217522
       inSlope: 0.39791343
       outSlope: 0.39791343
       tangentMode: 0
@@ -64,8 +64,8 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.35612553
     - serializedVersion: 3
-      time: 0.9019584
-      value: 0.5677474
+      time: 0.8729057
+      value: 0.5984176
       inSlope: 0.61627233
       outSlope: 0.61627233
       tangentMode: 0

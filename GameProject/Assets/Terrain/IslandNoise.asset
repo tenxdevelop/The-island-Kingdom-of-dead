@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 041be38c462021543a7a78b3b036465f, type: 3}
   m_Name: IslandNoise
   m_EditorClassIdentifier: 
-  m_autoUpdate: 0
-  m_normalizeMode: 1
-  m_octaves: 8
-  m_seed: -35
-  m_noiseScale: 52.95
-  m_persistance: 0.406
+  m_autoUpdate: 1
+  m_normalizeMode: 0
+  m_octaves: 11
+  m_seed: 75
+  m_noiseScale: 47.77
+  m_persistance: 0.463
   m_lacunarity: 1.9
   m_offsetNoiseMap: {x: 86.61, y: 0}
