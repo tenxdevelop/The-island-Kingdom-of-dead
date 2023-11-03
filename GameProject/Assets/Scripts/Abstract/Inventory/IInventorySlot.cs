@@ -7,6 +7,7 @@ namespace TheIslandKOD
     {
         bool isFull { get; }
         bool isEmpty { get; }
+        bool isQuickSlot { get; set; }
         IInventoryItem item { get; }
         Type itemType { get; }
         int amount { get; }

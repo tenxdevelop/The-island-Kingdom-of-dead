@@ -4,6 +4,7 @@ using UnityEngine;
 public class InteractableItemState : MonoBehaviour
 {
     public IInventoryItemState state;
+    public IInventoryItem item;
 
     private void Awake()
     {
@@ -11,5 +12,6 @@ public class InteractableItemState : MonoBehaviour
         {
             state = new InventoryItemState(5);
         }
+
     }
 }

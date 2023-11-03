@@ -10,11 +10,13 @@ namespace TheIslandKOD
 
         public IInventoryItem item { get; private set; }
 
-        public Type itemType => item.type;
+        public Type itemType =>  item.type;
 
         public int amount => (isEmpty) ? 0 : item.state.amount;
 
         public int capacity { get; private set; }
+
+        public bool isQuickSlot { get; set; }
 
         public void Clear()
         {
@@ -23,7 +25,7 @@ namespace TheIslandKOD
 
             item.state.amount = 0;
             item = null;
-
+            isQuickSlot = false;
         }
 
         public void SetItem(IInventoryItem item)

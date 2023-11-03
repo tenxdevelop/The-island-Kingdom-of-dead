@@ -34,6 +34,7 @@ public class UIDropItem : MonoBehaviour, IDropHandler
         {
             var prefab = Instantiate(otherItemUI.item.info.prefab, m_positionPrefab, m_playerPosition.rotation);
             prefab.GetComponent<InteractableItemState>().state = otherItemUI.item.state.Clone();
+            prefab.GetComponent<InteractableItemState>().item = otherItemUI.item.Clone();
         }
 
         inventory.Remove(this, otherItemUI.item.type, otherItemUI.item.state.amount);

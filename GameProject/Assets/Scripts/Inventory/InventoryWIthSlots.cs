@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 namespace TheIslandKOD
 {
@@ -99,7 +100,7 @@ namespace TheIslandKOD
                     slot.item.state.amount -= amountToRemove;
                     if (slot.amount <= 0)
                     {
-                        slot.item.OnDisable();
+                        
                         slot.Clear();
                     }
                     OnInventoryItemRemovedEvent?.Invoke(sender, itemType, amountToRemove);
@@ -108,7 +109,7 @@ namespace TheIslandKOD
                 }
                 int amountRemoved = slot.amount;
                 amountToRemove -= slot.amount;
-                slot.item.OnDisable();
+                
                 slot.Clear();
                 OnInventoryItemRemovedEvent?.Invoke(sender, itemType, amountRemoved);
                 OnInventoryStateChangedEvent?.Invoke(sender);
@@ -137,11 +138,23 @@ namespace TheIslandKOD
             if (fromSlot.isEmpty)
                 return;
 
-            if (toSlot.isFull)
+            if (fromSlot == toSlot)
                 return;
 
-            if (!toSlot.isEmpty && fromSlot.itemType != toSlot.itemType)
+            if (toSlot.isFull)
+            {
+                SwapSlotInventory(fromSlot, toSlot);
+                OnInventoryStateChangedEvent?.Invoke(sender);
                 return;
+            }
+
+
+            if (!toSlot.isEmpty && fromSlot.itemType != toSlot.itemType)
+            {
+                SwapSlotInventory(fromSlot, toSlot);
+                OnInventoryStateChangedEvent?.Invoke(sender);
+                return;
+            }
             
             int slotCapacity = fromSlot.capacity;
             bool fits = fromSlot.amount + toSlot.amount <= slotCapacity;
@@ -151,6 +164,10 @@ namespace TheIslandKOD
             if (toSlot.isEmpty)
             {
                 toSlot.SetItem(fromSlot.item);
+                if (fromSlot.isQuickSlot)
+                {
+                    UIQuickSlot.instance.DisableQuickSlot();
+                }
                 fromSlot.Clear();
                 OnInventoryStateChangedEvent?.Invoke(sender);
             }
@@ -158,6 +175,10 @@ namespace TheIslandKOD
             toSlot.item.state.amount += amountToAdd;
             if (fits)
             {
+                if (fromSlot.isQuickSlot)
+                {
+                    UIQuickSlot.instance.DisableQuickSlot();
+                }
                 fromSlot.Clear();
 
             }
@@ -180,7 +201,7 @@ namespace TheIslandKOD
             if (slot.isEmpty)
             {
                 slot.SetItem(itemClone);
-                slot.item.OnEnable();
+                
             }
             else
             {
@@ -197,6 +218,14 @@ namespace TheIslandKOD
             return TryToAdd(sender, item);
         }
 
-        
+        private void SwapSlotInventory(IInventorySlot fromSlot, IInventorySlot toSlot)
+        {
+            IInventoryItem fromItem = toSlot.item.Clone();
+            IInventoryItem toItem = fromSlot.item.Clone();
+            toSlot.Clear();
+            toSlot.SetItem(toItem);
+            fromSlot.Clear();
+            fromSlot.SetItem(fromItem);
+        }
     }
 }

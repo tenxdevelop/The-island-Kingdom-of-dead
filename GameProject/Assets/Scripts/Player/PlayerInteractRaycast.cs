@@ -20,6 +20,7 @@ public class PlayerInteractRaycast : MonoBehaviour
     
     private void Update()
     {
+        
         m_playerUI.UpdateText(string.Empty);
         Ray ray = new Ray(m_camera.transform.position, m_camera.transform.forward);
         if (Physics.Raycast(ray, out RaycastHit hitInfo, m_distance, m_layerRaycastMask))
