@@ -8,11 +8,11 @@ public class UIInventorySlot : UISlot
     [SerializeField] private UIInventoryItem m_uIInventoryItem;
     public IInventorySlot slot { get; private set; }
 
-    private UIInventory m_uIInventory;
+    private IUIInventory m_uIInventory;
 
     private void Awake()
     {
-        m_uIInventory = GetComponentInParent<UIInventory>();
+        m_uIInventory = GetComponentInParent<IUIInventory>();
     }
     public void SetSlot(IInventorySlot newSlot)
     {

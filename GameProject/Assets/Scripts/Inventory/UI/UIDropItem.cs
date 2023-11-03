@@ -13,7 +13,7 @@ public class UIDropItem : MonoBehaviour, IDropHandler
     
     private void Awake()
     {
-        m_uIInventory = GetComponentInParent<UIInventory>();
+        m_uIInventory = UIInventory.instance;
         
     }
     private void Start()
@@ -26,7 +26,7 @@ public class UIDropItem : MonoBehaviour, IDropHandler
     public void OnDrop(PointerEventData eventData)
     {
         var otherItemUI = eventData.pointerDrag.GetComponent<UIInventoryItem>();
-        var otherSlotUI = otherItemUI.GetComponentInParent<UIInventorySlot>(); 
+        var otherSlotUI = otherItemUI.GetComponentInParent<UIInventorySlot>();
         var inventory = m_uIInventory.inventory;
 
         m_positionPrefab = m_playerPosition.position + m_positionOffset;

@@ -89,6 +89,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Close"",
+                    ""type"": ""Button"",
+                    ""id"": ""c86be801-b8be-45c3-bbb2-6ee225a751fc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -166,6 +175,28 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""QuickSlot6"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3ce07888-1ee3-415a-9be3-c0640498cefe"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Close"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d10f3079-da9b-4f27-b514-a0a7055a5dd2"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Close"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -831,6 +862,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Inventory_QuickSlot5 = m_Inventory.FindAction("QuickSlot5", throwIfNotFound: true);
         m_Inventory_QuickSlot6 = m_Inventory.FindAction("QuickSlot6", throwIfNotFound: true);
         m_Inventory_LookInventory = m_Inventory.FindAction("LookInventory", throwIfNotFound: true);
+        m_Inventory_Close = m_Inventory.FindAction("Close", throwIfNotFound: true);
         // OnFoot
         m_OnFoot = asset.FindActionMap("OnFoot", throwIfNotFound: true);
         m_OnFoot_Movement = m_OnFoot.FindAction("Movement", throwIfNotFound: true);
@@ -917,6 +949,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Inventory_QuickSlot5;
     private readonly InputAction m_Inventory_QuickSlot6;
     private readonly InputAction m_Inventory_LookInventory;
+    private readonly InputAction m_Inventory_Close;
     public struct InventoryActions
     {
         private @PlayerInput m_Wrapper;
@@ -928,6 +961,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @QuickSlot5 => m_Wrapper.m_Inventory_QuickSlot5;
         public InputAction @QuickSlot6 => m_Wrapper.m_Inventory_QuickSlot6;
         public InputAction @LookInventory => m_Wrapper.m_Inventory_LookInventory;
+        public InputAction @Close => m_Wrapper.m_Inventory_Close;
         public InputActionMap Get() { return m_Wrapper.m_Inventory; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -958,6 +992,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @LookInventory.started += instance.OnLookInventory;
             @LookInventory.performed += instance.OnLookInventory;
             @LookInventory.canceled += instance.OnLookInventory;
+            @Close.started += instance.OnClose;
+            @Close.performed += instance.OnClose;
+            @Close.canceled += instance.OnClose;
         }
 
         private void UnregisterCallbacks(IInventoryActions instance)
@@ -983,6 +1020,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @LookInventory.started -= instance.OnLookInventory;
             @LookInventory.performed -= instance.OnLookInventory;
             @LookInventory.canceled -= instance.OnLookInventory;
+            @Close.started -= instance.OnClose;
+            @Close.performed -= instance.OnClose;
+            @Close.canceled -= instance.OnClose;
         }
 
         public void RemoveCallbacks(IInventoryActions instance)
@@ -1197,6 +1237,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnQuickSlot5(InputAction.CallbackContext context);
         void OnQuickSlot6(InputAction.CallbackContext context);
         void OnLookInventory(InputAction.CallbackContext context);
+        void OnClose(InputAction.CallbackContext context);
     }
     public interface IOnFootActions
     {

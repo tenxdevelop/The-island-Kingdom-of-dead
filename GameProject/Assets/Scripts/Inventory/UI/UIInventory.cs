@@ -2,10 +2,9 @@ using TheIslandKOD;
 using UnityEngine;
 
 
-public class UIInventory : MonoBehaviour
+public class UIInventory : MonoBehaviour, IUIInventory
 {
     public static UIInventory instance;
-
 
     [SerializeField] private GameObject m_gridInventory;
 
@@ -26,7 +25,7 @@ public class UIInventory : MonoBehaviour
     private void Start()
     {
         m_uISlots = GetComponentsInChildren<UIInventorySlot>();
-
+        
         m_referenceSystem = ReferenceSystem.instance;
         m_playerInventory = m_referenceSystem.player.GetComponent<PlayerInventory>();
 
@@ -39,6 +38,7 @@ public class UIInventory : MonoBehaviour
 
     public void SetVisible(bool visible)
     {
+        Cursor.visible = visible;
         m_gridInventory.SetActive(visible);
     }
 

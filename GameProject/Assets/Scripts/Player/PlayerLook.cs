@@ -42,7 +42,12 @@ public class PlayerLook : MonoBehaviour
     public void ProcessLookInventory()
     {
         m_isOpenInventory = !m_isOpenInventory;
-        Cursor.visible = m_isOpenInventory;
         m_uIInventory.SetVisible(m_isOpenInventory);
+    }
+
+    public void ProcessLookStorage(bool visible)
+    {
+        m_isOpenInventory = visible;
+        m_uIInventory.SetVisible(visible);
     }
 }

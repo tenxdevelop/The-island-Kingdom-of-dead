@@ -18,8 +18,10 @@ public class UIItem : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHa
     {
         var slotTransform = m_rectTransform.parent;
         var parentSlot = slotTransform.parent;
+        var parentInventory = parentSlot.parent;
         slotTransform.SetAsLastSibling();
         parentSlot.SetAsLastSibling();
+        parentInventory.SetAsLastSibling();
 
         m_canvasGroup.blocksRaycasts = false;
     }
