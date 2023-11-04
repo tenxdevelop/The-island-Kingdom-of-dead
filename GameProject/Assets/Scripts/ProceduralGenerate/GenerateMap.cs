@@ -13,7 +13,8 @@ public class GenerateMap : MonoBehaviour
     [SerializeField] private float m_prefabNoiseSclae;
 
     [SerializeField] private PrefabTerrainData m_prefabData;
-    
+
+    [SerializeField] private GameObject water;
     private Vector2 m_viewerPosition;
     private float[,] m_falloffMap;
     private float m_maxViewDst;
@@ -46,6 +47,7 @@ public class GenerateMap : MonoBehaviour
 
         m_falloffMap = FalloffGenerator.GenerateFalloffMap(m_chunkSizeFalloffMap * (m_sizeMap+1));
         GenerateTerrainMap(m_chunkSize);
+        water.SetActive(true);
     }
 
     private void Update()
