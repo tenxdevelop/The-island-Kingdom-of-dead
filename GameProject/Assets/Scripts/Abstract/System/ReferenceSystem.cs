@@ -14,6 +14,7 @@ public class ReferenceSystem : MonoBehaviour
             Destroy(instance);
         }
         instance = this;
+
         FindObjects();
     }
 

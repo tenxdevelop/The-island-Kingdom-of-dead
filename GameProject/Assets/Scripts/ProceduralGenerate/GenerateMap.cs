@@ -10,6 +10,10 @@ public class GenerateMap : MonoBehaviour
     
     [SerializeField] private Transform m_viewer;
 
+    [SerializeField] private float m_prefabNoiseSclae;
+
+    [SerializeField] private PrefabTerrainData m_prefabData;
+    
     private Vector2 m_viewerPosition;
     private float[,] m_falloffMap;
     private float m_maxViewDst;
@@ -17,7 +21,9 @@ public class GenerateMap : MonoBehaviour
     private int m_chunkSizeFalloffMap;
 
     private Dictionary<Vector2, Chunk> m_terrainChunkDictionary = new Dictionary<Vector2, Chunk>();
+    
     public static List<Chunk> terrainChunksVisibleLastUpdate = new List<Chunk>();
+    public float prefabNoiseScale => m_prefabNoiseSclae;
 
     private static MapGenerator m_mapGenerator;
 
@@ -83,7 +89,7 @@ public class GenerateMap : MonoBehaviour
                 Vector2 chunkCoordinate = new Vector2(xOffset, yOffset);
                 float[,] currentFalloffMap = GetFalloffMapOffset(m_falloffMap, m_chunkSizeFalloffMap, m_sizeMap, chunkCoordinate);
                 m_terrainChunkDictionary.Add(chunkCoordinate, new Chunk(chunkCoordinate, chunkSize, m_detailLevels, transform, m_mapGenerator.terrainMaterial,
-                                                                        m_mapGenerator, this, currentFalloffMap, m_mapGenerator.terrainData.uniformScale));
+                                                                        m_mapGenerator, this, currentFalloffMap, m_mapGenerator.terrainData.uniformScale, m_prefabData.prefabTerrains));
             }
         }
     }

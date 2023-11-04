@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.Threading;
+using System.Xml.Serialization;
 using UnityEngine;
 
 
@@ -33,9 +36,13 @@ namespace TheIslandKOD
 
         private bool m_mapDataReceived;
         private int m_previousLODIndex = -1;
+
+        private List<PrefabTerrain> m_prefabsTerrain;
         public Chunk(Vector2 coordinate, int size, LODInfo[] detailsLevels, Transform parent, Material material,
-                     MapGenerator mapGenerator, GenerateMap generateMap, float[,] falloffMap, float scale)
+                     MapGenerator mapGenerator, GenerateMap generateMap, float[,] falloffMap, float scale, List<PrefabTerrain> prefabsTerrain)
         {
+            m_prefabsTerrain = prefabsTerrain;
+
             m_detailLevels = detailsLevels;
             m_generateMap = generateMap;
             m_falloffMap = falloffMap;
@@ -44,7 +51,7 @@ namespace TheIslandKOD
             m_position = coordinate * size;
             Vector3 positionV3 = new Vector3(m_position.x, 0, m_position.y);
             bounds = new Bounds(m_position, Vector2.one * size);
-
+            
             m_meshObject = new GameObject("TerrainChunk" + number++);
             m_meshFilter = m_meshObject.AddComponent<MeshFilter>();
             m_meshRenderer = m_meshObject.AddComponent<MeshRenderer>();
@@ -60,10 +67,10 @@ namespace TheIslandKOD
             m_lodMeshes = new LODMesh[m_detailLevels.Length];
             for (int i = 0; i < m_detailLevels.Length; i++)
             {
-                m_lodMeshes[i] = new LODMesh(m_detailLevels[i].lod, mapGenerator);
+                m_lodMeshes[i] = new LODMesh(m_detailLevels[i].lod, m_mapGenerator);
             }
 
-            mapGenerator.RequestMapData(m_position, OnMapDataReceived);
+            m_mapGenerator.RequestMapData(m_position, OnMapDataReceived);
         }
 
         public Bounds GetBounds()
@@ -128,9 +135,9 @@ namespace TheIslandKOD
         {
 
             m_mapData = GetFalloffMap(mapData);
+            GeneratePrefab(m_mapData);
             m_mapDataReceived = true;
 
-            
             float viewerDstFromNearestEddge = Mathf.Sqrt(bounds.SqrDistance(m_generateMap.GetViewPosition()));
             bool isVisible = viewerDstFromNearestEddge <= m_generateMap.GetMaxViewDst();
             UpdateChunk(isVisible, viewerDstFromNearestEddge);
@@ -149,6 +156,59 @@ namespace TheIslandKOD
             }
 
             return new MapData(heightMap);
+        }
+
+        private void GeneratePrefab(MapData mapData)
+        {
+            int size = mapData.heightMap.GetLength(0);
+
+            var heightMap = mapData.heightMap;
+            
+            float[,] noiseMap = new float[size, size];
+            for (int y = 0; y < size; y++)
+            {
+                for (int x = 0; x < size; x++)
+                {
+                    noiseMap[x, y] = Mathf.PerlinNoise(x * m_generateMap.prefabNoiseScale, y * m_generateMap.prefabNoiseScale);
+                }
+            }
+
+            for (int i = 0; i < m_prefabsTerrain.Count; i++)
+            {
+                int step = m_prefabsTerrain[i].rangePrefabs;
+                Vector2 rangeSpawn = m_prefabsTerrain[i].SpawnRangeHeight;
+                GameObject prefab = m_prefabsTerrain[i].prefab;
+                Vector2 scaleRange = m_prefabsTerrain[i].scaleRangeRandom;
+                Vector2 rotationRange = m_prefabsTerrain[i].rotationRangeRandom;
+                float offsetHeigt = m_prefabsTerrain[i].offsetHeight;
+                Vector2 randomNoise = m_prefabsTerrain[i].NoiseRandomSpawn;
+                float scale = Random.Range(scaleRange.x, scaleRange.y);
+                for (int y = 0; y < size; y += step)
+                {
+                    for (int x = 0; x < size; x += step)
+                    {
+                        var worldPos = Mathf.Lerp(0, 24, heightMap[x, y]);
+                        if (worldPos > rangeSpawn.x && worldPos < rangeSpawn.y)
+                        {
+                            var v = Random.Range(randomNoise.x, randomNoise.y);
+                            if (noiseMap[x,y] > v)
+                            {
+                                var gameObject = GameObject.Instantiate(prefab, m_meshObject.transform);
+                                
+                                gameObject.transform.localPosition = new Vector3(GetPosition(x, size), worldPos + (offsetHeigt / scale) - 6, GetPosition(-y + size, size));
+                                gameObject.transform.rotation = Quaternion.Euler(0, Random.Range(rotationRange.x, rotationRange.y), 0);
+                                gameObject.transform.localScale = Vector3.one * scale;
+                            }
+                        }
+                    }
+                
+                }
+            }
+        }
+
+        private float GetPosition(int coordinate, int size)
+        {
+            return coordinate - size / 2;
         }
     }
 }

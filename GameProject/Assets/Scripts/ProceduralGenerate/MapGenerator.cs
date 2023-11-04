@@ -36,7 +36,7 @@ public class MapGenerator : MonoBehaviour
     public TerrainData terrainData => m_terrainData;
     public Material terrainMaterial => m_terrainMaterial;
     public bool GetAutoUpdate() => m_autoUpdate;
-   
+    
     public void DrawMapInEditor()
     {
         m_textureData.UpdatedMeshHeights(m_terrainMaterial, m_terrainData.minHeight, m_terrainData.maxHeight);

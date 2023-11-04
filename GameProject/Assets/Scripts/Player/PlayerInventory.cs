@@ -14,7 +14,9 @@ namespace TheIslandKOD
         private void Start()
         {
             inventory = new InventoryWithSlots(m_capacity);
+            UIInventory.instance.SetupInventoryUI(inventory);
+
         }
-        
+
     }
 }

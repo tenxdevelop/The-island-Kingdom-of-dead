@@ -9,11 +9,10 @@ public class UIInventory : MonoBehaviour, IUIInventory
     [SerializeField] private GameObject m_gridInventory;
 
     private UIInventorySlot[] m_uISlots;
-    private PlayerInventory m_playerInventory;
+    private InventoryWithSlots m_inventory;
 
-    public InventoryWithSlots inventory => m_playerInventory.inventory;
+    public InventoryWithSlots inventory => m_inventory;
 
-    private ReferenceSystem m_referenceSystem;
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -21,29 +20,22 @@ public class UIInventory : MonoBehaviour, IUIInventory
             Destroy(instance);
         }
         instance = this;
+        m_uISlots = GetComponentsInChildren<UIInventorySlot>();
     }
     private void Start()
     {
-        m_uISlots = GetComponentsInChildren<UIInventorySlot>();
-        
-        m_referenceSystem = ReferenceSystem.instance;
-        m_playerInventory = m_referenceSystem.player.GetComponent<PlayerInventory>();
-
-
-        inventory.OnInventoryStateChangedEvent += OnInventoryStateChanged;
-
-        SetupInventoryUI(inventory);
         SetVisible(false);
     }
-
     public void SetVisible(bool visible)
     {
         Cursor.visible = visible;
         m_gridInventory.SetActive(visible);
     }
 
-    private void SetupInventoryUI(InventoryWithSlots inventory)
+    public void SetupInventoryUI(InventoryWithSlots inventory)
     {
+        m_inventory = inventory;
+        inventory.OnInventoryStateChangedEvent += OnInventoryStateChanged;
         var allSlots = inventory.GetAllSlots();
         var allSlotsCount = allSlots.Length;
         for (int i = 0; i < allSlotsCount; i++)
