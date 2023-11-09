@@ -10,11 +10,13 @@ public class UIStorage : MonoBehaviour, IUIInventory
     private UIInventorySlot[] m_uISlots;
     private InventoryWithSlots m_storage;
     private PlayerLook m_playerLook;
+    private PlayerMovement m_playerMovement;
     public InventoryWithSlots inventory => m_storage;
     public void SetVisible(bool visible)
     {
         m_gridInventory.SetActive(visible);
         m_playerLook.ProcessLookStorage(visible);
+        m_playerMovement.SetMove(!visible);
     }
 
     private void Awake()
@@ -30,6 +32,7 @@ public class UIStorage : MonoBehaviour, IUIInventory
     {
         m_uISlots = GetComponentsInChildren<UIInventorySlot>();
         m_playerLook = ReferenceSystem.instance.player.GetComponent<PlayerLook>();
+        m_playerMovement = ReferenceSystem.instance.player.GetComponent<PlayerMovement>();
         m_gridInventory.SetActive(false);
     }
     public void SetupStorageUI(InventoryWithSlots storage)
