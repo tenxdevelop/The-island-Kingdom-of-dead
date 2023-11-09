@@ -1,3 +1,4 @@
+using Cinemachine;
 using TheIslandKOD;
 using UnityEngine;
 
@@ -7,7 +8,7 @@ public class PlayerInteractRaycast : MonoBehaviour
     [SerializeField] private float m_distance = 3f;
     [SerializeField] private LayerMask m_layerRaycastMask;
  
-    private Camera m_camera;
+    private CinemachineVirtualCamera m_camera;
     private PlayerUI m_playerUI;
     private InputManager m_inputManager;
     private void Start()
@@ -15,6 +16,7 @@ public class PlayerInteractRaycast : MonoBehaviour
         m_camera = GetComponent<PlayerLook>().Camera;
         m_playerUI = GetComponent<PlayerUI>();
         m_inputManager = GetComponent<InputManager>();
+        
     }
 
     
