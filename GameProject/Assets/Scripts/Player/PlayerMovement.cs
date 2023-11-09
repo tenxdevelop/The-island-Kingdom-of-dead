@@ -47,13 +47,18 @@ public class PlayerMovement : MonoBehaviour
             m_animatorPLayer.SetFloat(TAG_AMINATION_MOVE_Y, derection.y * m_animationInterpolation);
             Vector3 moveDerection = Vector3.right * derection.x + Vector3.forward * derection.y;
             m_controller.Move(transform.TransformDirection(moveDerection) * m_speed * Time.deltaTime);
-            m_playerVelocity.y += m_gravity * Time.deltaTime;
-            if (m_isGrounded && m_playerVelocity.y < 0)
-            {
-                m_playerVelocity.y = m_gravityState * 1.5f;
-            }
-            m_controller.Move(m_playerVelocity * Time.deltaTime);
         }
+        else
+        {
+            m_animatorPLayer.SetFloat(TAG_AMINATION_MOVE_X, 0);
+            m_animatorPLayer.SetFloat(TAG_AMINATION_MOVE_Y, 0);
+        }
+        m_playerVelocity.y += m_gravity * Time.deltaTime;
+        if (m_isGrounded && m_playerVelocity.y < 0)
+        {
+            m_playerVelocity.y = m_gravityState * 1.5f;
+        }
+        m_controller.Move(m_playerVelocity * Time.deltaTime);
     }
 
     public void Jump()

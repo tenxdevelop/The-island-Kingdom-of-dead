@@ -1,5 +1,37 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &616937771158737812
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7102313897565846938}
+  m_Layer: 0
+  m_Name: Light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7102313897565846938
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 616937771158737812}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7473359352224919894}
+  m_Father: {fileID: 3169679466043496406}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1644780468226924638
 GameObject:
   m_ObjectHideFlags: 0
@@ -25,13 +57,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1644780468226924638}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.4592113, y: -0.24062172, z: 0.095337436, w: 0.84978646}
+  m_LocalRotation: {x: -0.6051587, y: -0.13971804, z: 0.7540224, w: -0.21380366}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3169679466043496406}
-  m_LocalEulerAnglesHint: {x: 55.725, y: -34.798, z: -6.009}
+  m_Father: {fileID: 7102313897565846938}
+  m_LocalEulerAnglesHint: {x: -208, y: 105, z: 10}
 --- !u!108 &3572351041925608548
 Light:
   m_ObjectHideFlags: 0
@@ -43,8 +75,8 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.9822931, b: 0.82452834, a: 1}
-  m_Intensity: 0.61
+  m_Color: {r: 0.9150943, g: 0.89053833, b: 0.6940904, a: 1}
+  m_Intensity: 1.24
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -83,7 +115,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -161,7 +193,7 @@ Camera:
     height: 1
   near clip plane: 0.15
   far clip plane: 1000
-  field of view: 76
+  field of view: 65
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -266,6 +298,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+--- !u!1 &7546041793358477272
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2503674625638836749}
+  m_Layer: 0
+  m_Name: TimeManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2503674625638836749
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7546041793358477272}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3169679466043496406}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8619181620007766506
 GameObject:
   m_ObjectHideFlags: 0
@@ -297,6 +360,86 @@ Transform:
   m_Children:
   - {fileID: 6201470275851780264}
   - {fileID: 737334109074239274}
-  - {fileID: 7473359352224919894}
+  - {fileID: 6742769657949690940}
+  - {fileID: 7102313897565846938}
+  - {fileID: 2503674625638836749}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8640854350438401284
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6742769657949690940}
+  - component: {fileID: 6650646822231415716}
+  m_Layer: 0
+  m_Name: DayNightSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6742769657949690940
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8640854350438401284}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3169679466043496406}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6650646822231415716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8640854350438401284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f693e46b89ff504c88a6cf82b51fddb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_directinalLight: {fileID: 3572351041925608548}
+  m_dayDurationInSeconds: 120
+  m_timeMappings:
+  - hour: 1
+    phaseName: Night
+    skyBox: {fileID: 2100000, guid: 8c94435c262dc614799eb36fd36c5b4a, type: 2}
+  - hour: 4
+    phaseName: NightToSunrise
+    skyBox: {fileID: 2100000, guid: cb21262bb81f4b545a303042d9008c5c, type: 2}
+  - hour: 7
+    phaseName: Sunrise
+    skyBox: {fileID: 2100000, guid: f3b3f6a697514944da8524250aa64277, type: 2}
+  - hour: 9
+    phaseName: SunriseToDay
+    skyBox: {fileID: 2100000, guid: d75ceae9cfa9d8a4fbdf1a65a4e85d4e, type: 2}
+  - hour: 12
+    phaseName: DayTime
+    skyBox: {fileID: 2100000, guid: 400d8db5104338b428633f2079c1b88e, type: 2}
+  - hour: 15
+    phaseName: DayToSunset
+    skyBox: {fileID: 2100000, guid: 0cee084c73f034e4992a097978350266, type: 2}
+  - hour: 18
+    phaseName: Sunset
+    skyBox: {fileID: 2100000, guid: 2b0ee035e6c540241b0977a4f54c7425, type: 2}
+  - hour: 19
+    phaseName: SunsetToEarlyNight
+    skyBox: {fileID: 2100000, guid: 5142013614ba05b4bb39a4361dcebc42, type: 2}
+  - hour: 22
+    phaseName: EarlyNight
+    skyBox: {fileID: 2100000, guid: 53d73dd4f99c4c84d95a657e638c4553, type: 2}
+  - hour: 23
+    phaseName: EarlyNightToNight
+    skyBox: {fileID: 2100000, guid: e348aea6ce2f5ce4e92bb62db09ddd44, type: 2}
+  m_timeBlendedSkyBox: 4

@@ -10,7 +10,7 @@ namespace TheIslandKOD
 
         public IInventoryItem item { get; private set; }
 
-        public Type itemType =>  item.type;
+        public Type itemType =>  item?.type;
 
         public int amount => (isEmpty) ? 0 : item.state.amount;
 

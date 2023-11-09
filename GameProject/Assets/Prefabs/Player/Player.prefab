@@ -272,8 +272,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_speed: 5
-  m_jumpStrength: 1
-  m_gravity: -9.81
+  m_jumpStrength: 1.2
+  m_gravity: -11.71
 --- !u!114 &3726148530833337300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,7 +315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69aabd10e3ac3ff4e96f2d9051a006df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_distance: 3
+  m_distance: 4
   m_layerRaycastMask:
     serializedVersion: 2
     m_Bits: 64

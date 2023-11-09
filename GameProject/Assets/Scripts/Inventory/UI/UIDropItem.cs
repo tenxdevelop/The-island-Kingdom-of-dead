@@ -5,17 +5,13 @@ using UnityEngine.EventSystems;
 
 public class UIDropItem : MonoBehaviour, IDropHandler
 {
-    private UIInventory m_uIInventory;
+    
     private Transform m_playerPosition;
     private ReferenceSystem m_referenceSystem;
     private Vector3 m_positionPrefab;
     [SerializeField] private Vector3 m_positionOffset;
     
-    private void Awake()
-    {
-        m_uIInventory = UIInventory.instance;
-        
-    }
+    
     private void Start()
     {
     
@@ -27,8 +23,7 @@ public class UIDropItem : MonoBehaviour, IDropHandler
     {
         var otherItemUI = eventData.pointerDrag.GetComponent<UIInventoryItem>();
         var otherSlotUI = otherItemUI.GetComponentInParent<UIInventorySlot>();
-        var inventory = m_uIInventory.inventory;
-
+        
         m_positionPrefab = m_playerPosition.position + m_positionOffset;
         if (otherItemUI.item.info.prefab != null)
         {
@@ -37,8 +32,25 @@ public class UIDropItem : MonoBehaviour, IDropHandler
             prefab.GetComponent<InteractableItemState>().item = otherItemUI.item.Clone();
         }
 
-        inventory.Remove(this, otherItemUI.item.type, otherItemUI.item.state.amount);
-        
+        DeleteInvenotyItem(otherSlotUI, otherItemUI);
+
+
         otherSlotUI.Refresh();
+    }
+
+    private void DeleteInvenotyItem(UIInventorySlot otherSlot, UIInventoryItem otherItem)
+    {
+        var uIStorage = otherSlot.GetComponentInParent<UIStorage>();
+        var uIInventory = otherSlot.GetComponentInParent<UIInventory>();
+        var inventory = uIStorage?.inventory;
+        if (inventory != null && inventory.HasItem(otherItem.item.type, out var item))
+        {
+            inventory.Remove(this, item.type, otherItem.item.state.amount);
+        }
+        else
+        {
+            inventory = uIInventory.inventory;
+            inventory.Remove(this, otherItem.item.type, otherItem.item.state.amount);
+        }
     }
 }
