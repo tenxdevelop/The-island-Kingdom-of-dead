@@ -8,26 +8,28 @@ public class DayNightSystem : MonoBehaviour
     private const string TAG_SKYBOX_SHADER_TRANSITION = "_TransitionFactor";
 
     [SerializeField] private Light m_directinalLight;
-
-    [SerializeField] private float m_dayDurationInSeconds = 24f;
-    
+  
     [SerializeField] private List<SkyBoxTimeMapping> m_timeMappings;
 
-    [SerializeField] private float m_timeBlendedSkyBox = 1f;
-
-    private int m_currentHour = 0;
-    private float m_currentTimeOfDay = 0.5f;
-
     private float m_blendedValue = 0f;
-    public int currentHour => m_currentHour;
-
+    private float m_changeLight = 1.54f;
+    
     private void Update()
     {
-        m_currentTimeOfDay += Time.deltaTime / m_dayDurationInSeconds;
-        m_currentTimeOfDay %= 1;
-        m_currentHour = Mathf.FloorToInt(m_currentTimeOfDay * 24);
+        
+        var angle = (-TimeManager.instance.currentTimeOfDay * 360) - 90;
+        m_directinalLight.transform.rotation = Quaternion.Euler(new Vector3(angle, 105, 15));
+        if (TimeManager.instance.currentHour == 19)
+        {
+            m_changeLight = Mathf.Lerp(m_changeLight, 0, Time.deltaTime * 2);
+            m_directinalLight.intensity = m_changeLight;
+        }
+        else if (TimeManager.instance.currentHour == 5)
+        {
+            m_changeLight = Mathf.Lerp(m_changeLight, 1.54f, Time.deltaTime * 2);
+            m_directinalLight.intensity = m_changeLight;
+        }
 
-        m_directinalLight.transform.rotation = Quaternion.Euler(new Vector3((-m_currentTimeOfDay * 360) - 90, 105, 15));
         UpdateSkyBox();
     }
 
@@ -36,13 +38,13 @@ public class DayNightSystem : MonoBehaviour
         Material currentSkyBox = null;
         foreach (var map in m_timeMappings)
         {
-            if (m_currentHour == map.hour)
+            if (TimeManager.instance.currentHour == map.hour)
             {
                 currentSkyBox = map.skyBox;
 
                 if (currentSkyBox?.shader.name == SHADER_SKYBOX)
                 {
-                    m_blendedValue += Time.deltaTime / m_timeBlendedSkyBox;
+                    m_blendedValue += Time.deltaTime / TimeManager.instance.timeBlendedSkyBox;
                     m_blendedValue = Mathf.Clamp01(m_blendedValue);
                     currentSkyBox.SetFloat(TAG_SKYBOX_SHADER_TRANSITION, m_blendedValue);
                 }

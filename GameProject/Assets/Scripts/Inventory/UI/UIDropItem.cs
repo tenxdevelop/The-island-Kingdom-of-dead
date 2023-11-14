@@ -45,7 +45,7 @@ public class UIDropItem : MonoBehaviour, IDropHandler
         var inventory = uIStorage?.inventory;
         if (inventory != null && inventory.HasItem(otherItem.item.type, out var item))
         {
-            inventory.Remove(this, item.type, otherItem.item.state.amount);
+            inventory.Remove(this, otherItem.item.type, otherItem.item.state.amount);
         }
         else
         {
