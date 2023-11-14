@@ -39,6 +39,7 @@ namespace TheIslandKOD
                 {
                     m_uIQuickSlot.DisableQuickSlot();
                     inventory.Remove(this, slot.itemType);
+                    ReferenceSystem.instance.player.GetComponent<Player>().HealthUp(5);
                 }
             }
            

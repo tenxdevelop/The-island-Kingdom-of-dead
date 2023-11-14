@@ -8,14 +8,14 @@ public class Health : InteractableRaycast
     
     private PlayerInventory m_playerInventory;
     private ReferenceSystem m_referenceSystem;
-
+    private Player m_player;
     private void Start()
     {
      
         m_referenceSystem = ReferenceSystem.instance;
             
-        m_playerInventory = m_referenceSystem.player.GetComponent<PlayerInventory>();     
-        
+        m_playerInventory = m_referenceSystem.player.GetComponent<PlayerInventory>();
+        m_player = m_referenceSystem.player.GetComponent<Player>();
     }
     protected override void Interact()
     {
@@ -25,6 +25,7 @@ public class Health : InteractableRaycast
         item2.state.amount = 3;
         m_playerInventory.inventory.TryToAdd(this, item);
         m_playerInventory.inventory.TryToAdd(this, item2);
+        m_player.TakeDamage(20);
         Destroy(gameObject);
     }
 

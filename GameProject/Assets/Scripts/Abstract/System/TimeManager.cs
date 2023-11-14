@@ -40,7 +40,6 @@ public class TimeManager : MonoBehaviour
         if (currentHour == 0 && !m_lockNextDayTrigger)
         {
             m_dayInGame++;
-            Debug.Log("day: " + dayInGame);
             m_lockNextDayTrigger = true;
         }
         if (currentHour != 0)
