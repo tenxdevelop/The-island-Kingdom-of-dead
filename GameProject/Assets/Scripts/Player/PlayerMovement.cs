@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float m_speed = 5f;
     [SerializeField] private float m_jumpStrength = 3f;
     [SerializeField] private float m_gravity = -9.81f;
+    [SerializeField] private MultiAimConstraint m_bodyRotation;
 
     private CharacterController m_controller;
     private Vector3 m_playerVelocity;
@@ -40,6 +42,15 @@ public class PlayerMovement : MonoBehaviour
 
     public void ProcessMove(Vector2 derection)
     {
+        if (derection.x < 0.3 && derection.x > -0.3 && derection.y < 0.3 && derection.y > -0.3)
+        {
+            m_bodyRotation.weight = 1f;
+        }
+        else
+        {
+            m_bodyRotation.weight = 0f;
+        }
+        
         if (m_canMove)
         {
             m_animationInterpolation = Mathf.Lerp(m_animationInterpolation, 1f, Time.deltaTime * 3);
@@ -73,5 +84,17 @@ public class PlayerMovement : MonoBehaviour
     public void SetMove(bool canMove)
     {
         m_canMove = canMove;
+    }
+
+    public void SetItemState(bool state)
+    {
+        if (state)
+        {
+            m_animatorPLayer.SetLayerWeight(1, 1);
+        }
+        else
+        {
+            m_animatorPLayer.SetLayerWeight(1, 0);
+        }
     }
 }

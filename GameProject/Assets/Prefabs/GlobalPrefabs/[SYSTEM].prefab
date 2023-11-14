@@ -342,6 +342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed6b081152ccc794798fc37d6bf2fd05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_dayDurationInSeconds: 240
 --- !u!1 &8619181620007766506
 GameObject:
   m_ObjectHideFlags: 0
@@ -423,7 +424,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_directinalLight: {fileID: 3572351041925608548}
-  m_dayDurationInSeconds: 120
   m_timeMappings:
   - hour: 1
     phaseName: Night
@@ -455,4 +455,3 @@ MonoBehaviour:
   - hour: 23
     phaseName: EarlyNightToNight
     skyBox: {fileID: 2100000, guid: e348aea6ce2f5ce4e92bb62db09ddd44, type: 2}
-  m_timeBlendedSkyBox: 4

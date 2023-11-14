@@ -11587,7 +11587,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd4d2ae1ed8f54f44a0fc5c5f7559310, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_chipSpeed: 3
+  m_chipSpeed: 5
   m_frontImage: {fileID: 8889234799557186457}
   m_backImage: {fileID: 5197265243831307775}
 --- !u!1 &4107710547068664271
