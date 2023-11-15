@@ -96,8 +96,11 @@ public class UIQuickSlot : MonoBehaviour
 
     private void DisableItem(InventoryWithSlots inventory, IInventorySlot slot)
     {
-        m_currentSlotActive = false;
-        OnQuickSlotActiveChangedEvent?.Invoke(inventory, slot, m_currentSlotActive);
-        m_lastItemUpdate.OnDisable();
+        if (m_lastItemUpdate != null)
+        {
+            m_currentSlotActive = false;
+            OnQuickSlotActiveChangedEvent?.Invoke(inventory, slot, m_currentSlotActive);
+            m_lastItemUpdate.OnDisable();
+        }
     }
 }

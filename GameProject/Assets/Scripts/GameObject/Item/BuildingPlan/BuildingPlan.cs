@@ -30,7 +30,6 @@ namespace TheIslandKOD
 
         public void OnDisable()
         {
-            m_buildingSystem.StopCoroutine();
             m_uIQuickSlot.OnQuickSlotActiveChangedEvent -= OnQuickSlotChangedEvent;
         }
 
@@ -48,7 +47,10 @@ namespace TheIslandKOD
                     m_buildingSystem.StartCoroutine();
                 }
             }
-            
+            else
+            {
+                m_buildingSystem.StopCoroutine();
+            }
         }
        
     }

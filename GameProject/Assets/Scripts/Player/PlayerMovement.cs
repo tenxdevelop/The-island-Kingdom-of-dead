@@ -8,12 +8,13 @@ public class PlayerMovement : MonoBehaviour
 
     private const string TAG_AMINATION_JUMP = "jump";
     private const string TAG_AMINATION_ISGROUND = "isGround";
+    private const string TAG_AMINATION_ATTACH = "RightAttach";
 
     [SerializeField] private float m_speed = 5f;
     [SerializeField] private float m_jumpStrength = 3f;
     [SerializeField] private float m_gravity = -9.81f;
     [SerializeField] private MultiAimConstraint m_bodyRotation;
-
+    
     private CharacterController m_controller;
     private Vector3 m_playerVelocity;
     private bool m_isGrounded;
@@ -98,5 +99,10 @@ public class PlayerMovement : MonoBehaviour
         {
             m_animatorPLayer.SetLayerWeight(1, 0);
         }
+    }
+
+    public void AttachItem()
+    {
+        m_animatorPLayer.SetTrigger(TAG_AMINATION_ATTACH);
     }
 }
