@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 
 namespace TheIslandKOD
 {
@@ -100,8 +99,7 @@ namespace TheIslandKOD
                     slot.item.state.amount -= amountToRemove;
                     if (slot.amount <= 0)
                     {
-                        
-                        slot.Clear();
+                        ClearSlot(slot);
                     }
                     OnInventoryItemRemovedEvent?.Invoke(sender, itemType, amountToRemove);
                     OnInventoryStateChangedEvent?.Invoke(sender);
@@ -109,8 +107,7 @@ namespace TheIslandKOD
                 }
                 int amountRemoved = slot.amount;
                 amountToRemove -= slot.amount;
-                
-                slot.Clear();
+                ClearSlot(slot);
                 OnInventoryItemRemovedEvent?.Invoke(sender, itemType, amountRemoved);
                 OnInventoryStateChangedEvent?.Invoke(sender);
             }
@@ -164,23 +161,14 @@ namespace TheIslandKOD
             if (toSlot.isEmpty)
             {
                 toSlot.SetItem(fromSlot.item);
-                if (fromSlot.isQuickSlot)
-                {
-                    UIQuickSlot.instance.DisableQuickSlot();
-                }
-                fromSlot.Clear();
+                ClearSlot(fromSlot);
                 OnInventoryStateChangedEvent?.Invoke(sender);
             }
 
             toSlot.item.state.amount += amountToAdd;
             if (fits)
             {
-                if (fromSlot.isQuickSlot)
-                {
-                    UIQuickSlot.instance.DisableQuickSlot();
-                }
-                fromSlot.Clear();
-
+                ClearSlot(fromSlot);
             }
             else
             {
@@ -220,12 +208,22 @@ namespace TheIslandKOD
 
         private void SwapSlotInventory(IInventorySlot fromSlot, IInventorySlot toSlot)
         {
+            
             IInventoryItem fromItem = toSlot.item.Clone();
             IInventoryItem toItem = fromSlot.item.Clone();
-            toSlot.Clear();
+            ClearSlot(toSlot);
             toSlot.SetItem(toItem);
-            fromSlot.Clear();
+            ClearSlot(fromSlot);
             fromSlot.SetItem(fromItem);
+        }
+
+        private void ClearSlot(IInventorySlot slot)
+        {
+            if (slot.isQuickSlot)
+            {
+                UIQuickSlot.instance.DisableQuickSlot();
+            }
+            slot.Clear();
         }
     }
 }

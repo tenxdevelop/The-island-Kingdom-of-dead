@@ -19,7 +19,7 @@ public class Health : InteractableRaycast
     }
     protected override void Interact()
     {
-        var item = new BuildingPlan(m_info);
+        var item = new StoneAxe(m_info);
         var item2 = new Apple(m_info2);
         item.state.amount = 1;
         item2.state.amount = 3;

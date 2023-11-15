@@ -19,6 +19,9 @@ public class UIQuickSlot : MonoBehaviour
 
     private UIInventory m_uIInventory;
     private IInventoryItem m_lastItemUpdate;
+
+    private InventoryWithSlots m_lastInventory;
+    private IInventorySlot m_lastSlot;
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -32,60 +35,69 @@ public class UIQuickSlot : MonoBehaviour
     public void QuickSlotInputAction(int number)
     {
         var currentImageSlot = m_quickSlots[m_currentQuickslotID].GetComponent<Image>();
-        var slot = m_quickSlots[m_currentQuickslotID].GetComponent<UIInventorySlot>().slot;
+        m_lastSlot = m_quickSlots[m_currentQuickslotID].GetComponent<UIInventorySlot>().slot;
+        m_lastInventory = m_uIInventory.inventory;
         currentImageSlot.sprite = m_notSelectedSprite;
         if (m_currentQuickslotID == number)
         {
-            if (!slot.isEmpty)
+            if (!m_lastSlot.isEmpty)
             {
                 if (!m_currentSlotActive)
                 {
                     currentImageSlot.sprite = m_selectedSprite;
-                    slot.item.OnEnable();
-                    slot.isQuickSlot = true;
-                    m_lastItemUpdate = slot.item;
+                    m_lastSlot.item.OnEnable();
+                    m_currentSlotActive = !m_currentSlotActive;
+                    m_lastSlot.isQuickSlot = true;
+                    m_lastItemUpdate = m_lastSlot.item;
                 }
                 else
                 {
                     currentImageSlot.sprite = m_notSelectedSprite;
-                    slot.item.OnDisable();
+                    DisableItem(m_lastInventory, m_lastSlot);
                 }
-                m_currentSlotActive = !m_currentSlotActive;
+                
             }
             else if(m_lastItemUpdate != null)
             {
-                m_lastItemUpdate.OnDisable();
-                m_currentSlotActive = false;
+                DisableItem(m_lastInventory, m_lastSlot);
             }
         }
         else 
         {
-            if (!slot.isEmpty)
+            if (!m_lastSlot.isEmpty)
             {
                 currentImageSlot.sprite = m_notSelectedSprite;
-                slot.item.OnDisable();
+                DisableItem(m_lastInventory, m_lastSlot);
             }
             m_currentQuickslotID = number;
-            slot = m_quickSlots[m_currentQuickslotID].GetComponent<UIInventorySlot>().slot;
-            if (!slot.isEmpty)
+            m_lastSlot = m_quickSlots[m_currentQuickslotID].GetComponent<UIInventorySlot>().slot;
+            if (!m_lastSlot.isEmpty)
             {
                 m_quickSlots[m_currentQuickslotID].GetComponent<Image>().sprite = m_selectedSprite;
-                slot.item.OnEnable();
-                slot.isQuickSlot = true;
-                m_lastItemUpdate = slot.item;
+                m_lastSlot.item.OnEnable();
+                m_lastSlot.isQuickSlot = true;
+                m_lastItemUpdate = m_lastSlot.item;
                 m_currentSlotActive = true;
             }
 
         }
         
-        var inventory = m_uIInventory.inventory;
-        OnQuickSlotActiveChangedEvent?.Invoke(inventory, slot, m_currentSlotActive);
+        OnQuickSlotActiveChangedEvent?.Invoke(m_lastInventory, m_lastSlot, m_currentSlotActive);
     }
 
     public void DisableQuickSlot()
     {
-        m_lastItemUpdate.OnDisable();
-        m_quickSlots[m_currentQuickslotID].GetComponent<Image>().sprite = m_notSelectedSprite;
+        if (m_lastSlot != null && m_lastInventory != null)
+        {
+            DisableItem(m_lastInventory, m_lastSlot);
+            m_quickSlots[m_currentQuickslotID].GetComponent<Image>().sprite = m_notSelectedSprite;       
+        }
+    }
+
+    private void DisableItem(InventoryWithSlots inventory, IInventorySlot slot)
+    {
         m_currentSlotActive = false;
+        OnQuickSlotActiveChangedEvent?.Invoke(inventory, slot, m_currentSlotActive);
+        m_lastItemUpdate.OnDisable();
     }
 }

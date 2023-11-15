@@ -5,13 +5,14 @@ namespace TheIslandKOD
 {
     public class Apple : IInventoryItem
     {
+        private UIQuickSlot m_uIQuickSlot;
+        private PlayerMovement m_playerMovement;
         public IInventoryItemInfo info { get; }
 
         public IInventoryItemState state { get; }
 
         public Type type => GetType();
-
-        private UIQuickSlot m_uIQuickSlot;
+        
         public Apple(IInventoryItemInfo info)
         {
             this.info = info;
@@ -32,17 +33,19 @@ namespace TheIslandKOD
 
         private void OnQuickSlotChangedEvent(InventoryWithSlots inventory, IInventorySlot slot, bool isActive)
         {
-            
-            if (!slot.isEmpty)
+            if (isActive)
             {
-                if (slot.itemType == type)
+                if (!slot.isEmpty)
                 {
-                    m_uIQuickSlot.DisableQuickSlot();
-                    inventory.Remove(this, slot.itemType);
-                    ReferenceSystem.instance.player.GetComponent<Player>().HealthUp(5);
+                    if (slot.itemType == type)
+                    {
+                        m_uIQuickSlot.DisableQuickSlot();
+                        inventory.Remove(this, slot.itemType);
+                        ReferenceSystem.instance.player.GetComponent<Player>().HealthUp(5);
+                    }
                 }
             }
-           
+
         }
         public IInventoryItem Clone()
         {

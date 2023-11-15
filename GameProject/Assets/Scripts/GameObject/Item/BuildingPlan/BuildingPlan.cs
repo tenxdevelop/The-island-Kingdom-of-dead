@@ -48,10 +48,7 @@ namespace TheIslandKOD
                     m_buildingSystem.StartCoroutine();
                 }
             }
-            else
-            {
-                m_buildingSystem.StopCoroutine();
-            }
+            
         }
        
     }

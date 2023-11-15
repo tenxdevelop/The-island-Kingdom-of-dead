@@ -42,17 +42,19 @@ public class PlayerMovement : MonoBehaviour
 
     public void ProcessMove(Vector2 derection)
     {
-        if (derection.x < 0.3 && derection.x > -0.3 && derection.y < 0.3 && derection.y > -0.3)
-        {
-            m_bodyRotation.weight = 1f;
-        }
-        else
-        {
-            m_bodyRotation.weight = 0f;
-        }
         
         if (m_canMove)
         {
+
+            if (derection.x < 0.3 && derection.x > -0.3 && derection.y < 0.3 && derection.y > -0.3)
+            {
+                m_bodyRotation.weight = 1f;
+            }
+            else
+            {
+                m_bodyRotation.weight = 0f;
+            }
+
             m_animationInterpolation = Mathf.Lerp(m_animationInterpolation, 1f, Time.deltaTime * 3);
             m_animatorPLayer.SetFloat(TAG_AMINATION_MOVE_X, derection.x * m_animationInterpolation);
             m_animatorPLayer.SetFloat(TAG_AMINATION_MOVE_Y, derection.y * m_animationInterpolation);
