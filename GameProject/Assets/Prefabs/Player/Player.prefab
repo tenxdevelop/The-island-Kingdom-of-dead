@@ -74,8 +74,8 @@ MonoBehaviour:
         transform: {fileID: 0}
         weight: 0
     m_Offset: {x: 0, y: 0, z: 0}
-    m_MinLimit: -80
-    m_MaxLimit: 80
+    m_MinLimit: -180
+    m_MaxLimit: 180
     m_AimAxis: 4
     m_UpAxis: 2
     m_WorldUpType: 0
@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fd3702c57d6c8f44898a34824169504, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_distance: 0.8
+  m_distance: 0.5
   m_camera: {fileID: 0}
 --- !u!1 &2519458420316068398
 GameObject:
@@ -504,7 +504,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3c430f382484144e925c097c2d33cfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Weight: 0.655
+  m_Weight: 0
   m_Data:
     m_ConstrainedObject: {fileID: 5677016794334736123}
     m_SourceObjects:
@@ -559,10 +559,11 @@ GameObject:
   - component: {fileID: 5606391484286212569}
   - component: {fileID: 3726148530833337300}
   - component: {fileID: 7710139161104539488}
-  - component: {fileID: 6335129944822679839}
   - component: {fileID: 8336622633430603177}
   - component: {fileID: 6210143246733472160}
   - component: {fileID: 2953448549048934995}
+  - component: {fileID: 6044778613658718544}
+  - component: {fileID: 5189732929151655456}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -607,8 +608,8 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 1.6
-  m_Radius: 0.23
+  m_Height: 1.7
+  m_Radius: 0.24
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -656,24 +657,8 @@ MonoBehaviour:
   itemDropPosition: {fileID: 694494091913653719}
   m_xSensitivity: 25
   m_ySensitivity: 25
-  m_MaxAngleScroll: 60
+  m_MaxAngleScroll: 65
   m_camera: {fileID: 7564370257012591822}
---- !u!114 &6335129944822679839
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8253399262752702555}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69aabd10e3ac3ff4e96f2d9051a006df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_distance: 4
-  m_layerRaycastMask:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!114 &8336622633430603177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -714,6 +699,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_maxHealth: 100
   m_healthBar: {fileID: 0}
+--- !u!114 &6044778613658718544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8253399262752702555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd643bf931dc2844ea6f64052a03b5f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_itemArm:
+  - key: StoneAxe
+    item: {fileID: 4369755142094076906}
+--- !u!114 &5189732929151655456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8253399262752702555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14fc5a97e26b253418a85a28072d3384, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_bodyRotation: {fileID: 5676671583385823356}
+  m_RightTriger: {fileID: 1090911858467896441}
 --- !u!1001 &106611759649315351
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -805,6 +819,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9aaa800e34b50d24cb258d1c8b05402c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6350894365459294186}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9aaa800e34b50d24cb258d1c8b05402c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 526068316950181296}
   m_SourcePrefab: {fileID: 100100000, guid: 9aaa800e34b50d24cb258d1c8b05402c, type: 3}
 --- !u!4 &160942347655690591 stripped
 Transform:
@@ -944,6 +961,26 @@ MonoBehaviour:
   - {fileID: 8255366513620656778}
   - {fileID: 1924432926557825805}
   - {fileID: 160942347655690591}
+--- !u!114 &526068316950181296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 989572583161325382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69aabd10e3ac3ff4e96f2d9051a006df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_distance: 1.6
+  m_distanceAttach: 1.5
+  m_layerRaycastMask:
+    serializedVersion: 2
+    m_Bits: 64
+  m_layerAttachMask:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!4 &1032381242526191938 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1092408308860062549, guid: 9aaa800e34b50d24cb258d1c8b05402c, type: 3}
@@ -1293,6 +1330,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StoneAxe
       objectReference: {fileID: 0}
+    - target: {fileID: 1929995044930084577, guid: 5b4f8266d6269d84ca60b3b8a1b3f136, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1301,5 +1342,10 @@ PrefabInstance:
 --- !u!4 &3132542968430574390 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 942873385658342973, guid: 5b4f8266d6269d84ca60b3b8a1b3f136, type: 3}
+  m_PrefabInstance: {fileID: 2768804899258262795}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4369755142094076906 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1929995044930084577, guid: 5b4f8266d6269d84ca60b3b8a1b3f136, type: 3}
   m_PrefabInstance: {fileID: 2768804899258262795}
   m_PrefabAsset: {fileID: 0}

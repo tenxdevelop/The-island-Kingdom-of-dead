@@ -7,8 +7,9 @@ namespace TheIslandKOD
     public class StoneAxe : IInventoryItem
     {
         private const string TAG_ITEM_ARM = "StoneAxe";
+        
         private UIQuickSlot m_uIQuickSlot;
-        private PlayerMovement m_playerMovement;
+        private PlayerAnimation m_playerAnimation;
         private PlayerItemArm m_playerItemArm;
         private InputManager m_inputManager;
         private Coroutine m_coroutine;
@@ -24,7 +25,7 @@ namespace TheIslandKOD
             this.info = info;
             state = new InventoryItemState();
             m_uIQuickSlot = UIQuickSlot.instance;
-            m_playerMovement = ReferenceSystem.instance.player.GetComponent<PlayerMovement>();
+            m_playerAnimation = ReferenceSystem.instance.player.GetComponent<PlayerAnimation>();
             m_playerItemArm = ReferenceSystem.instance.player.GetComponent<PlayerItemArm>();
             m_inputManager = ReferenceSystem.instance.player.GetComponent<InputManager>();
         }
@@ -53,7 +54,7 @@ namespace TheIslandKOD
             {
                 if (slot.itemType == type)
                 {
-                    m_playerMovement.SetItemState(true);
+                    m_playerAnimation.SetItemState(true);
                     m_playerItemArm.ItemArm.Find(i => i.key == TAG_ITEM_ARM).item.SetActive(true);
                     StartCoroutine();
                 }
@@ -61,7 +62,7 @@ namespace TheIslandKOD
             }
             else
             {
-                m_playerMovement.SetItemState(false);
+                m_playerAnimation.SetItemState(false);
                 m_playerItemArm.ItemArm.Find(i => i.key == TAG_ITEM_ARM).item.SetActive(false);
                 StopCoroutine();
             }
@@ -94,10 +95,7 @@ namespace TheIslandKOD
 
         private void UpdateActiveItem()
         {
-            if (m_inputManager.OnFoot.Attach.triggered)
-            {
-                m_playerMovement.AttachItem();
-            }
+           m_playerAnimation.RightAttach(m_inputManager.OnFoot.Attach.inProgress);   
         }
 
     }

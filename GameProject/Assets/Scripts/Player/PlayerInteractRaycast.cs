@@ -6,16 +6,19 @@ public class PlayerInteractRaycast : MonoBehaviour
 {
 
     [SerializeField] private float m_distance = 3f;
+    [SerializeField] private float m_distanceAttach = 1.5f;
     [SerializeField] private LayerMask m_layerRaycastMask;
- 
+    [SerializeField] private LayerMask m_layerAttachMask;
+
     private CinemachineVirtualCamera m_camera;
     private PlayerUI m_playerUI;
     private InputManager m_inputManager;
     private void Start()
     {
-        m_camera = GetComponent<PlayerLook>().Camera;
-        m_playerUI = GetComponent<PlayerUI>();
-        m_inputManager = GetComponent<InputManager>();
+        m_camera = GetComponentInParent<PlayerLook>().Camera;
+        m_playerUI = GetComponentInParent<PlayerUI>();
+        m_inputManager = GetComponentInParent<InputManager>();
+        
         
     }
 
@@ -35,8 +38,26 @@ public class PlayerInteractRaycast : MonoBehaviour
                 {
                     interactable.BaseInteract();
                 }
+                
             }
+        }
+    }
 
+    public void RightAttach()
+    {
+
+        Ray ray = new Ray(m_camera.transform.position, m_camera.transform.forward);
+        if (Physics.Raycast(ray, out RaycastHit hitInfo, m_distanceAttach, m_layerAttachMask))
+        {
+            var interactable = hitInfo.collider.GetComponent<InteractableAttachRaycast>();
+            if (interactable != null)
+            {
+                
+                if (hitInfo.collider.gameObject.layer == (int)interactable.layer)
+                {
+                    interactable.BaseInteract();
+                }
+            }
         }
     }
 }

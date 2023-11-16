@@ -1,26 +1,18 @@
 using UnityEngine;
-using UnityEngine.Animations.Rigging;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private const string TAG_AMINATION_MOVE_X = "x";
-    private const string TAG_AMINATION_MOVE_Y = "y";
-
-    private const string TAG_AMINATION_JUMP = "jump";
-    private const string TAG_AMINATION_ISGROUND = "isGround";
-    private const string TAG_AMINATION_ATTACH = "RightAttach";
 
     [SerializeField] private float m_speed = 5f;
     [SerializeField] private float m_jumpStrength = 3f;
     [SerializeField] private float m_gravity = -9.81f;
-    [SerializeField] private MultiAimConstraint m_bodyRotation;
     
     private CharacterController m_controller;
     private Vector3 m_playerVelocity;
     private bool m_isGrounded;
     private float m_gravityState = -2.2f;
 
-    private Animator m_animatorPLayer;
+    private PlayerAnimation m_playerAnimation;
     private float m_animationInterpolation = 1f;
 
     private bool m_canMove;
@@ -28,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         m_controller = GetComponent<CharacterController>();
-        m_animatorPLayer = GetComponentInChildren<Animator>();
+        m_playerAnimation = GetComponentInChildren<PlayerAnimation>();
         m_canMove = true;
     }
 
@@ -36,9 +28,7 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         m_isGrounded = m_controller.isGrounded;
-
-        m_animatorPLayer.SetBool(TAG_AMINATION_ISGROUND, m_isGrounded);
-        
+        m_playerAnimation.UpdateJump(m_isGrounded);
     }
 
     public void ProcessMove(Vector2 derection)
@@ -47,26 +37,19 @@ public class PlayerMovement : MonoBehaviour
         if (m_canMove)
         {
 
-            if (derection.x < 0.3 && derection.x > -0.3 && derection.y < 0.3 && derection.y > -0.3)
-            {
-                m_bodyRotation.weight = 1f;
-            }
-            else
-            {
-                m_bodyRotation.weight = 0f;
-            }
+            m_playerAnimation.UpdateMove(derection);
 
             m_animationInterpolation = Mathf.Lerp(m_animationInterpolation, 1f, Time.deltaTime * 3);
-            m_animatorPLayer.SetFloat(TAG_AMINATION_MOVE_X, derection.x * m_animationInterpolation);
-            m_animatorPLayer.SetFloat(TAG_AMINATION_MOVE_Y, derection.y * m_animationInterpolation);
+            m_playerAnimation.Move(derection.x * m_animationInterpolation, derection.y * m_animationInterpolation);
+
             Vector3 moveDerection = Vector3.right * derection.x + Vector3.forward * derection.y;
             m_controller.Move(transform.TransformDirection(moveDerection) * m_speed * Time.deltaTime);
         }
         else
         {
-            m_animatorPLayer.SetFloat(TAG_AMINATION_MOVE_X, 0);
-            m_animatorPLayer.SetFloat(TAG_AMINATION_MOVE_Y, 0);
+            m_playerAnimation.Move(0, 0);
         }
+
         m_playerVelocity.y += m_gravity * Time.deltaTime;
         if (m_isGrounded && m_playerVelocity.y < 0)
         {
@@ -79,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (m_isGrounded && m_canMove)
         {
-            m_animatorPLayer.SetTrigger(TAG_AMINATION_JUMP);
+            m_playerAnimation.Jump();
             m_playerVelocity.y = Mathf.Sqrt(m_jumpStrength * m_gravity * m_gravityState);
         }
     }
@@ -88,21 +71,5 @@ public class PlayerMovement : MonoBehaviour
     {
         m_canMove = canMove;
     }
-
-    public void SetItemState(bool state)
-    {
-        if (state)
-        {
-            m_animatorPLayer.SetLayerWeight(1, 1);
-        }
-        else
-        {
-            m_animatorPLayer.SetLayerWeight(1, 0);
-        }
-    }
-
-    public void AttachItem()
-    {
-        m_animatorPLayer.SetTrigger(TAG_AMINATION_ATTACH);
-    }
+ 
 }

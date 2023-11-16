@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using TheIslandKOD;
 using UnityEngine;
@@ -22,6 +21,11 @@ public class UIQuickSlot : MonoBehaviour
 
     private InventoryWithSlots m_lastInventory;
     private IInventorySlot m_lastSlot;
+    private bool m_canActive;
+
+    public IInventorySlot ActiveSlot => m_lastSlot;
+    public bool isAtiveSlot => m_currentSlotActive;
+
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -34,6 +38,10 @@ public class UIQuickSlot : MonoBehaviour
     }
     public void QuickSlotInputAction(int number)
     {
+        if (!m_canActive)
+        {
+            return;
+        }
         var currentImageSlot = m_quickSlots[m_currentQuickslotID].GetComponent<Image>();
         m_lastSlot = m_quickSlots[m_currentQuickslotID].GetComponent<UIInventorySlot>().slot;
         m_lastInventory = m_uIInventory.inventory;
@@ -94,6 +102,15 @@ public class UIQuickSlot : MonoBehaviour
         }
     }
 
+    public void SetActiveItem(bool active)
+    {
+        if (!active)
+        {
+            DisableQuickSlot();
+        }
+        m_canActive = active;
+    }
+
     private void DisableItem(InventoryWithSlots inventory, IInventorySlot slot)
     {
         if (m_lastItemUpdate != null)
@@ -103,4 +120,6 @@ public class UIQuickSlot : MonoBehaviour
             m_lastItemUpdate.OnDisable();
         }
     }
+
+    
 }

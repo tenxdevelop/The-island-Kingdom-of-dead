@@ -10,6 +10,7 @@ public class UIInventory : MonoBehaviour, IUIInventory
 
     private UIInventorySlot[] m_uISlots;
     private InventoryWithSlots m_inventory;
+    
 
     public InventoryWithSlots inventory => m_inventory;
 
@@ -28,7 +29,8 @@ public class UIInventory : MonoBehaviour, IUIInventory
     }
     public void SetVisible(bool visible)
     {
-        Cursor.visible = visible;
+        SetCursor(visible);
+        UIQuickSlot.instance.SetActiveItem(!visible);
         m_gridInventory.SetActive(visible);
     }
 
@@ -52,6 +54,19 @@ public class UIInventory : MonoBehaviour, IUIInventory
         foreach (var uISlot in m_uISlots)
         {
             uISlot.Refresh();
+        }
+    }
+
+    private void SetCursor(bool state)
+    {
+        Cursor.visible = state;
+        if (!state)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Confined;
         }
     }
 }

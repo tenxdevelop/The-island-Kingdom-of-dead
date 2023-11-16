@@ -182,10 +182,10 @@ namespace TheIslandKOD
         {
             bool fits = slot.amount + item.state.amount <= item.info.maxItemsInInventorySlot;
             int amountToAdd = fits ? item.state.amount : item.info.maxItemsInInventorySlot - slot.amount;
-            int amountLeft = slot.amount - amountToAdd;
+            int amountLeft = fits ? 0 : item.state.amount - amountToAdd;
             var itemClone = item.Clone();
             itemClone.state.amount = amountToAdd;
-
+            
             if (slot.isEmpty)
             {
                 slot.SetItem(itemClone);
