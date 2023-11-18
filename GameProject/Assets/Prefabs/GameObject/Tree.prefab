@@ -235,5 +235,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_layer: 7
+  m_effectAttack: {fileID: 100010, guid: e0609132424a24844b1d53ad3d704fd9, type: 3}
   health: 2
   m_info: {fileID: 11400000, guid: 18c8aa2a17712864c9d45a30b1d3517b, type: 2}

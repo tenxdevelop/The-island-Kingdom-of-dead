@@ -55,6 +55,7 @@ public class PlayerInteractRaycast : MonoBehaviour
                 
                 if (hitInfo.collider.gameObject.layer == (int)interactable.layer)
                 {
+                    interactable.BaseEffects(hitInfo.point, Quaternion.Euler(hitInfo.normal));
                     interactable.BaseInteract();
                 }
             }

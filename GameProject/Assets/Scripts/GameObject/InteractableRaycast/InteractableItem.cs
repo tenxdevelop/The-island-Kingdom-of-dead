@@ -29,7 +29,6 @@ public class InteractableItem : InteractableRaycast
     protected override void Interact()
     {
         var item = m_item.Clone();
-        Debug.Log(m_state.amount);
         item.state.amount = m_state.amount;
         m_playerInventory.inventory.TryToAdd(this, item);
         Destroy(gameObject);
