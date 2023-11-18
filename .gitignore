@@ -9,8 +9,8 @@ GameProject/[Bb]uild/
 GameProject/[Bb]uilds/
 GameProject/[Ll]ogs/
 GameProject/[Uu]ser[Ss]ettings/
-GameProject/[Aa]ssets/[Ss]cenes/*.meta
-GameProject/[Aa]ssets/[Ss]cenes/*.unity
+GameProject/[Aa]ssets/[Ss]cenes/
+
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
