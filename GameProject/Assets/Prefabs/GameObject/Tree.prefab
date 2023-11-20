@@ -129,6 +129,7 @@ GameObject:
   - component: {fileID: 180437877888550252}
   - component: {fileID: 2658332049849084446}
   - component: {fileID: 3194799853975781078}
+  - component: {fileID: 925817670224279703}
   m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
@@ -235,6 +236,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_layer: 7
-  m_effectAttack: {fileID: 100010, guid: e0609132424a24844b1d53ad3d704fd9, type: 3}
+  m_effectAttack: {fileID: 100002, guid: d39ab699aa314a147969fd483aa55205, type: 3}
   health: 2
   m_info: {fileID: 11400000, guid: 18c8aa2a17712864c9d45a30b1d3517b, type: 2}
+--- !u!54 &925817670224279703
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8540415015765648740}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

@@ -1,15 +1,9 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace TheIslandKOD
 {
-    public enum ItemType
-    {
-        None,
-        Default,
-        Food,
-        Weapon,
-        Tools
-    }
+    
     [CreateAssetMenu(fileName = "InventoryItemInfo", menuName = "Game/Items/Create New ItemInfo")]
     public class InventoryItemInfo : ScriptableObject, IInventoryItemInfo
     {
@@ -19,8 +13,9 @@ namespace TheIslandKOD
         [SerializeField] private string m_desctription;
         [SerializeField] private int m_maxItemsInInventorySlot;
         [SerializeField] private Sprite m_sprite;
-        [SerializeField] private GameObject m_prefab;
+        [SerializeField] private GameObject m_dropPrefab;
         [SerializeField] private ItemType m_itemType;
+        [SerializeField] private List<BuildObjectType> m_buildPrefabs;
 
         public string id => m_id;
 
@@ -33,7 +28,9 @@ namespace TheIslandKOD
         public ItemType itemType => m_itemType;
 
         public Sprite spriteIcon => m_sprite;
-        public GameObject prefab => m_prefab;
+        public GameObject DropPrefab => m_dropPrefab;
+
+        public List<BuildObjectType> buildObjects => m_buildPrefabs;
     }
 
 }

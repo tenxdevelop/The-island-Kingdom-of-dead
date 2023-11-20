@@ -45,7 +45,6 @@ public class PlayerInteractRaycast : MonoBehaviour
 
     public void RightAttach()
     {
-
         Ray ray = new Ray(m_camera.transform.position, m_camera.transform.forward);
         if (Physics.Raycast(ray, out RaycastHit hitInfo, m_distanceAttach, m_layerAttachMask))
         {

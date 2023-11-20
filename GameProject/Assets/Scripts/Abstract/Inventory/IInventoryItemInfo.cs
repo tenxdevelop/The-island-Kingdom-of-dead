@@ -1,7 +1,18 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace TheIslandKOD
 {
+    public enum ItemType
+    {
+        None,
+        Default,
+        Build,
+        Food,
+        Weapon,
+        Tools
+    }
+
     public interface IInventoryItemInfo
     {
         string id { get; }
@@ -13,6 +24,8 @@ namespace TheIslandKOD
         ItemType itemType { get; }
 
         Sprite spriteIcon { get; }
-        GameObject prefab { get; }
+        GameObject DropPrefab { get; }
+
+        List<BuildObjectType> buildObjects { get; }
     }
 }

@@ -9,12 +9,12 @@ public class Tree : InteractableAttachRaycast
     
     private UIQuickSlot m_quickSlot;
     private PlayerInventory m_playerInventory;
-    private Player m_player;
+
     private void Start()
     {
         m_quickSlot = UIQuickSlot.instance;
         m_playerInventory = ReferenceSystem.instance.player.GetComponent<PlayerInventory>();
-        m_player = ReferenceSystem.instance.player.GetComponent<Player>();
+       
     }
     protected override void Interact()
     {
@@ -33,7 +33,6 @@ public class Tree : InteractableAttachRaycast
         var item = new Apple(m_info);
         item.state.amount = 2;
         m_playerInventory.inventory.TryToAdd(this, item);
-        m_player.TakeDamage(7.5f);
         health -= 1;
         if (health <= 0)
         {

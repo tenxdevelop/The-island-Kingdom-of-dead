@@ -25,9 +25,10 @@ public class UIDropItem : MonoBehaviour, IDropHandler
         var otherSlotUI = otherItemUI.GetComponentInParent<UIInventorySlot>();
         
         m_positionPrefab = m_playerPosition.position + m_positionOffset;
-        if (otherItemUI.item.info.prefab != null)
+        if (otherItemUI.item.info.DropPrefab != null)
         {
-            var prefab = Instantiate(otherItemUI.item.info.prefab, m_positionPrefab, m_playerPosition.rotation);
+
+            var prefab = Instantiate(otherItemUI.item.info.DropPrefab, m_positionPrefab, m_playerPosition.rotation);
             prefab.GetComponent<InteractableItemState>().state = otherItemUI.item.state.Clone();
             prefab.GetComponent<InteractableItemState>().item = otherItemUI.item.Clone();
         }

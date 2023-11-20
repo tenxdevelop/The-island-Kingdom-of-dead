@@ -44,12 +44,12 @@ namespace TheIslandKOD
             {
                 if (slot.itemType == type)
                 {
-                    m_buildingSystem.StartCoroutine();
+                    //m_buildingSystem.StartCoroutine();
                 }
             }
             else
             {
-                m_buildingSystem.StopCoroutine();
+                //m_buildingSystem.StopCoroutine();
             }
         }
        

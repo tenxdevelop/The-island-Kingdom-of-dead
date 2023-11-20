@@ -53,6 +53,7 @@ namespace TheIslandKOD
             bounds = new Bounds(m_position, Vector2.one * size);
             
             m_meshObject = new GameObject("TerrainChunk" + number++);
+            m_meshObject.layer = (int)LayerType.Terrain;
             m_meshFilter = m_meshObject.AddComponent<MeshFilter>();
             m_meshRenderer = m_meshObject.AddComponent<MeshRenderer>();
             m_meshCollider = m_meshObject.AddComponent<MeshCollider>();
