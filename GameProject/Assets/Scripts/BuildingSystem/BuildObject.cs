@@ -33,6 +33,7 @@ public class BuildObject : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
+
         if (other.gameObject.layer != (int)LayerType.Terrain)
         {
             contacts.Remove(other);

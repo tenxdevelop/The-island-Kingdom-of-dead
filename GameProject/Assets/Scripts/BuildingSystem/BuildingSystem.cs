@@ -55,7 +55,9 @@ namespace TheIslandKOD
             if (m_currentBuildObject != null)
             {
                 GameObject.Destroy(m_currentBuildObject.gameObject);
+                m_currentBuildObject = null;
             }
+            
         }
         private void MoveBuildObject(RaycastHit hit)
         {
@@ -70,9 +72,12 @@ namespace TheIslandKOD
             while (true)
             {
                 BuildRay();
-                if (m_inputManager.OnFoot.Attach.triggered && m_currentBuildObject.IsBuildable)
+                if (m_currentBuildObject != null)
                 {
-                    PlaceBuildObject(m_hit);
+                    if (m_inputManager.OnFoot.Attach.triggered && m_currentBuildObject.IsBuildable)
+                    {
+                        PlaceBuildObject(m_hit);
+                    }
                 }
                 yield return new WaitForSeconds(Time.deltaTime);
             }

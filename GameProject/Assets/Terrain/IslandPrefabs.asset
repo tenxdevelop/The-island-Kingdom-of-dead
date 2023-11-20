@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: IslandPrefabs
   m_EditorClassIdentifier: 
   m_prefabTerrains:
-  - prefab: {fileID: 3303169527190866113, guid: 13663d1e3b641e44cb123e857c3b77d2, type: 3}
-    offsetHeight: -0.12
-    rangePrefabs: 8
+  - prefab: {fileID: 6617155040644691511, guid: 751da28379d1c4b4fa3e1126e53d2027, type: 3}
+    offsetHeight: -0.06
+    rangePrefabs: 6
     SpawnRangeHeight: {x: 6, y: 12}
     NoiseRandomSpawn: {x: 0.4, y: 0.7}
     rotationRangeRandom: {x: 0, y: 360}
-    scaleRangeRandom: {x: 0.8, y: 1.5}
+    scaleRangeRandom: {x: 0.5, y: 0.6}
   - prefab: {fileID: 2352965288553588872, guid: 3b34dd12025ec284aa3750b84b321ae2, type: 3}
     offsetHeight: -0.19
     rangePrefabs: 7
