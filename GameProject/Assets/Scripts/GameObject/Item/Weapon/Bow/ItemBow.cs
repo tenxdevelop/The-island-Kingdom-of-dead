@@ -25,5 +25,17 @@ namespace TheIslandKOD
             cloneItemBow.state.amount = state.amount;
             return cloneItemBow;
         }
+
+        protected override void OnDisableItem()
+        {
+            var BowAnimation = ReferenceSystem.instance.player.GetComponentInChildren<BowAnimationEvent>();
+            BowAnimation.ResetString();
+            BowAnimation.DisableArrow();
+        }
+
+        protected override void OnEnableItem()
+        {
+            
+        }
     }
 }

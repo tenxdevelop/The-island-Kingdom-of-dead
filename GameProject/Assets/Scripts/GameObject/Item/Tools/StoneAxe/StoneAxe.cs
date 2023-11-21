@@ -18,6 +18,16 @@ namespace TheIslandKOD
             return cloneStoneAxe;
         }
 
+        protected override void OnDisableItem()
+        {
+            
+        }
+
+        protected override void OnEnableItem()
+        {
+            
+        }
+
         protected override void UpdateActiveItem()
         {
            m_playerAnimation.RightAttachTools(m_inputManager.OnFoot.Attach.inProgress);   

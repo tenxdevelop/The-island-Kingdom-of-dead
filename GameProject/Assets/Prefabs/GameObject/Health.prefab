@@ -121,7 +121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promptMessage: BuildingPLan and Apple
   m_info: {fileID: 11400000, guid: 3e6d9ad046d3b204eb6d1ab28e01bbbf, type: 2}
-  m_info2: {fileID: 11400000, guid: 18c8aa2a17712864c9d45a30b1d3517b, type: 2}
+  m_info2: {fileID: 11400000, guid: add147080812c4247aa6097f18ea5a40, type: 2}
   m_info3: {fileID: 11400000, guid: 05ac63c686b0a454d8e8a9140b6d4ff2, type: 2}
 --- !u!54 &3987155471995732398
 Rigidbody:

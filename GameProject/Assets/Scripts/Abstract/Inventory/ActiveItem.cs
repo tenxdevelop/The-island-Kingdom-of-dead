@@ -19,6 +19,7 @@ namespace TheIslandKOD
         protected Type m_type;
         private Coroutine m_coroutine;
 
+        protected GameObject m_ArmItem;
         public Type type => m_type;
         public ActiveItem()
         {
@@ -26,6 +27,7 @@ namespace TheIslandKOD
             m_playerAnimation = ReferenceSystem.instance.player.GetComponent<PlayerAnimation>();
             m_playerItemArm = ReferenceSystem.instance.player.GetComponent<PlayerItemArm>();
             m_inputManager = ReferenceSystem.instance.player.GetComponent<InputManager>();
+
         }
         protected abstract IInventoryItem BaseClone();
         protected void StartCoroutine()
@@ -39,11 +41,16 @@ namespace TheIslandKOD
         public void OnDisable()
         {
             m_uIQuickSlot.OnQuickSlotActiveChangedEvent -= OnQuickSlotChangedEvent;
+            m_ArmItem = null;
         }
 
         public void OnEnable()
         {
             m_uIQuickSlot.OnQuickSlotActiveChangedEvent += OnQuickSlotChangedEvent;
+            if (m_ArmItem == null)
+            {
+                m_ArmItem = m_playerItemArm.ItemArm.Find(i => i.key == m_tagItemArm).item;
+            }
         }
 
         private void OnQuickSlotChangedEvent(InventoryWithSlots inventory, IInventorySlot slot, bool isActive)
@@ -54,7 +61,8 @@ namespace TheIslandKOD
                 if (slot.itemType == type)
                 {
                     m_playerAnimation.SetItemState(true, slot.item.info.itemType);
-                    m_playerItemArm.ItemArm.Find(i => i.key == m_tagItemArm).item.SetActive(true);
+                    m_ArmItem.SetActive(true);
+                    OnEnableItem();
                     StartCoroutine();
                 }
 
@@ -62,7 +70,8 @@ namespace TheIslandKOD
             else
             {
                 m_playerAnimation.SetItemState(false, slot.item.info.itemType);
-                m_playerItemArm.ItemArm.Find(i => i.key == m_tagItemArm).item.SetActive(false);
+                m_ArmItem.SetActive(false);
+                OnDisableItem();
                 StopCoroutine();
             }
 
@@ -83,7 +92,8 @@ namespace TheIslandKOD
             }
         }
         protected abstract void UpdateActiveItem();
-
+        protected abstract void OnDisableItem();
+        protected abstract void OnEnableItem();
         public IInventoryItem Clone()
         {
             return BaseClone();
