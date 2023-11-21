@@ -13,6 +13,7 @@ public class GenerateMap : MonoBehaviour
     [SerializeField] private float m_prefabNoiseSclae;
 
     [SerializeField] private PrefabTerrainData m_prefabData;
+    [SerializeField] private Transform m_gameObjectParent;
 
     [SerializeField] private GameObject water;
     private Vector2 m_viewerPosition;
@@ -90,7 +91,7 @@ public class GenerateMap : MonoBehaviour
             {
                 Vector2 chunkCoordinate = new Vector2(xOffset, yOffset);
                 float[,] currentFalloffMap = GetFalloffMapOffset(m_falloffMap, m_chunkSizeFalloffMap, m_sizeMap, chunkCoordinate);
-                m_terrainChunkDictionary.Add(chunkCoordinate, new Chunk(chunkCoordinate, chunkSize, m_detailLevels, transform, m_mapGenerator.terrainMaterial,
+                m_terrainChunkDictionary.Add(chunkCoordinate, new Chunk(chunkCoordinate, chunkSize, m_detailLevels, transform, m_gameObjectParent,  m_mapGenerator.terrainMaterial,
                                                                         m_mapGenerator, this, currentFalloffMap, m_mapGenerator.terrainData.uniformScale, m_prefabData.prefabTerrains));
             }
         }

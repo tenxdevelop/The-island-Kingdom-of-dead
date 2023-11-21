@@ -38,10 +38,14 @@ namespace TheIslandKOD
         private int m_previousLODIndex = -1;
 
         private List<PrefabTerrain> m_prefabsTerrain;
-        public Chunk(Vector2 coordinate, int size, LODInfo[] detailsLevels, Transform parent, Material material,
+        private Transform m_gameObjectParent;
+        private bool m_hasRequestedGeneratePrefabs = false;
+        private bool m_hasCollider = false;
+        public Chunk(Vector2 coordinate, int size, LODInfo[] detailsLevels, Transform parent, Transform parentPrefab, Material material,
                      MapGenerator mapGenerator, GenerateMap generateMap, float[,] falloffMap, float scale, List<PrefabTerrain> prefabsTerrain)
         {
             m_prefabsTerrain = prefabsTerrain;
+            m_gameObjectParent = parentPrefab;
 
             m_detailLevels = detailsLevels;
             m_generateMap = generateMap;
@@ -110,13 +114,14 @@ namespace TheIslandKOD
                             m_previousLODIndex = lodIndex;
                             m_meshFilter.mesh = lodMesh.mesh;
                             m_meshCollider.sharedMesh = lodMesh.mesh;
+                            m_hasCollider = true;
                         }
                         else if (!lodMesh.hasRequestedMesh)
                         {
-                            lodMesh.RequestMesh(m_mapData);
-
+                            lodMesh.RequestMesh(m_mapData);             
                             UpdateChunk(visible, distance);
                         }
+                        
                     }
 
                     GenerateMap.terrainChunksVisibleLastUpdate.Add(this);
@@ -124,6 +129,11 @@ namespace TheIslandKOD
                 }
 
                 SetVisible(visible);
+                if (!m_hasRequestedGeneratePrefabs && visible && m_hasCollider)
+                {
+                    GeneratePrefab(m_mapData);
+                    m_hasRequestedGeneratePrefabs = true;
+                }
             }
         }
 
@@ -136,7 +146,7 @@ namespace TheIslandKOD
         {
 
             m_mapData = GetFalloffMap(mapData);
-            GeneratePrefab(m_mapData);
+            
             m_mapDataReceived = true;
 
             float viewerDstFromNearestEddge = Mathf.Sqrt(bounds.SqrDistance(m_generateMap.GetViewPosition()));
@@ -188,7 +198,7 @@ namespace TheIslandKOD
                 {
                     for (int x = 0; x < size; x += step)
                     {
-                        var worldPos = Mathf.Lerp(0, 24, heightMap[x, y]);
+                        var worldPos = Mathf.Lerp(m_mapGenerator.terrainData.minHeight, m_mapGenerator.terrainData.maxHeight, m_mapGenerator.terrainData.heightCurve.Evaluate(heightMap[x, y]));
                         if (worldPos > rangeSpawn.x && worldPos < rangeSpawn.y)
                         {
                             var v = Random.Range(randomNoise.x, randomNoise.y);
@@ -196,9 +206,11 @@ namespace TheIslandKOD
                             {
                                 var gameObject = GameObject.Instantiate(prefab, m_meshObject.transform);
                                 
-                                gameObject.transform.localPosition = new Vector3(GetPosition(x, size), worldPos + (offsetHeigt / scale) - 6, GetPosition(-y + size, size));
+                                gameObject.transform.localPosition = new Vector3(GetPosition(x, size), m_mapGenerator.terrainData.maxHeight, GetPosition(-y + size, size));
+                                GetCorrectHeightPositionPrefab(gameObject, offsetHeigt);
                                 gameObject.transform.rotation = Quaternion.Euler(0, Random.Range(rotationRange.x, rotationRange.y), 0);
                                 gameObject.transform.localScale = Vector3.one * scale;
+                                gameObject.transform.parent = m_gameObjectParent;
                             }
                         }
                     }
@@ -210,6 +222,18 @@ namespace TheIslandKOD
         private float GetPosition(int coordinate, int size)
         {
             return coordinate - size / 2;
+        }
+
+
+        private void GetCorrectHeightPositionPrefab(GameObject prefab, float offset)
+        {
+            Ray ray = new Ray(prefab.transform.position, -prefab.transform.up);
+            Physics.Raycast(ray, out RaycastHit hit, 1000);
+            if (hit.collider)
+            {
+                prefab.name = hit.point.y.ToString();
+                prefab.transform.position = new Vector3(prefab.transform.position.x, hit.point.y + offset, prefab.transform.position.z);
+            }
         }
     }
 }

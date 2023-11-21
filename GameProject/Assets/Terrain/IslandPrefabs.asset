@@ -13,17 +13,38 @@ MonoBehaviour:
   m_Name: IslandPrefabs
   m_EditorClassIdentifier: 
   m_prefabTerrains:
+  - prefab: {fileID: 5098166735730487887, guid: e1911aeff5cba5f47861e9584df91e0e, type: 3}
+    offsetHeight: 0
+    rangePrefabs: 3
+    SpawnRangeHeight: {x: 6, y: 18}
+    NoiseRandomSpawn: {x: 0.4, y: 0.7}
+    rotationRangeRandom: {x: 0, y: 360}
+    scaleRangeRandom: {x: 0.5, y: 0.6}
+  - prefab: {fileID: 919132149155446097, guid: b6b49c2a049bf0a49a11d0664a05b57c, type: 3}
+    offsetHeight: 0
+    rangePrefabs: 3
+    SpawnRangeHeight: {x: 6, y: 18}
+    NoiseRandomSpawn: {x: 0.4, y: 0.7}
+    rotationRangeRandom: {x: 0, y: 360}
+    scaleRangeRandom: {x: 0.5, y: 0.6}
+  - prefab: {fileID: 919132149155446097, guid: fcb9fef5adb9c274792020fd2cec82f4, type: 3}
+    offsetHeight: 0
+    rangePrefabs: 3
+    SpawnRangeHeight: {x: 6, y: 18}
+    NoiseRandomSpawn: {x: 0.4, y: 0.7}
+    rotationRangeRandom: {x: 0, y: 360}
+    scaleRangeRandom: {x: 0.5, y: 0.6}
   - prefab: {fileID: 6617155040644691511, guid: 751da28379d1c4b4fa3e1126e53d2027, type: 3}
-    offsetHeight: -0.06
-    rangePrefabs: 6
-    SpawnRangeHeight: {x: 6, y: 12}
+    offsetHeight: -3
+    rangePrefabs: 5
+    SpawnRangeHeight: {x: 6, y: 18}
     NoiseRandomSpawn: {x: 0.4, y: 0.7}
     rotationRangeRandom: {x: 0, y: 360}
     scaleRangeRandom: {x: 0.5, y: 0.6}
   - prefab: {fileID: 2352965288553588872, guid: 3b34dd12025ec284aa3750b84b321ae2, type: 3}
-    offsetHeight: -0.19
-    rangePrefabs: 7
-    SpawnRangeHeight: {x: 15, y: 19}
+    offsetHeight: 1
+    rangePrefabs: 6
+    SpawnRangeHeight: {x: 24, y: 42}
     NoiseRandomSpawn: {x: 0.4, y: 0.7}
     rotationRangeRandom: {x: 0, y: 360}
     scaleRangeRandom: {x: 0.5, y: 0.6}
