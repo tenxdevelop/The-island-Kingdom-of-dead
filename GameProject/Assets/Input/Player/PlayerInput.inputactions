@@ -158,17 +158,6 @@
                 },
                 {
                     "name": "",
-                    "id": "3ce07888-1ee3-415a-9be3-c0640498cefe",
-                    "path": "<Keyboard>/escape",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Close",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "d10f3079-da9b-4f27-b514-a0a7055a5dd2",
                     "path": "<Keyboard>/tab",
                     "interactions": "",
@@ -224,6 +213,15 @@
                     "name": "Attach",
                     "type": "Button",
                     "id": "dc55d21a-437f-4d89-8ac6-74f92d7fba6d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "BowAim",
+                    "type": "Button",
+                    "id": "85b23d9d-3fdd-42bd-901a-a59e04c9c65e",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -327,6 +325,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Attach",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6d79a4be-3359-463e-a0ae-7bc1b6d2f666",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BowAim",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

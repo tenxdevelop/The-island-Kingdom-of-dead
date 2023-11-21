@@ -1,3 +1,4 @@
+using TheIslandKOD;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
 
@@ -9,7 +10,12 @@ public class PlayerAnimation : MonoBehaviour
     private const string TAG_AMINATION_JUMP = "jump";
     private const string TAG_AMINATION_ISGROUND = "isGround";
 
-    private const string TAG_AMINATION_ATTACH = "RightAttach";
+    private const string TAG_AMINATION_ATTACH_TOOLS = "RightAttach";
+    private const string TAG_ANIMATION_ACTIVE_TOOLS = "RightArm";
+
+    private const string TAG_ANIMATION_ACTIVE_BOW = "BowAimOverdraw";
+    private const string TAG_ANIMATION_BOW_FIRE = "BowFire";
+    private const string TAG_ANIMATION_BOW_AIM = "BowAim";
 
     [SerializeField] private MultiAimConstraint m_bodyRotation;
     [SerializeField] private MultiAimConstraint m_RightTriger;
@@ -25,17 +31,22 @@ public class PlayerAnimation : MonoBehaviour
         
     }
 
-    public void SetItemState(bool state)
+    public void SetItemState(bool state, ItemType type)
     {
-        if (state)
-        {     
-            m_animatorPLayer.SetLayerWeight(1, 1);
-        }
-        else
+        
+        switch (type)
         {
-            m_RightTriger.weight = 0f;
-            m_animatorPLayer.SetLayerWeight(1, 0);
+            case ItemType.Tools:
+                m_animatorPLayer.SetBool(TAG_ANIMATION_ACTIVE_TOOLS, state);
+                break;
+            case ItemType.Weapon:
+                
+                break;
+            case ItemType.Bow:
+                m_animatorPLayer.SetBool(TAG_ANIMATION_ACTIVE_BOW, state);
+                break;
         }
+
     }
 
 
@@ -66,8 +77,18 @@ public class PlayerAnimation : MonoBehaviour
         }
     }
 
-    public void RightAttach(bool state)
+    public void RightAttachTools(bool state)
     {
-        m_animatorPLayer.SetBool(TAG_AMINATION_ATTACH, state);
+        m_animatorPLayer.SetBool(TAG_AMINATION_ATTACH_TOOLS, state);
+    }
+
+    public void BowAimState(bool state)
+    {
+        m_animatorPLayer.SetBool(TAG_ANIMATION_BOW_AIM, state);
+    }
+
+    public void BowFire(bool isFire)
+    {
+        m_animatorPLayer.SetBool(TAG_ANIMATION_BOW_FIRE, isFire);
     }
 }

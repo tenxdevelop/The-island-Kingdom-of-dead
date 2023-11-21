@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using System.Threading;
-using System.Xml.Serialization;
 using UnityEngine;
 
 
@@ -41,6 +39,8 @@ namespace TheIslandKOD
         private Transform m_gameObjectParent;
         private bool m_hasRequestedGeneratePrefabs = false;
         private bool m_hasCollider = false;
+
+        public bool loadChunk => m_hasRequestedGeneratePrefabs;
         public Chunk(Vector2 coordinate, int size, LODInfo[] detailsLevels, Transform parent, Transform parentPrefab, Material material,
                      MapGenerator mapGenerator, GenerateMap generateMap, float[,] falloffMap, float scale, List<PrefabTerrain> prefabsTerrain)
         {

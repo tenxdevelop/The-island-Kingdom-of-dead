@@ -10,7 +10,8 @@ namespace TheIslandKOD
         Build,
         Food,
         Weapon,
-        Tools
+        Tools,
+        Bow
     }
 
     public interface IInventoryItemInfo
