@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 4722496511629944161}
   - component: {fileID: 7146089543762054787}
   - component: {fileID: 1872147737132582977}
-  - component: {fileID: 3987155471995732398}
   m_Layer: 6
   m_Name: Health
   m_TagString: Untagged
@@ -123,30 +122,3 @@ MonoBehaviour:
   m_info: {fileID: 11400000, guid: 3e6d9ad046d3b204eb6d1ab28e01bbbf, type: 2}
   m_info2: {fileID: 11400000, guid: add147080812c4247aa6097f18ea5a40, type: 2}
   m_info3: {fileID: 11400000, guid: 05ac63c686b0a454d8e8a9140b6d4ff2, type: 2}
---- !u!54 &3987155471995732398
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2352965288553588872}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
