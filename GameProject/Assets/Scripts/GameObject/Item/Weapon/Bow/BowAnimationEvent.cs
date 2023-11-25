@@ -1,7 +1,9 @@
+using System;
 using UnityEngine;
 
 public class BowAnimationEvent : MonoBehaviour
 {
+    public static Action OnFireEvent;
 
     [SerializeField] private Transform m_ArrowAnimation;
 
@@ -31,5 +33,10 @@ public class BowAnimationEvent : MonoBehaviour
     public void DisableArrow()
     {
         m_ArrowAnimation.gameObject.SetActive(false);
+    }
+
+    public void Fire()
+    {
+        OnFireEvent?.Invoke();
     }
 }

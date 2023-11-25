@@ -9,7 +9,7 @@ public class PoolArrow : MonoBehaviour
     [SerializeField] private bool autoExpand = false;
     [SerializeField] private Arrow prefab;
 
-    private PoolObject<Arrow> m_poolArrow;
+    private PoolObjects<Arrow> m_poolArrow;
 
     private void Awake()
     {
@@ -23,7 +23,7 @@ public class PoolArrow : MonoBehaviour
     private void Start()
     {
 
-        m_poolArrow = new PoolObject<Arrow>(prefab, poolAmount, transform, autoExpand);
+        m_poolArrow = new PoolObjects<Arrow>(prefab, poolAmount, transform, autoExpand);
 
     }
 

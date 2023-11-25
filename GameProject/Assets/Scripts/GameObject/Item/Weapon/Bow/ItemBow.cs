@@ -1,3 +1,4 @@
+using UnityEngine;
 
 namespace TheIslandKOD
 {
@@ -19,15 +20,6 @@ namespace TheIslandKOD
         {          
             m_playerAnimation.BowFire(m_inputManager.OnFoot.Attach.triggered);
             m_playerAnimation.BowAimState(m_inputManager.OnFoot.BowAim.inProgress);
-            if (m_inputManager.OnFoot.Attach.triggered)
-            {
-                var currentArrow = m_poolArrow.CreateArrow();
-                if (currentArrow != null)
-                {
-                    currentArrow.transform.position = m_playerLook.Camera.transform.position;
-                }
-            }
-            
         }
 
         protected override IInventoryItem BaseClone()
@@ -39,14 +31,27 @@ namespace TheIslandKOD
 
         protected override void OnDisableItem()
         {
-            var BowAnimation = ReferenceSystem.instance.player.GetComponentInChildren<BowAnimationEvent>();
+            BowAnimationEvent.OnFireEvent -= BowFire;
+
+            var BowAnimation = ReferenceSystem.instance.player.GetComponentInChildren<BowAnimationEvent>();         
             BowAnimation.ResetString();
             BowAnimation.DisableArrow();
         }
 
         protected override void OnEnableItem()
         {
-            
+            BowAnimationEvent.OnFireEvent += BowFire;
+        }
+
+        private void BowFire()
+        {
+            var currentArrow = m_poolArrow.CreateArrow();
+            if (currentArrow != null)
+            {
+                currentArrow.transform.position = m_playerLook.Camera.transform.position + m_playerLook.Camera.transform.forward;
+                currentArrow.transform.localRotation = m_playerLook.Camera.transform.rotation * Quaternion.Euler(90, 0, 0);
+                currentArrow.Fire(m_playerLook.Camera.transform.forward);
+            }
         }
     }
 }
