@@ -16,7 +16,7 @@ MonoBehaviour:
   m_title: Bow
   m_desctription: Bow
   m_maxItemsInInventorySlot: 1
-  m_sprite: {fileID: 21300000, guid: e3a8bda6d7d70464db624039057992da, type: 3}
+  m_sprite: {fileID: 21300000, guid: 5db908a6eccf06d4db5199a82913edbb, type: 3}
   m_dropPrefab: {fileID: 1191358423309082348, guid: ef271e31e55bf00449b24a35f17d9066, type: 3}
   m_itemType: 6
   m_buildPrefabs: []

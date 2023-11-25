@@ -16,7 +16,7 @@ MonoBehaviour:
   m_title: StoneAxe
   m_desctription: StoneAxe
   m_maxItemsInInventorySlot: 1
-  m_sprite: {fileID: 21300000, guid: 4124d05dfef168a44b557f8b2fcefdbe, type: 3}
+  m_sprite: {fileID: 21300000, guid: ca01f53fc8495ea47ac1d789b3875e42, type: 3}
   m_dropPrefab: {fileID: 1191358423309082348, guid: ef271e31e55bf00449b24a35f17d9066, type: 3}
   m_itemType: 5
   m_buildPrefabs: []

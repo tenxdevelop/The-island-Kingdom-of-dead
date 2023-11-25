@@ -16,7 +16,7 @@ MonoBehaviour:
   m_title: ItemStorage
   m_desctription: ItemStorage
   m_maxItemsInInventorySlot: 1
-  m_sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_sprite: {fileID: 21300000, guid: 1c57f88383bc4ec46a3fe06922286a4f, type: 3}
   m_dropPrefab: {fileID: 1191358423309082348, guid: ef271e31e55bf00449b24a35f17d9066, type: 3}
   m_itemType: 2
   m_buildPrefabs:
