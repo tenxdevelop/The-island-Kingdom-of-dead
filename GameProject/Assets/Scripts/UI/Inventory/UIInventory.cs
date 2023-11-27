@@ -20,11 +20,12 @@ public class UIInventory : MonoBehaviour, IUIInventory
             Destroy(instance);
         }
         instance = this;
-        m_gameManager = GameManager.instance;
+        
         m_uISlots = GetComponentsInChildren<UIInventorySlot>();
     }
     private void Start()
     {
+        m_gameManager = GameManager.instance;
         SetVisible(false);
     }
     public void SetVisible(bool visible)

@@ -30,14 +30,14 @@ public class UICraftButton : MonoBehaviour
         m_craftButton = GetComponent<Button>();
     }
 
-    public void UpdateButton(IInventoryItemCraft infoCraft)
+    public void UpdateButton(IInventoryItemCraft infoCraft, int countCraft)
     {
         m_canCraft = true;
         m_lastInfoCraft = infoCraft;
         foreach (var itemComponent in infoCraft.craftComponents)
         {
             var haveItemAmount = m_playerInventory.inventory.GetItemAmount(Type.GetType("TheIslandKOD." + itemComponent.itemType));
-            m_canCraft = haveItemAmount >= itemComponent.amount && m_canCraft;
+            m_canCraft = haveItemAmount >= itemComponent.amount * countCraft && m_canCraft;
         }
         m_craftButton.interactable = m_canCraft;
     }
@@ -50,7 +50,8 @@ public class UICraftButton : MonoBehaviour
             m_removeItem.Add(m_playerInventory.inventory.GetItem(Type.GetType("TheIslandKOD." + itemComponent.itemType)).Clone());
             m_playerInventory.inventory.Remove(this, Type.GetType("TheIslandKOD." + itemComponent.itemType), itemComponent.amount);
         }
-        UICraftingQueue.instance.AddQueueItem(m_lastInfoCraft.info.spriteIcon, 10, 1, m_lastInfoCraft, m_removeItem);
+        var countCraft = UIInputFeildCraft.instance.countCraft;
+        UICraftingQueue.instance.AddQueueItem(m_lastInfoCraft.info.spriteIcon, m_lastInfoCraft.timeCraft * countCraft, countCraft * m_lastInfoCraft.amountCraft, m_lastInfoCraft, m_removeItem);
         OnCraftButtonEvent?.Invoke();
     }
 }

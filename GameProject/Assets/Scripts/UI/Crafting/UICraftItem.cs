@@ -15,7 +15,7 @@ public class UICraftItem : MonoBehaviour
     private IInventoryItemCraft m_infoCraft;
 
     private Transform m_parentPrefab;
-
+    private UIInputFeildCraft m_inputFieldCraft;
     private PlayerInventory m_playerInventory;
     private void Awake()
     {
@@ -24,15 +24,14 @@ public class UICraftItem : MonoBehaviour
 
     private void Start()
     {
-        UICraftButton.OnCraftButtonEvent += UpdateInfo;
-        UICraftingQueue.OnRemoveQueueEvent += UpdateInfo;
+        m_inputFieldCraft = UIInputFeildCraft.instance;
     }
 
     private void OnDestroy()
     {
-        UICraftButton.OnCraftButtonEvent -= UpdateInfo;
-        UICraftingQueue.OnRemoveQueueEvent -= UpdateInfo;
+        OnDisableEvent();
     }
+
     public void LoadUIItemCraft(IInventoryItemCraft infoCraft, Image iconImage, Text name, Text description, Transform parentPrefab)
     {  
 
@@ -46,15 +45,25 @@ public class UICraftItem : MonoBehaviour
 
     public void ShowInfoItemCraft()
     {
+        OnDisableEvent();
         m_iconImage.sprite = m_infoCraft.info.spriteIcon;
         m_textItemName.text = m_infoCraft.info.title;
         m_textDescription.text = m_infoCraft.info.description;
 
-    }
+        UICraftButton.OnCraftButtonEvent += UpdateInfo;
+        UICraftingQueue.OnRemoveQueueEvent += UpdateInfo;
+        UIInputFeildCraft.OnChangeCountCraftEvent += UpdateInfo;
 
+    }
+    public void OnDisableEvent()
+    {
+        UICraftButton.OnCraftButtonEvent -= UpdateInfo;
+        UICraftingQueue.OnRemoveQueueEvent -= UpdateInfo;
+        UIInputFeildCraft.OnChangeCountCraftEvent -= UpdateInfo;
+    }
     public void ShowInfoComponent()
     {
-        UICraftButton.instance.UpdateButton(m_infoCraft);
+        UICraftButton.instance.UpdateButton(m_infoCraft, m_inputFieldCraft.countCraft);
         for (int i = 0; i < m_parentPrefab.childCount; i++)
         {
             Destroy(m_parentPrefab.GetChild(i).gameObject);
@@ -64,7 +73,8 @@ public class UICraftItem : MonoBehaviour
         {
             var haveItemAmount = m_playerInventory.inventory.GetItemAmount(Type.GetType("TheIslandKOD." + itemComponent.itemType));
             UIInfoCraftResources currentInfo = Instantiate(m_prefab, m_parentPrefab);
-            currentInfo.UpdateLoadInfo(itemComponent.amount.ToString(), itemComponent.itemType, "0", haveItemAmount.ToString());
+            var Total = itemComponent.amount * m_inputFieldCraft.countCraft;
+            currentInfo.UpdateLoadInfo(itemComponent.amount.ToString(), itemComponent.itemType, Total.ToString(), haveItemAmount.ToString());
         }
     }
 

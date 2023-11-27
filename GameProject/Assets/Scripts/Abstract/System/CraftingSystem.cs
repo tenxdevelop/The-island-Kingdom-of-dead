@@ -112,9 +112,19 @@ public class CraftingSystem : MonoBehaviour
 
     private void InitItemList()
     {
-        var itemInfo = m_ItemInfos.Find(i => i.id == "stoneAxe");
-        var item = new StoneAxe(itemInfo);
+        InventoryItemInfo itemInfo = GetItemInfo("stoneAxe");
+        IInventoryItem item = new StoneAxe(itemInfo);
         m_inventoryItems.Add(item);
-        
+
+        itemInfo = GetItemInfo("bow");
+        item = new ItemBow(itemInfo);
+        m_inventoryItems.Add(item);
+
+    }
+
+    private InventoryItemInfo GetItemInfo(string typeId)
+    {
+        var itemInfo = m_ItemInfos.Find(i => i.id == typeId);
+        return itemInfo;
     }
 }
