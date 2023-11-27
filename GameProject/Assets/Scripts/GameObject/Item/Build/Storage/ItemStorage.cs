@@ -56,9 +56,9 @@ namespace TheIslandKOD
         {
             base.DestroyBuildObject(hit);
         }
-        protected override void PlaceBuildObject(RaycastHit hit)
+        protected override void PlaceBuildObject(RaycastHit hit, Quaternion rotation)
         {
-            GameObject.Instantiate(m_buildStorage.prefab, hit.point + m_offsetBuildObject, Quaternion.Euler(hit.normal));
+            GameObject.Instantiate(m_buildStorage.prefab, hit.point + m_offsetBuildObject, rotation);
             StopCoroutine();
             m_inventory.Remove(this, type);
         }

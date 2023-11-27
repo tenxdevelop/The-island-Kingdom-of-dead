@@ -16,7 +16,7 @@ MonoBehaviour:
   m_amountCraft: 1
   m_itemCraftType: ItemBow
   m_category: 2
-  m_timeCraft: 5
+  m_timeCraft: 3
   m_craftComponents:
   - amount: 3
     itemType: Apple

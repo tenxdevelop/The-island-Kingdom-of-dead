@@ -46,10 +46,16 @@ namespace TheIslandKOD
         {
 
         }
-        protected virtual void PlaceBuildObject(RaycastHit hit)
+        protected virtual void PlaceBuildObject(RaycastHit hit, Quaternion rotation)
         {
 
         }
+
+        protected virtual void RotateBuildObject()
+        {
+            m_currentBuildObject.transform.rotation *= Quaternion.Euler(0, 45, 0);
+        }
+
         protected virtual void DestroyBuildObject(RaycastHit hit)
         {
             if (m_currentBuildObject != null)
@@ -76,7 +82,11 @@ namespace TheIslandKOD
                 {
                     if (m_inputManager.OnFoot.Attach.triggered && m_currentBuildObject.IsBuildable)
                     {
-                        PlaceBuildObject(m_hit);
+                        PlaceBuildObject(m_hit, m_currentBuildObject.transform.rotation);
+                    }
+                    if (m_inputManager.OnFoot.RotateBuild.triggered)
+                    {
+                        RotateBuildObject();
                     }
                 }
                 yield return new WaitForSeconds(Time.deltaTime);
