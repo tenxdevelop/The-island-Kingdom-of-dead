@@ -23,3 +23,5 @@ MonoBehaviour:
   - buildObject: {fileID: 5365829977733208155, guid: 22006a5138710844b8379d8de06e41d6, type: 3}
     prefab: {fileID: 6840499743530506200, guid: be69117da7947f940a4fef08d144356e, type: 3}
     tagObject: storage
+    objectOffset: {x: 0, y: 0.5, z: 0}
+    objectRotation: {x: 0, y: 45, z: 0}

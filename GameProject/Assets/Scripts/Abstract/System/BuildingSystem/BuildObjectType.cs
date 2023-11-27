@@ -10,5 +10,7 @@ namespace TheIslandKOD
         public GameObject buildObject;
         public GameObject prefab;
         public string tagObject;
+        public Vector3 objectOffset;
+        public Vector3 objectRotation;
     }
 }

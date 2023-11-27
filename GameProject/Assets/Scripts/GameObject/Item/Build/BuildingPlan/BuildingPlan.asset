@@ -19,4 +19,14 @@ MonoBehaviour:
   m_sprite: {fileID: 21300000, guid: 57d15d020d076de4a8f522f729e59bcb, type: 3}
   m_dropPrefab: {fileID: 1191358423309082348, guid: ef271e31e55bf00449b24a35f17d9066, type: 3}
   m_itemType: 5
-  m_buildPrefabs: []
+  m_buildPrefabs:
+  - buildObject: {fileID: 4913728605765136518, guid: 90aeb9227a8df0e4caa7f5531cf3959b, type: 3}
+    prefab: {fileID: 4681617334999319766, guid: 493f4257593bc8d498f64756ed083aaf, type: 3}
+    tagObject: foundation
+    objectOffset: {x: 0, y: 0, z: 0}
+    objectRotation: {x: 0, y: 0, z: 45}
+  - buildObject: {fileID: 2000468724769050317, guid: 545e86ac96f843e46832b925883af43e, type: 3}
+    prefab: {fileID: 2173589702931102239, guid: f07f8b3534efa7f4f8b6751c772bce3c, type: 3}
+    tagObject: wall
+    objectOffset: {x: 0, y: 2.2, z: 0}
+    objectRotation: {x: 45, y: 0, z: 0}

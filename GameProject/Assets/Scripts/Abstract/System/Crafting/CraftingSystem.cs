@@ -114,11 +114,15 @@ public class CraftingSystem : MonoBehaviour
     {
         InventoryItemInfo itemInfo = GetItemInfo("stoneAxe");
         IInventoryItem item = new StoneAxe(itemInfo);
-        m_inventoryItems.Add(item);
+        AddItem(item);
 
         itemInfo = GetItemInfo("bow");
         item = new ItemBow(itemInfo);
-        m_inventoryItems.Add(item);
+        AddItem(item);
+
+        itemInfo = GetItemInfo("buildingPlan");
+        item = new BuildingPlan(itemInfo);
+        AddItem(item);
 
     }
 
@@ -126,5 +130,10 @@ public class CraftingSystem : MonoBehaviour
     {
         var itemInfo = m_ItemInfos.Find(i => i.id == typeId);
         return itemInfo;
+    }
+
+    private void AddItem(IInventoryItem item)
+    {
+        m_inventoryItems.Add(item);
     }
 }

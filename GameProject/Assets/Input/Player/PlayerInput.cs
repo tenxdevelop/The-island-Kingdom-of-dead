@@ -277,6 +277,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NextBuild"",
+                    ""type"": ""Button"",
+                    ""id"": ""84917e23-2341-421a-aa3e-1ef944ccdb21"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -398,6 +407,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""RotateBuild"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""49af2419-a926-492a-a8a8-4dcd44e7ed2b"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextBuild"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -942,6 +962,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_OnFoot_Attach = m_OnFoot.FindAction("Attach", throwIfNotFound: true);
         m_OnFoot_BowAim = m_OnFoot.FindAction("BowAim", throwIfNotFound: true);
         m_OnFoot_RotateBuild = m_OnFoot.FindAction("RotateBuild", throwIfNotFound: true);
+        m_OnFoot_NextBuild = m_OnFoot.FindAction("NextBuild", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1132,6 +1153,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_OnFoot_Attach;
     private readonly InputAction m_OnFoot_BowAim;
     private readonly InputAction m_OnFoot_RotateBuild;
+    private readonly InputAction m_OnFoot_NextBuild;
     public struct OnFootActions
     {
         private @PlayerInput m_Wrapper;
@@ -1143,6 +1165,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @Attach => m_Wrapper.m_OnFoot_Attach;
         public InputAction @BowAim => m_Wrapper.m_OnFoot_BowAim;
         public InputAction @RotateBuild => m_Wrapper.m_OnFoot_RotateBuild;
+        public InputAction @NextBuild => m_Wrapper.m_OnFoot_NextBuild;
         public InputActionMap Get() { return m_Wrapper.m_OnFoot; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1173,6 +1196,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @RotateBuild.started += instance.OnRotateBuild;
             @RotateBuild.performed += instance.OnRotateBuild;
             @RotateBuild.canceled += instance.OnRotateBuild;
+            @NextBuild.started += instance.OnNextBuild;
+            @NextBuild.performed += instance.OnNextBuild;
+            @NextBuild.canceled += instance.OnNextBuild;
         }
 
         private void UnregisterCallbacks(IOnFootActions instance)
@@ -1198,6 +1224,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @RotateBuild.started -= instance.OnRotateBuild;
             @RotateBuild.performed -= instance.OnRotateBuild;
             @RotateBuild.canceled -= instance.OnRotateBuild;
+            @NextBuild.started -= instance.OnNextBuild;
+            @NextBuild.performed -= instance.OnNextBuild;
+            @NextBuild.canceled -= instance.OnNextBuild;
         }
 
         public void RemoveCallbacks(IOnFootActions instance)
@@ -1354,6 +1383,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnAttach(InputAction.CallbackContext context);
         void OnBowAim(InputAction.CallbackContext context);
         void OnRotateBuild(InputAction.CallbackContext context);
+        void OnNextBuild(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

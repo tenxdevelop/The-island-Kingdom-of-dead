@@ -6,16 +6,19 @@ namespace TheIslandKOD
 {
     public class BuildingSystem
     {
+
+        protected InputManager m_inputManager;
+        protected BuildObject m_currentBuildObject;
+        protected Vector3 m_offsetBuildObject;
+        protected Vector3 m_rotationBuildObject;
+
         private Coroutine m_coroutine;
         private CinemachineVirtualCamera m_camera;
-        private InputManager m_inputManager;
-
+       
         private int m_layerIgnore = (int)Mathf.Pow(2, (int)LayerType.LastLayer) - 1;
 
         private RaycastHit m_hit;
-        protected BuildObject m_currentBuildObject;
-
-        protected Vector3 m_offsetBuildObject;
+        
         public BuildingSystem()
         {
             m_camera = ReferenceSystem.instance.player.GetComponent<PlayerLook>().Camera;
@@ -42,6 +45,11 @@ namespace TheIslandKOD
             m_coroutine = null;
         }
 
+        protected virtual void OnBuildingUpdate()
+        {
+
+        }
+
         protected virtual void CreateBuildObject(RaycastHit hit)
         {
 
@@ -53,7 +61,7 @@ namespace TheIslandKOD
 
         protected virtual void RotateBuildObject()
         {
-            m_currentBuildObject.transform.rotation *= Quaternion.Euler(0, 45, 0);
+            m_currentBuildObject.transform.rotation *= Quaternion.Euler(m_rotationBuildObject);
         }
 
         protected virtual void DestroyBuildObject(RaycastHit hit)
@@ -89,6 +97,7 @@ namespace TheIslandKOD
                         RotateBuildObject();
                     }
                 }
+                OnBuildingUpdate();
                 yield return new WaitForSeconds(Time.deltaTime);
             }
         }

@@ -23,8 +23,9 @@ namespace TheIslandKOD
             this.info = info;
             state = new InventoryItemState();
             m_uIQuickSlot = UIQuickSlot.instance;
-            m_offsetBuildObject.y = 0.5f;
             m_buildStorage = info.buildObjects.Find(i => i.tagObject == TAG_BUILD_OBJECT);
+            m_offsetBuildObject = m_buildStorage.objectOffset;
+            m_rotationBuildObject = m_buildStorage.objectRotation;
         }
 
         public IInventoryItem Clone()
