@@ -1,4 +1,3 @@
-using UnityEngine.InputSystem;
 using UnityEngine;
 
 public class InputManager : MonoBehaviour
@@ -31,6 +30,7 @@ public class InputManager : MonoBehaviour
         m_onFoot.Jump.performed += ctx => m_playerMovement.Jump();
 
         m_inventoryActions.LookInventory.performed += ctx => m_playerLook.ProcessLookInventory();
+        m_inventoryActions.LookCraftingPanel.performed += ctx => m_playerLook.ProcessLookCraftingPanel();
 
         m_inventoryActions.QuickSlot1.performed += ctx => m_uIQuickSlot.QuickSlotInputAction(0);
         m_inventoryActions.QuickSlot2.performed += ctx => m_uIQuickSlot.QuickSlotInputAction(1);

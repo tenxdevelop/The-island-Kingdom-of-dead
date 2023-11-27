@@ -15,19 +15,22 @@ public class PlayerLook : MonoBehaviour
     private float m_xRotation = 0f;
 
     private bool m_isOpenInventory = false;
+    private bool m_isOpenCraftingPanel = false;
 
     private UIInventory m_uIInventory;
+    private UICraftPanel m_uICraftingPanel;
 
     public CinemachineVirtualCamera Camera => m_camera;
     private void Start()
     {
         Cursor.visible = false;
         m_uIInventory = UIInventory.instance;
+        m_uICraftingPanel = UICraftPanel.instance;
     }
 
     public void ProcessLook(Vector2 mouseScoll)
     {
-        if (!m_isOpenInventory)
+        if (!m_isOpenInventory && !m_isOpenCraftingPanel)
         {
             float mouseX = mouseScoll.x;
             float mouseY = mouseScoll.y;
@@ -44,7 +47,26 @@ public class PlayerLook : MonoBehaviour
     public void ProcessLookInventory()
     {
         m_isOpenInventory = !m_isOpenInventory;
-        m_uIInventory.SetVisible(m_isOpenInventory);
+        if (!m_isOpenCraftingPanel)
+        {
+            m_uIInventory.SetVisible(m_isOpenInventory);
+        }
+       
+    }
+
+    public void ProcessLookCraftingPanel()
+    {
+        if (m_isOpenInventory)
+        {
+            ProcessLookInventory();
+        }
+        m_isOpenCraftingPanel = !m_isOpenCraftingPanel;
+        m_uICraftingPanel.SetVisible(m_isOpenCraftingPanel);
+
+        if (!m_isOpenInventory)
+        {
+            ProcessLookInventory();
+        }
     }
 
     public void ProcessLookStorage(bool visible)

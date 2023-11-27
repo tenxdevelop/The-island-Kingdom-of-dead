@@ -98,6 +98,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LookCraftingPanel"",
+                    ""type"": ""Button"",
+                    ""id"": ""d32c9889-c563-4141-845b-d1d45ab418ec"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -186,6 +195,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Close"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e6626f66-d3e3-42fd-a7e4-abff031205a7"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LookCraftingPanel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -892,6 +912,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Inventory_QuickSlot6 = m_Inventory.FindAction("QuickSlot6", throwIfNotFound: true);
         m_Inventory_LookInventory = m_Inventory.FindAction("LookInventory", throwIfNotFound: true);
         m_Inventory_Close = m_Inventory.FindAction("Close", throwIfNotFound: true);
+        m_Inventory_LookCraftingPanel = m_Inventory.FindAction("LookCraftingPanel", throwIfNotFound: true);
         // OnFoot
         m_OnFoot = asset.FindActionMap("OnFoot", throwIfNotFound: true);
         m_OnFoot_Movement = m_OnFoot.FindAction("Movement", throwIfNotFound: true);
@@ -981,6 +1002,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Inventory_QuickSlot6;
     private readonly InputAction m_Inventory_LookInventory;
     private readonly InputAction m_Inventory_Close;
+    private readonly InputAction m_Inventory_LookCraftingPanel;
     public struct InventoryActions
     {
         private @PlayerInput m_Wrapper;
@@ -993,6 +1015,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @QuickSlot6 => m_Wrapper.m_Inventory_QuickSlot6;
         public InputAction @LookInventory => m_Wrapper.m_Inventory_LookInventory;
         public InputAction @Close => m_Wrapper.m_Inventory_Close;
+        public InputAction @LookCraftingPanel => m_Wrapper.m_Inventory_LookCraftingPanel;
         public InputActionMap Get() { return m_Wrapper.m_Inventory; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1026,6 +1049,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Close.started += instance.OnClose;
             @Close.performed += instance.OnClose;
             @Close.canceled += instance.OnClose;
+            @LookCraftingPanel.started += instance.OnLookCraftingPanel;
+            @LookCraftingPanel.performed += instance.OnLookCraftingPanel;
+            @LookCraftingPanel.canceled += instance.OnLookCraftingPanel;
         }
 
         private void UnregisterCallbacks(IInventoryActions instance)
@@ -1054,6 +1080,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Close.started -= instance.OnClose;
             @Close.performed -= instance.OnClose;
             @Close.canceled -= instance.OnClose;
+            @LookCraftingPanel.started -= instance.OnLookCraftingPanel;
+            @LookCraftingPanel.performed -= instance.OnLookCraftingPanel;
+            @LookCraftingPanel.canceled -= instance.OnLookCraftingPanel;
         }
 
         public void RemoveCallbacks(IInventoryActions instance)
@@ -1285,6 +1314,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnQuickSlot6(InputAction.CallbackContext context);
         void OnLookInventory(InputAction.CallbackContext context);
         void OnClose(InputAction.CallbackContext context);
+        void OnLookCraftingPanel(InputAction.CallbackContext context);
     }
     public interface IOnFootActions
     {

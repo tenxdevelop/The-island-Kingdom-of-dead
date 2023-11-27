@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class UIInventory : MonoBehaviour, IUIInventory
 {
-    public static UIInventory instance;
+    public static UIInventory instance { get; private set; }
 
     [SerializeField] private GameObject m_gridInventory;
 
     private UIInventorySlot[] m_uISlots;
     private InventoryWithSlots m_inventory;
-    
-
+    private GameManager m_gameManager;
     public InventoryWithSlots inventory => m_inventory;
 
     private void Awake()
@@ -21,6 +20,7 @@ public class UIInventory : MonoBehaviour, IUIInventory
             Destroy(instance);
         }
         instance = this;
+        m_gameManager = GameManager.instance;
         m_uISlots = GetComponentsInChildren<UIInventorySlot>();
     }
     private void Start()
@@ -29,7 +29,7 @@ public class UIInventory : MonoBehaviour, IUIInventory
     }
     public void SetVisible(bool visible)
     {
-        SetCursor(visible);
+        m_gameManager.SetCursorVisible(visible);
         UIQuickSlot.instance.SetActiveItem(!visible);
         m_gridInventory.SetActive(visible);
     }
@@ -57,16 +57,4 @@ public class UIInventory : MonoBehaviour, IUIInventory
         }
     }
 
-    private void SetCursor(bool state)
-    {
-        Cursor.visible = state;
-        if (!state)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-        }
-        else
-        {
-            Cursor.lockState = CursorLockMode.Confined;
-        }
-    }
 }

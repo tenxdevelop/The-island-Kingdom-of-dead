@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80cb4a88a6355614ea45f5510e32afe9, type: 3}
+  m_Name: StoneAxeCraft
+  m_EditorClassIdentifier: 
+  m_info: {fileID: 11400000, guid: 3e6d9ad046d3b204eb6d1ab28e01bbbf, type: 2}
+  m_amountCraft: 1
+  m_itemCraftType: StoneAxe
+  m_category: 1
+  m_craftComponents:
+  - amount: 5
+    itemType: Apple
+    info: {fileID: 11400000, guid: 18c8aa2a17712864c9d45a30b1d3517b, type: 2}
+  - amount: 1
+    itemType: ItemBow
+    info: {fileID: 11400000, guid: add147080812c4247aa6097f18ea5a40, type: 2}
