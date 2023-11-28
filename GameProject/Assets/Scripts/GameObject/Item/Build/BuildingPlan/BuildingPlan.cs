@@ -34,6 +34,8 @@ namespace TheIslandKOD
             m_currentBuildObjectType = m_buildObjects[m_currentBuildType];
             m_offsetBuildObject = m_currentBuildObjectType.objectOffset;
             m_rotationBuildObject = m_currentBuildObjectType.objectRotation;
+            m_currentBuildSnap = m_currentBuildObjectType.snapPointType;
+            AddIgnoreLayer((int)LayerType.Build);
         }
 
         public IInventoryItem Clone()
@@ -63,6 +65,7 @@ namespace TheIslandKOD
                 m_currentBuildObjectType = m_buildObjects[m_currentBuildType];
                 m_offsetBuildObject = m_currentBuildObjectType.objectOffset;
                 m_rotationBuildObject = m_currentBuildObjectType.objectRotation;
+                m_currentBuildSnap = m_currentBuildObjectType.snapPointType;
             }
         }
 
@@ -78,10 +81,9 @@ namespace TheIslandKOD
         {
             base.DestroyBuildObject(hit);
         }
-        protected override void PlaceBuildObject(RaycastHit hit, Quaternion rotation)
+        protected override void PlaceBuildObject(Vector3 position, Quaternion rotation)
         {
-            GameObject.Instantiate(m_currentBuildObjectType.prefab, hit.point + m_offsetBuildObject, rotation);
-            
+            GameObject.Instantiate(m_currentBuildObjectType.prefab, position, rotation);
         }
         private void OnQuickSlotChangedEvent(InventoryWithSlots inventory, IInventorySlot slot, bool isActive)
         {

@@ -11,6 +11,10 @@ namespace TheIslandKOD
         protected BuildObject m_currentBuildObject;
         protected Vector3 m_offsetBuildObject;
         protected Vector3 m_rotationBuildObject;
+        protected SnapPointType m_currentBuildSnap;
+
+        private Vector3 m_snapPosition;
+        private bool m_snap;
 
         private Coroutine m_coroutine;
         private CinemachineVirtualCamera m_camera;
@@ -54,7 +58,7 @@ namespace TheIslandKOD
         {
 
         }
-        protected virtual void PlaceBuildObject(RaycastHit hit, Quaternion rotation)
+        protected virtual void PlaceBuildObject(Vector3 position, Quaternion rotation)
         {
 
         }
@@ -73,11 +77,13 @@ namespace TheIslandKOD
             }
             
         }
-        private void MoveBuildObject(RaycastHit hit)
+        private void MoveBuildObject(Vector3 position)
         {
             if (m_currentBuildObject != null)
             {
-                m_currentBuildObject.transform.position = hit.point + m_offsetBuildObject;
+
+                m_currentBuildObject.transform.position = position;
+
             }
         }
         private IEnumerator OnBuilding()
@@ -86,11 +92,14 @@ namespace TheIslandKOD
             while (true)
             {
                 BuildRay();
+                Snapping();
+                MoveBuildObject(m_snapPosition);
                 if (m_currentBuildObject != null)
                 {
-                    if (m_inputManager.OnFoot.Attach.triggered && m_currentBuildObject.IsBuildable)
+                    
+                    if (m_inputManager.OnFoot.Attach.triggered && (m_currentBuildObject.IsBuildable))
                     {
-                        PlaceBuildObject(m_hit, m_currentBuildObject.transform.rotation);
+                        PlaceBuildObject(m_snapPosition, m_currentBuildObject.transform.rotation);
                     }
                     if (m_inputManager.OnFoot.RotateBuild.triggered)
                     {
@@ -112,12 +121,45 @@ namespace TheIslandKOD
             else
             {
                 DestroyBuildObject(m_hit);
-            }
-
-            MoveBuildObject(m_hit);
+            }            
         }
 
-        private void AddIgnoreLayer(int layer)
+
+        private void Snapping()
+        {
+            if (m_hit.collider && m_hit.collider.gameObject.layer == (int)LayerType.SnapPoint)
+            {
+                SnapPoint snapPoint = m_hit.collider.GetComponent<SnapPoint>();
+                if (snapPoint && snapPoint.snapPointType == m_currentBuildSnap)
+                {
+                    m_snap = true;
+                    m_snapPosition = snapPoint.positionFoundation.transform.position;
+                }
+                else
+                {
+                    m_snap = false;
+                    m_snapPosition = m_hit.point;
+                }
+            }
+            else
+            {
+                m_snap = false;
+                m_snapPosition = m_hit.point;
+            }
+
+            if (!m_snap)
+            {
+                m_snapPosition += m_offsetBuildObject;     
+            }
+            
+        }
+
+        protected void ForgiveIgnoreLayer(int layer)
+        {
+            m_layerIgnore += (int)Mathf.Pow(2, layer);
+        }
+
+        protected void AddIgnoreLayer(int layer)
         {
             m_layerIgnore -= (int)Mathf.Pow(2, layer); 
         }

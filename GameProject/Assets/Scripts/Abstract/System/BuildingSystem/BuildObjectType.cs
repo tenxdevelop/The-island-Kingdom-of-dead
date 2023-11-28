@@ -12,5 +12,6 @@ namespace TheIslandKOD
         public string tagObject;
         public Vector3 objectOffset;
         public Vector3 objectRotation;
+        public SnapPointType snapPointType;
     }
 }

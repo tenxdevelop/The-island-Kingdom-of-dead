@@ -12,6 +12,8 @@ namespace TheIslandKOD
         Trees = 7,
         Player = 8,
         Terrain = 9,
+        Build = 10,
+        SnapPoint = 11,
         LastLayer
     }
 }

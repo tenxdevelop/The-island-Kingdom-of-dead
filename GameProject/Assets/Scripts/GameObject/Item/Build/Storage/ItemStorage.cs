@@ -26,6 +26,7 @@ namespace TheIslandKOD
             m_buildStorage = info.buildObjects.Find(i => i.tagObject == TAG_BUILD_OBJECT);
             m_offsetBuildObject = m_buildStorage.objectOffset;
             m_rotationBuildObject = m_buildStorage.objectRotation;
+            AddIgnoreLayer((int)LayerType.SnapPoint);
         }
 
         public IInventoryItem Clone()
@@ -57,9 +58,9 @@ namespace TheIslandKOD
         {
             base.DestroyBuildObject(hit);
         }
-        protected override void PlaceBuildObject(RaycastHit hit, Quaternion rotation)
+        protected override void PlaceBuildObject(Vector3 position, Quaternion rotation)
         {
-            GameObject.Instantiate(m_buildStorage.prefab, hit.point + m_offsetBuildObject, rotation);
+            GameObject.Instantiate(m_buildStorage.prefab, position, rotation);
             StopCoroutine();
             m_inventory.Remove(this, type);
         }

@@ -5,18 +5,19 @@ using UnityEngine;
 public class BuildObject : MonoBehaviour
 {
     private List<Collider> contacts = new List<Collider>();
+
     private bool m_isBuildable = false;
 
     [SerializeField] private Material m_greenMat;
     [SerializeField] private Material m_redMat;
+    [SerializeField] private LayerType m_IgnoreLayer;
 
     private MeshRenderer m_renderer;
-
     public bool IsBuildable => m_isBuildable;
 
     private void Start()
     {
-        m_renderer = GetComponent<MeshRenderer>();
+        m_renderer = GetComponent<MeshRenderer>();   
         m_renderer.sharedMaterial = m_greenMat;
     }
     private void Update()
@@ -25,22 +26,31 @@ public class BuildObject : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer != (int)LayerType.Terrain)
-        {
-            contacts.Add(other);
-        }
-        
+
+        if (other.gameObject.layer == (int)LayerType.Terrain)
+            return;
+        if (other.gameObject.layer == (int)LayerType.SnapPoint)
+            return;
+        if (other.gameObject.layer == (int)m_IgnoreLayer)
+            return;
+
+        contacts.Add(other);
+ 
     }
     private void OnTriggerExit(Collider other)
     {
+        if (other.gameObject.layer == (int)LayerType.Terrain)
+            return;
+        if (other.gameObject.layer == (int)LayerType.SnapPoint)
+            return;
+        if (other.gameObject.layer == (int)m_IgnoreLayer)
+            return;
 
-        if (other.gameObject.layer != (int)LayerType.Terrain)
-        {
-            contacts.Remove(other);
-        }
-       
+
+        contacts.Remove(other);
+
     }
-
+    
     private void CheckBuildable()
     {
         if (contacts.Count == 0)
