@@ -14,6 +14,7 @@ namespace TheIslandKOD
         Terrain = 9,
         Build = 10,
         SnapPoint = 11,
+        Foundation = 12,
         LastLayer
     }
 }

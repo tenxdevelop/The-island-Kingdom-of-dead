@@ -12,6 +12,8 @@ namespace TheIslandKOD
         protected Vector3 m_offsetBuildObject;
         protected Vector3 m_rotationBuildObject;
         protected SnapPointType m_currentBuildSnap;
+
+        protected bool m_canRotate = true;
         protected int currentIgnoreLayer => m_currentIgnoreLayer;
 
         private Vector3 m_snapPosition;
@@ -53,6 +55,11 @@ namespace TheIslandKOD
             m_coroutine = null;
         }
 
+        protected void ReCreateBuildObject()
+        {
+            DestroyBuildObject(m_hit);
+            CreateBuildObject(m_hit);
+        }
         protected virtual void OnBuildingUpdate()
         {
 
@@ -105,7 +112,7 @@ namespace TheIslandKOD
                     {
                         PlaceBuildObject(m_snapPosition, m_currentBuildObject.transform.rotation);
                     }
-                    if (m_inputManager.OnFoot.RotateBuild.triggered)
+                    if (m_inputManager.OnFoot.RotateBuild.triggered && m_canRotate)
                     {
                         RotateBuildObject();
                     }
@@ -138,6 +145,7 @@ namespace TheIslandKOD
                 {
                     m_snap = true;
                     m_snapPosition = snapPoint.GetPosition(m_currentBuildSnap).transform.position;
+                    m_currentBuildObject.transform.rotation = snapPoint.GetPosition(m_currentBuildSnap).transform.localRotation;
                 }
                 else
                 {
@@ -157,7 +165,7 @@ namespace TheIslandKOD
             }
             
         }
-
+        
         protected void GetResetLayerRayCast()
         {
             m_currentIgnoreLayer = m_layerIgnore;

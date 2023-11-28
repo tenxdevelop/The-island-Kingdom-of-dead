@@ -41,6 +41,7 @@ namespace TheIslandKOD
             GetResetLayerRayCast();
             m_layerIgnoreWall = currentIgnoreLayer;
             m_layerIgnoreWall -= (int)Mathf.Pow(2, (int)LayerType.Terrain);
+            m_layerIgnoreWall -= (int)Mathf.Pow(2, (int)LayerType.Foundation);
         }
 
         public IInventoryItem Clone()
@@ -71,13 +72,16 @@ namespace TheIslandKOD
                 m_offsetBuildObject = m_currentBuildObjectType.objectOffset;
                 m_rotationBuildObject = m_currentBuildObjectType.objectRotation;
                 m_currentBuildSnap = m_currentBuildObjectType.snapPointType;
+                ReCreateBuildObject();
                 if (m_currentBuildSnap == SnapPointType.Wall)
                 {
                     SetLayerRayCast(m_layerIgnoreWall);
+                    m_canRotate = false;
                 }
                 else 
                 {
                     GetResetLayerRayCast();
+                    m_canRotate = true;
                 }
             }
         }
