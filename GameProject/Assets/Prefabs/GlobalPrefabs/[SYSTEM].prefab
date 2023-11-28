@@ -79,6 +79,7 @@ MonoBehaviour:
   m_ItemInfos:
   - {fileID: 11400000, guid: 3e6d9ad046d3b204eb6d1ab28e01bbbf, type: 2}
   - {fileID: 11400000, guid: add147080812c4247aa6097f18ea5a40, type: 2}
+  - {fileID: 11400000, guid: 678eb3e183cdba1458baf30df366a712, type: 2}
 --- !u!1 &1644780468226924638
 GameObject:
   m_ObjectHideFlags: 0
@@ -246,7 +247,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 983
+    m_Bits: 2007
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0

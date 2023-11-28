@@ -17367,6 +17367,7 @@ MonoBehaviour:
   m_allCraftInfo:
   - {fileID: 11400000, guid: a6ab354fad0360d459a798da988e75aa, type: 2}
   - {fileID: 11400000, guid: a75468574a63a5241bf26bbc1098f036, type: 2}
+  - {fileID: 11400000, guid: db93a838400edc64593fa1604c90e6c4, type: 2}
   m_craftItemPanel: {fileID: 3318085585444329468}
   m_prefabItemCraft: {fileID: 7131808525142087819, guid: 6589193a7b0bf284093043f37de0e946, type: 3}
   m_craftButton: {fileID: 6408760007997230631}

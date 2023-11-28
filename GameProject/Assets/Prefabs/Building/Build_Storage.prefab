@@ -121,7 +121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_greenMat: {fileID: 2100000, guid: 6bf54ed31a1ec994a9fed9f4c534bd39, type: 2}
   m_redMat: {fileID: 2100000, guid: f4c7e02c0f679524ca6342bc7f00b442, type: 2}
-  m_IgnoreLayer: 10
+  m_layerBuild: 10
 --- !u!54 &-6697252337480283335
 Rigidbody:
   m_ObjectHideFlags: 0

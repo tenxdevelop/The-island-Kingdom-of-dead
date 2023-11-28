@@ -27,6 +27,7 @@ namespace TheIslandKOD
             m_offsetBuildObject = m_buildStorage.objectOffset;
             m_rotationBuildObject = m_buildStorage.objectRotation;
             AddIgnoreLayer((int)LayerType.SnapPoint);
+            GetResetLayerRayCast();
         }
 
         public IInventoryItem Clone()

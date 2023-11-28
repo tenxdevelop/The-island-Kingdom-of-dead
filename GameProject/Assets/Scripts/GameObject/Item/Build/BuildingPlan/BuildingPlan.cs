@@ -25,17 +25,22 @@ namespace TheIslandKOD
 
         private int m_currentBuildType = 0;
 
+        private int m_layerIgnoreWall;
+
         public BuildingPlan(IInventoryItemInfo info)
         {
             this.info = info;
             state = new InventoryItemState();
             m_uIQuickSlot = UIQuickSlot.instance;
-            m_buildObjects = info.buildObjects;
+            m_buildObjects = info.buildObjects; 
             m_currentBuildObjectType = m_buildObjects[m_currentBuildType];
             m_offsetBuildObject = m_currentBuildObjectType.objectOffset;
             m_rotationBuildObject = m_currentBuildObjectType.objectRotation;
             m_currentBuildSnap = m_currentBuildObjectType.snapPointType;
             AddIgnoreLayer((int)LayerType.Build);
+            GetResetLayerRayCast();
+            m_layerIgnoreWall = currentIgnoreLayer;
+            m_layerIgnoreWall -= (int)Mathf.Pow(2, (int)LayerType.Terrain);
         }
 
         public IInventoryItem Clone()
@@ -66,6 +71,14 @@ namespace TheIslandKOD
                 m_offsetBuildObject = m_currentBuildObjectType.objectOffset;
                 m_rotationBuildObject = m_currentBuildObjectType.objectRotation;
                 m_currentBuildSnap = m_currentBuildObjectType.snapPointType;
+                if (m_currentBuildSnap == SnapPointType.Wall)
+                {
+                    SetLayerRayCast(m_layerIgnoreWall);
+                }
+                else 
+                {
+                    GetResetLayerRayCast();
+                }
             }
         }
 

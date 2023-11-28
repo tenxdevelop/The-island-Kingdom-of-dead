@@ -12,6 +12,7 @@ namespace TheIslandKOD
         protected Vector3 m_offsetBuildObject;
         protected Vector3 m_rotationBuildObject;
         protected SnapPointType m_currentBuildSnap;
+        protected int currentIgnoreLayer => m_currentIgnoreLayer;
 
         private Vector3 m_snapPosition;
         private bool m_snap;
@@ -20,6 +21,8 @@ namespace TheIslandKOD
         private CinemachineVirtualCamera m_camera;
        
         private int m_layerIgnore = (int)Mathf.Pow(2, (int)LayerType.LastLayer) - 1;
+
+        private int m_currentIgnoreLayer;
 
         private RaycastHit m_hit;
         
@@ -31,6 +34,7 @@ namespace TheIslandKOD
             AddIgnoreLayer((int)LayerType.Trees);
             AddIgnoreLayer((int)LayerType.Player);
             AddIgnoreLayer((int)LayerType.Water);
+            GetResetLayerRayCast();
         }
 
         protected void StartCoroutine()
@@ -113,7 +117,7 @@ namespace TheIslandKOD
         private void BuildRay()
         {
             Ray ray = new Ray(m_camera.transform.position, m_camera.transform.forward);
-            Physics.Raycast(ray, out m_hit, 5, m_layerIgnore);
+            Physics.Raycast(ray, out m_hit, 5, m_currentIgnoreLayer);
             if (m_hit.collider)
             {
                 CreateBuildObject(m_hit);
@@ -130,10 +134,10 @@ namespace TheIslandKOD
             if (m_hit.collider && m_hit.collider.gameObject.layer == (int)LayerType.SnapPoint)
             {
                 SnapPoint snapPoint = m_hit.collider.GetComponent<SnapPoint>();
-                if (snapPoint && snapPoint.snapPointType == m_currentBuildSnap)
+                if (snapPoint)
                 {
                     m_snap = true;
-                    m_snapPosition = snapPoint.positionFoundation.transform.position;
+                    m_snapPosition = snapPoint.GetPosition(m_currentBuildSnap).transform.position;
                 }
                 else
                 {
@@ -154,9 +158,14 @@ namespace TheIslandKOD
             
         }
 
-        protected void ForgiveIgnoreLayer(int layer)
+        protected void GetResetLayerRayCast()
         {
-            m_layerIgnore += (int)Mathf.Pow(2, layer);
+            m_currentIgnoreLayer = m_layerIgnore;
+        }
+
+        protected void SetLayerRayCast(int layer)
+        {
+            m_currentIgnoreLayer = layer;
         }
 
         protected void AddIgnoreLayer(int layer)
