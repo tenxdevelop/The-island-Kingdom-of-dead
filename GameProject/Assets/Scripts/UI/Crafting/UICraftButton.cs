@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class UICraftButton : MonoBehaviour
 {
-    public static Action OnCraftButtonEvent;
+    public static event Action OnCraftButtonEvent;
     public static UICraftButton instance { get; private set; }
 
     private Button m_craftButton;

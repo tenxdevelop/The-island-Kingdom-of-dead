@@ -145,7 +145,7 @@ namespace TheIslandKOD
                 {
                     m_snap = true;
                     m_snapPosition = snapPoint.GetPosition(m_currentBuildSnap).transform.position;
-                    m_currentBuildObject.transform.rotation = snapPoint.GetPosition(m_currentBuildSnap).transform.localRotation;
+                    m_currentBuildObject.transform.rotation = snapPoint.GetPosition(m_currentBuildSnap).transform.rotation;
                 }
                 else
                 {

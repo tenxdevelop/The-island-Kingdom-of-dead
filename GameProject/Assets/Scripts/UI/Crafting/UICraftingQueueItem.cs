@@ -17,6 +17,8 @@ public class UICraftingQueueItem : MonoBehaviour
 
     private List<IInventoryItem> m_removeItem;
     private IInventoryItemCraft m_infoCraft;
+
+    private bool m_isRemove = false;
     private void Awake()
     {
         m_craftingSystem = CraftingSystem.instance;
@@ -41,14 +43,18 @@ public class UICraftingQueueItem : MonoBehaviour
 
     public void RemoveCraft()
     {
-        foreach (var itemComponent in m_infoCraft.craftComponents)
+        if (!m_isRemove)
         {
-            var item = m_removeItem.Find(i => i.type == Type.GetType("TheIslandKOD." + itemComponent.itemType));
-            item.state.amount = itemComponent.amount;
-            m_playerInventory.inventory.TryToAdd(this, item);
+            foreach (var itemComponent in m_infoCraft.craftComponents)
+            {
+                var item = m_removeItem.Find(i => i.type == Type.GetType("TheIslandKOD." + itemComponent.itemType));
+                item.state.amount = itemComponent.amount;
+                m_playerInventory.inventory.TryToAdd(this, item);
+            }
+            m_craftingSystem.RemoveCratingItem(m_craftingInfoCoroutine);
+            UICraftingQueue.OnRemoveQueueEvent?.Invoke();
+            m_isRemove = true;
         }
-        m_craftingSystem.RemoveCratingItem(m_craftingInfoCoroutine);
-        UICraftingQueue.OnRemoveQueueEvent?.Invoke();
     }
 
 }
