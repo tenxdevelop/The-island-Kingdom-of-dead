@@ -17,6 +17,10 @@ public class PlayerAnimation : MonoBehaviour
     private const string TAG_ANIMATION_BOW_FIRE = "BowFire";
     private const string TAG_ANIMATION_BOW_AIM = "BowAim";
 
+    private const string TAG_AMIMATION_RIFLE_ACTIVE = "RifleAimOverdraw";
+    private const string TAG_AMIMATION_RIFLE_FIRE = "RifleFire";
+    private const string TAG_ANIMATION_RIFLE_RELOAD = "RifleReload";
+
     [SerializeField] private MultiAimConstraint m_bodyRotation;
     [SerializeField] private MultiAimConstraint m_RightTriger;
     private Animator m_animatorPLayer;
@@ -24,11 +28,6 @@ public class PlayerAnimation : MonoBehaviour
     private void Start()
     {
         m_animatorPLayer = GetComponentInChildren<Animator>();
-    }
-
-    private void Update()
-    {
-        
     }
 
     public void SetItemState(bool state, ItemType type)
@@ -40,7 +39,7 @@ public class PlayerAnimation : MonoBehaviour
                 m_animatorPLayer.SetBool(TAG_ANIMATION_ACTIVE_TOOLS, state);
                 break;
             case ItemType.Weapon:
-                
+                m_animatorPLayer.SetBool(TAG_AMIMATION_RIFLE_ACTIVE, state);
                 break;
             case ItemType.Bow:
                 m_animatorPLayer.SetBool(TAG_ANIMATION_ACTIVE_BOW, state);
@@ -91,4 +90,15 @@ public class PlayerAnimation : MonoBehaviour
     {
         m_animatorPLayer.SetBool(TAG_ANIMATION_BOW_FIRE, isFire);
     }
+
+    public void RifleFire(bool isFire)
+    {
+        m_animatorPLayer.SetBool(TAG_AMIMATION_RIFLE_FIRE, isFire);
+    }
+
+    public void ReflieReload()
+    {
+        m_animatorPLayer.SetTrigger(TAG_ANIMATION_RIFLE_RELOAD);
+    }
+
 }

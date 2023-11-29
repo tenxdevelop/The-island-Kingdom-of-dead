@@ -64,15 +64,12 @@ namespace TheIslandKOD
                     m_ArmItem.SetActive(true);
                     OnEnableItem();
                     StartCoroutine();
-                }
-
+                }                
             }
             else
             {
-                m_playerAnimation.SetItemState(false, slot.item.info.itemType);
-                m_ArmItem.SetActive(false);
-                OnDisableItem();
-                StopCoroutine();
+                
+                DisableSlot(slot);
             }
 
         }
@@ -91,6 +88,15 @@ namespace TheIslandKOD
                 yield return new WaitForSeconds(Time.deltaTime);
             }
         }
+
+        private void DisableSlot(IInventorySlot slot)
+        {
+            m_playerAnimation.SetItemState(false, slot.item.info.itemType);
+            m_ArmItem.SetActive(false);
+            OnDisableItem();
+            StopCoroutine();
+        }
+
         protected abstract void UpdateActiveItem();
         protected abstract void OnDisableItem();
         protected abstract void OnEnableItem();

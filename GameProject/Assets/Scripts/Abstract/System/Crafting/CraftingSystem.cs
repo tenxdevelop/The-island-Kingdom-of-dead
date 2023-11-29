@@ -124,6 +124,10 @@ public class CraftingSystem : MonoBehaviour
         item = new BuildingPlan(itemInfo);
         AddItem(item);
 
+        itemInfo = GetItemInfo("m4");
+        item = new ItemM4(itemInfo);
+        AddItem(item);
+
     }
 
     private InventoryItemInfo GetItemInfo(string typeId)
