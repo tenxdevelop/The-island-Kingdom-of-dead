@@ -138,6 +138,6 @@ public class CraftingSystem : MonoBehaviour
 
     private void AddItem(IInventoryItem item)
     {
-        m_inventoryItems.Add(item);
+        m_inventoryItems.Add(item);     
     }
 }

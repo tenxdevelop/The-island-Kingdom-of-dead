@@ -12,6 +12,7 @@ namespace TheIslandKOD
             m_tagItemArm = "M4";
             state = new InventoryItemState();
             m_playerLook = ReferenceSystem.instance.player.GetComponent<PlayerLook>();
+            
         }
 
         protected override void UpdateActiveItem()

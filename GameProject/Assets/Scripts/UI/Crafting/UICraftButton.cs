@@ -44,14 +44,13 @@ public class UICraftButton : MonoBehaviour
 
     public void Craft()
     {
-        
+        var countCraft = UIInputFeildCraft.instance.countCraft;
         foreach (var itemComponent in m_lastInfoCraft.craftComponents)
         {
             m_removeItem.Add(m_playerInventory.inventory.GetItem(Type.GetType("TheIslandKOD." + itemComponent.itemType)).Clone());
-            m_playerInventory.inventory.Remove(this, Type.GetType("TheIslandKOD." + itemComponent.itemType), itemComponent.amount);
+            m_playerInventory.inventory.Remove(this, Type.GetType("TheIslandKOD." + itemComponent.itemType), itemComponent.amount * countCraft);
         }
-        var countCraft = UIInputFeildCraft.instance.countCraft;
-        UICraftingQueue.instance.AddQueueItem(m_lastInfoCraft.info.spriteIcon, m_lastInfoCraft.timeCraft * countCraft, countCraft * m_lastInfoCraft.amountCraft, m_lastInfoCraft, m_removeItem);
+        UICraftingQueue.instance.AddQueueItem(m_lastInfoCraft.info.spriteIcon, m_lastInfoCraft.timeCraft * countCraft, countCraft, countCraft * m_lastInfoCraft.amountCraft, m_lastInfoCraft, m_removeItem);
         OnCraftButtonEvent?.Invoke();
     }
 }

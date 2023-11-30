@@ -18,10 +18,10 @@ public class UICraftingQueue : MonoBehaviour
         instance = this;
     }
 
-    public void AddQueueItem(Sprite sprite, int time, int amount, IInventoryItemCraft infoCraft, List<IInventoryItem> removeItem)
+    public void AddQueueItem(Sprite sprite, int time,int countCraft, int amount, IInventoryItemCraft infoCraft, List<IInventoryItem> removeItem)
     {
         UICraftingQueueItem currentQueueItem = Instantiate(m_prefabItemQueue, transform);
-        currentQueueItem.LoadInfo(sprite, time, amount, infoCraft, removeItem);
+        currentQueueItem.LoadInfo(sprite, time, countCraft, amount, infoCraft, removeItem);
     }
 
 

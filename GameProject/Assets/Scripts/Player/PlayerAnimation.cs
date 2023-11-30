@@ -51,15 +51,18 @@ public class PlayerAnimation : MonoBehaviour
 
     public void Jump()
     {
+
         m_animatorPLayer.SetTrigger(TAG_AMINATION_JUMP);
     }
     public void UpdateJump(bool state)
     {
+        
         m_animatorPLayer.SetBool(TAG_AMINATION_ISGROUND, state);
     }
 
     public void Move(float x, float y)
     {
+        
         m_animatorPLayer.SetFloat(TAG_AMINATION_MOVE_X, x);
         m_animatorPLayer.SetFloat(TAG_AMINATION_MOVE_Y, y);
     }
@@ -78,16 +81,19 @@ public class PlayerAnimation : MonoBehaviour
 
     public void RightAttachTools(bool state)
     {
+        
         m_animatorPLayer.SetBool(TAG_AMINATION_ATTACH_TOOLS, state);
     }
 
     public void BowAimState(bool state)
     {
+        
         m_animatorPLayer.SetBool(TAG_ANIMATION_BOW_AIM, state);
     }
 
     public void BowFire(bool isFire)
     {
+        
         m_animatorPLayer.SetBool(TAG_ANIMATION_BOW_FIRE, isFire);
     }
 
@@ -98,7 +104,13 @@ public class PlayerAnimation : MonoBehaviour
 
     public void ReflieReload()
     {
-        m_animatorPLayer.SetTrigger(TAG_ANIMATION_RIFLE_RELOAD);
+        
+        m_animatorPLayer.SetTrigger(TAG_ANIMATION_RIFLE_RELOAD);  
+    }
+
+    public void SetSpeed(float speed)
+    {
+        m_animatorPLayer.speed = speed;
     }
 
 }

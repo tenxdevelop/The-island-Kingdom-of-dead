@@ -18,6 +18,7 @@ public class UICraftingQueueItem : MonoBehaviour
     private List<IInventoryItem> m_removeItem;
     private IInventoryItemCraft m_infoCraft;
 
+    private int m_countCraft;
     private bool m_isRemove = false;
     private void Awake()
     {
@@ -29,11 +30,12 @@ public class UICraftingQueueItem : MonoBehaviour
         m_playerInventory = ReferenceSystem.instance.player.GetComponent<PlayerInventory>();
     }
 
-    public void LoadInfo(Sprite sprite, int time, int amount, IInventoryItemCraft infoCraft, List<IInventoryItem> removeItem)
+    public void LoadInfo(Sprite sprite, int time,int countCraft, int amount, IInventoryItemCraft infoCraft, List<IInventoryItem> removeItem)
     {
         transform.SetAsFirstSibling();
         m_timerText.text = time.ToString();
         m_amountText.text = amount.ToString();
+        m_countCraft = countCraft;
         m_image.sprite = sprite;
         m_removeItem = removeItem;
         m_infoCraft = infoCraft;
@@ -48,7 +50,7 @@ public class UICraftingQueueItem : MonoBehaviour
             foreach (var itemComponent in m_infoCraft.craftComponents)
             {
                 var item = m_removeItem.Find(i => i.type == Type.GetType("TheIslandKOD." + itemComponent.itemType));
-                item.state.amount = itemComponent.amount;
+                item.state.amount = itemComponent.amount * m_countCraft;
                 m_playerInventory.inventory.TryToAdd(this, item);
             }
             m_craftingSystem.RemoveCratingItem(m_craftingInfoCoroutine);
