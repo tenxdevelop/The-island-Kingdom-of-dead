@@ -26,7 +26,6 @@ namespace TheIslandKOD
         private int m_currentBuildType = 0;
 
         private int m_layerIgnoreWall;
-
         public BuildingPlan(IInventoryItemInfo info)
         {
             this.info = info;
@@ -39,9 +38,10 @@ namespace TheIslandKOD
             m_currentBuildSnap = m_currentBuildObjectType.snapPointType;
             AddIgnoreLayer((int)LayerType.Build);
             GetResetLayerRayCast();
-            m_layerIgnoreWall = currentIgnoreLayer;
+            m_layerIgnoreWall = currentIgnoreLayer;  
             m_layerIgnoreWall -= (int)Mathf.Pow(2, (int)LayerType.Terrain);
             m_layerIgnoreWall -= (int)Mathf.Pow(2, (int)LayerType.Foundation);
+            m_layerIgnoreWall -= (int)Mathf.Pow(2, (int)LayerType.Floor);
         }
 
         public IInventoryItem Clone()
@@ -73,12 +73,13 @@ namespace TheIslandKOD
                 m_rotationBuildObject = m_currentBuildObjectType.objectRotation;
                 m_currentBuildSnap = m_currentBuildObjectType.snapPointType;
                 ReCreateBuildObject();
-                if (m_currentBuildSnap == SnapPointType.Wall)
+                if (m_currentBuildSnap == SnapPointType.Wall || m_currentBuildSnap == SnapPointType.Door || 
+                    m_currentBuildSnap == SnapPointType.Window || m_currentBuildSnap == SnapPointType.Floor)
                 {
                     SetLayerRayCast(m_layerIgnoreWall);
                     m_canRotate = false;
                 }
-                else 
+                else
                 {
                     GetResetLayerRayCast();
                     m_canRotate = true;
@@ -100,7 +101,15 @@ namespace TheIslandKOD
         }
         protected override void PlaceBuildObject(Vector3 position, Quaternion rotation)
         {
-            GameObject.Instantiate(m_currentBuildObjectType.prefab, position, rotation);
+            var haveAmountStone = m_inventory.GetItemAmount(typeof(ItemStone));
+            var haveAmountWood = m_inventory.GetItemAmount(typeof(ItemWood));
+            if (haveAmountStone >= 350 && haveAmountWood >= 100)
+            {
+                m_inventory.Remove(this, typeof(ItemStone), 350);
+                m_inventory.Remove(this, typeof(ItemWood), 100);
+
+                GameObject.Instantiate(m_currentBuildObjectType.prefab, position, rotation);
+            }
         }
         private void OnQuickSlotChangedEvent(InventoryWithSlots inventory, IInventorySlot slot, bool isActive)
         {

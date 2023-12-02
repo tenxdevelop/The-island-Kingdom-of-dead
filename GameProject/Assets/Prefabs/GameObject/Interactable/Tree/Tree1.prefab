@@ -136,7 +136,7 @@ MonoBehaviour:
   m_layer: 7
   m_effectAttack: {fileID: 100002, guid: d39ab699aa314a147969fd483aa55205, type: 3}
   health: 10
-  m_info: {fileID: 11400000, guid: 18c8aa2a17712864c9d45a30b1d3517b, type: 2}
+  m_info: {fileID: 11400000, guid: f2d109ffd32e57d4a8bda6005e8be530, type: 2}
   m_clipAttack: {fileID: 8300000, guid: 8809055f6346ca8469e924f747e3c265, type: 3}
   m_clipDestroy: {fileID: 8300000, guid: 79fbbaafd4fa2bb4ba612cfaa3cc33ed, type: 3}
 --- !u!82 &1531531140463209921

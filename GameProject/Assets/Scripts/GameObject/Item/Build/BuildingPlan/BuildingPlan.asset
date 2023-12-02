@@ -23,7 +23,7 @@ MonoBehaviour:
   - buildObject: {fileID: 4913728605765136518, guid: 90aeb9227a8df0e4caa7f5531cf3959b, type: 3}
     prefab: {fileID: 4681617334999319766, guid: 493f4257593bc8d498f64756ed083aaf, type: 3}
     tagObject: foundation
-    objectOffset: {x: 0, y: -0.4, z: 0}
+    objectOffset: {x: 0, y: -0.14, z: 0}
     objectRotation: {x: 0, y: 0, z: 45}
     snapPointType: 1
   - buildObject: {fileID: 2000468724769050317, guid: 545e86ac96f843e46832b925883af43e, type: 3}
@@ -32,3 +32,15 @@ MonoBehaviour:
     objectOffset: {x: 0, y: 2, z: 0}
     objectRotation: {x: 45, y: 0, z: 0}
     snapPointType: 2
+  - buildObject: {fileID: 6269299737661752556, guid: fdca897327fe5654bb1e52144c63bff9, type: 3}
+    prefab: {fileID: 6683042775378886757, guid: 364b14d32437098449b1698c96f0d896, type: 3}
+    tagObject: door
+    objectOffset: {x: 0, y: 2, z: 0}
+    objectRotation: {x: 45, y: 0, z: 0}
+    snapPointType: 3
+  - buildObject: {fileID: 1279288118664576281, guid: e14311893ccc84b4fa6418bed03c7f58, type: 3}
+    prefab: {fileID: 7889148299632239673, guid: a22a1742957029f478023d22ab37ec78, type: 3}
+    tagObject: floor
+    objectOffset: {x: 0, y: 2, z: 0}
+    objectRotation: {x: 45, y: 0, z: 0}
+    snapPointType: 5

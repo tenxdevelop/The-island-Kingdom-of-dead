@@ -41,10 +41,24 @@ MonoBehaviour:
     NoiseRandomSpawn: {x: 0.4, y: 0.7}
     rotationRangeRandom: {x: 0, y: 360}
     scaleRangeRandom: {x: 0.3, y: 0.45}
-  - prefab: {fileID: 2352965288553588872, guid: 3b34dd12025ec284aa3750b84b321ae2, type: 3}
-    offsetHeight: 1
-    rangePrefabs: 6
-    SpawnRangeHeight: {x: 24, y: 42}
+  - prefab: {fileID: 7744813451686218482, guid: 2e5c8b735becb6240931a678a5debe16, type: 3}
+    offsetHeight: 0
+    rangePrefabs: 7
+    SpawnRangeHeight: {x: 24, y: 40}
     NoiseRandomSpawn: {x: 0.4, y: 0.7}
     rotationRangeRandom: {x: 0, y: 360}
-    scaleRangeRandom: {x: 0.5, y: 0.6}
+    scaleRangeRandom: {x: 20, y: 25}
+  - prefab: {fileID: 7702932423109774243, guid: 92bc12b261e7af740ba614377e426531, type: 3}
+    offsetHeight: 0
+    rangePrefabs: 7
+    SpawnRangeHeight: {x: 24, y: 40}
+    NoiseRandomSpawn: {x: 0.4, y: 0.7}
+    rotationRangeRandom: {x: 0, y: 360}
+    scaleRangeRandom: {x: 20, y: 25}
+  - prefab: {fileID: 8641451458661663641, guid: d5a0e3eb5f6e4ed498712dc2aea85edd, type: 3}
+    offsetHeight: 1
+    rangePrefabs: 8
+    SpawnRangeHeight: {x: 2, y: 4}
+    NoiseRandomSpawn: {x: 0.3, y: 0.5}
+    rotationRangeRandom: {x: 0, y: 0}
+    scaleRangeRandom: {x: 1, y: 1}

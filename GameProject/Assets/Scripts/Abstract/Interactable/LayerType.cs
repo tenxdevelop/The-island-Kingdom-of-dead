@@ -15,6 +15,8 @@ namespace TheIslandKOD
         Build = 10,
         SnapPoint = 11,
         Foundation = 12,
+        Floor = 13,
+        Ore = 14,
         LastLayer
     }
 }

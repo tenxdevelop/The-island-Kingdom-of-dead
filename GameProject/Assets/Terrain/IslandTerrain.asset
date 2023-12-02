@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: IslandTerrain
   m_EditorClassIdentifier: 
   m_autoUpdate: 0
-  m_uniformScale: 3
+  m_uniformScale: 4
   m_heightMultiplier: 30.08
   m_heightCurve:
     serializedVersion: 2

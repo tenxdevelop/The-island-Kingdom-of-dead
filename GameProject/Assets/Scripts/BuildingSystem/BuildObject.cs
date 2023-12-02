@@ -12,13 +12,17 @@ public class BuildObject : MonoBehaviour
     [SerializeField] private Material m_greenMat;
     [SerializeField] private Material m_redMat;
     [SerializeField] private LayerType m_layerBuild;
+    [SerializeField] private LayerType m_layerBuild2;
 
-    private MeshRenderer m_renderer;
+    [SerializeField] private MeshRenderer m_renderer;
     public bool IsBuildable => m_isBuildable;
 
     private void Start()
     {
-        m_renderer = GetComponent<MeshRenderer>();   
+        if (m_renderer == null)
+        {
+            m_renderer = GetComponent<MeshRenderer>();
+        }
         m_renderer.sharedMaterial = m_greenMat;
     }
     private void Update()
@@ -40,6 +44,11 @@ public class BuildObject : MonoBehaviour
             m_haveGround.Add(other);
             return;
         }
+        if (other.gameObject.layer == (int)m_layerBuild2)
+        {
+            m_haveGround.Add(other);
+            return;
+        }
         m_contacts.Add(other);
  
     }
@@ -57,7 +66,11 @@ public class BuildObject : MonoBehaviour
             m_haveGround.Remove(other);
             return;
         }
-
+        if (other.gameObject.layer == (int)m_layerBuild2)
+        {
+            m_haveGround.Remove(other);
+            return;
+        }
         m_contacts.Remove(other);
 
     }

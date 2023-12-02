@@ -143,9 +143,17 @@ namespace TheIslandKOD
                 SnapPoint snapPoint = m_hit.collider.GetComponent<SnapPoint>();
                 if (snapPoint)
                 {
-                    m_snap = true;
-                    m_snapPosition = snapPoint.GetPosition(m_currentBuildSnap).transform.position;
-                    m_currentBuildObject.transform.rotation = snapPoint.GetPosition(m_currentBuildSnap).transform.rotation;
+
+                    if (snapPoint.GetPosition(m_currentBuildSnap) != null)
+                    {
+                        m_snapPosition = snapPoint.GetPosition(m_currentBuildSnap).transform.position;
+                        m_currentBuildObject.transform.rotation = snapPoint.GetPosition(m_currentBuildSnap).transform.rotation;
+                        m_snap = true;
+                    }
+                    else
+                    {
+                        m_snap = false;
+                    }
                 }
                 else
                 {

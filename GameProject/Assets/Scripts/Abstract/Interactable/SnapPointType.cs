@@ -6,6 +6,9 @@ namespace TheIslandKOD
         None,
         Foundation,
         Wall,
+        Door,
+        Window,
+        Floor,
         Stairs
     }
 }

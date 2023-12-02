@@ -6,10 +6,13 @@ public class Arrow : PoolObject
 
     [SerializeField] private float m_arrowForce = 1;
     [SerializeField] private float m_timeToLive = 1;
+    [SerializeField] private AudioClip m_clipArrow;
 
     private Rigidbody m_rigidbody;
     private BoxCollider m_collider;
     private PoolArrow m_poolArrow;
+
+    private AudioSource m_audioSource;
 
     private bool m_isCollide = false;
     private float m_currentTimeLive = 0;
@@ -38,6 +41,7 @@ public class Arrow : PoolObject
     private void Start()
     {
         m_poolArrow = PoolArrow.instance;
+        m_audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -58,6 +62,8 @@ public class Arrow : PoolObject
 
     private void OnCollisionEnter(Collision collision)
     {
+        m_audioSource.pitch = Random.Range(0.8f, 1.2f);
+        m_audioSource.PlayOneShot(m_clipArrow);
         m_isCollide = true;
         m_rigidbody.isKinematic = true;
         m_collider.isTrigger = true;  

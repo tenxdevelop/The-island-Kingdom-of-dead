@@ -207,9 +207,9 @@ namespace TheIslandKOD
                                 var gameObject = GameObject.Instantiate(prefab, m_meshObject.transform);
                                 
                                 gameObject.transform.localPosition = new Vector3(GetPosition(x, size), m_mapGenerator.terrainData.maxHeight, GetPosition(-y + size, size));
-                                GetCorrectHeightPositionPrefab(gameObject, offsetHeigt);
                                 gameObject.transform.rotation = Quaternion.Euler(0, Random.Range(rotationRange.x, rotationRange.y), 0);
-                                gameObject.transform.localScale = Vector3.one * scale;
+                                GetCorrectHeightPositionPrefab(gameObject, offsetHeigt);
+                                gameObject.transform.localScale = Vector3.one * scale;                            
                                 gameObject.transform.parent = m_gameObjectParent;
                             }
                         }
@@ -228,10 +228,9 @@ namespace TheIslandKOD
         private void GetCorrectHeightPositionPrefab(GameObject prefab, float offset)
         {
             Ray ray = new Ray(prefab.transform.position, -prefab.transform.up);
-            Physics.Raycast(ray, out RaycastHit hit, 1000);
+            Physics.Raycast(ray, out RaycastHit hit, 1000, (int)Mathf.Pow(2, (int)LayerType.Terrain));
             if (hit.collider)
             {
-                prefab.name = hit.point.y.ToString();
                 prefab.transform.position = new Vector3(prefab.transform.position.x, hit.point.y + offset, prefab.transform.position.z);
             }
         }
