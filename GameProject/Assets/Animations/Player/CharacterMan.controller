@@ -289,7 +289,7 @@ BlendTree:
     m_DirectBlendParameter: Blend
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: -203655887218126122, guid: 976cc924e515ea24497614f46f23206b, type: 3}
+    m_Motion: {fileID: 7400000, guid: c9c63a271394a044bbe050c2ae6778e7, type: 2}
     m_Threshold: 0.2
     m_Position: {x: 1, y: 0}
     m_TimeScale: 1
@@ -297,7 +297,7 @@ BlendTree:
     m_DirectBlendParameter: 
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: -203655887218126122, guid: a2c4c0d60349d0948894db827e07ced0, type: 3}
+    m_Motion: {fileID: 7400000, guid: 88fde846364982f44a974d1789b2cb6d, type: 2}
     m_Threshold: 0.4
     m_Position: {x: -1, y: 0}
     m_TimeScale: 1
@@ -305,7 +305,7 @@ BlendTree:
     m_DirectBlendParameter: 
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: -203655887218126122, guid: 5823b355fa553eb43be3ad6ba326a499, type: 3}
+    m_Motion: {fileID: 7400000, guid: cc902ee89ab06cc4e9b9d89834f3e3a1, type: 2}
     m_Threshold: 0.6
     m_Position: {x: 0, y: -1}
     m_TimeScale: 1.2
@@ -313,7 +313,7 @@ BlendTree:
     m_DirectBlendParameter: 
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: -203655887218126122, guid: 075ce340a4927154fb7eaadd1f3cf575, type: 3}
+    m_Motion: {fileID: 7400000, guid: 6e99268262f7907408c9903a0c122499, type: 2}
     m_Threshold: 0.8
     m_Position: {x: 0, y: 1}
     m_TimeScale: 1
@@ -560,7 +560,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 0b89ab01d872d8a4f8df48e0e0c17395, type: 2}
+  m_Motion: {fileID: 7400000, guid: d914fe8a13448df4dacda7b994ef838d, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -1494,7 +1494,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: FireRifle
-  m_Speed: 1.2
+  m_Speed: 1.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 8367318460482729484}
@@ -1509,7 +1509,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 22f9a57464482fe488175c205e774ed6, type: 2}
+  m_Motion: {fileID: 7400000, guid: 0411c43c01ffdb84e903564dc1bfd3c5, type: 2}
   m_Tag: FireRifle
   m_SpeedParameter: 
   m_MirrorParameter: 

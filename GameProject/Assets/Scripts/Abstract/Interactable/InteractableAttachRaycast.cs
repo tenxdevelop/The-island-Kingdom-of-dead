@@ -11,7 +11,6 @@ namespace TheIslandKOD
 
         public void BaseInteract()
         {
-            
             Interact();
         }
         public void BaseEffects(Vector3 position, Quaternion rotation)
