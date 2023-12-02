@@ -16,10 +16,8 @@ MonoBehaviour:
   m_amountCraft: 1
   m_itemCraftType: StoneAxe
   m_category: 1
+  m_timeCraft: 5
   m_craftComponents:
-  - amount: 5
-    itemType: Apple
-    info: {fileID: 11400000, guid: 18c8aa2a17712864c9d45a30b1d3517b, type: 2}
-  - amount: 1
-    itemType: ItemBow
-    info: {fileID: 11400000, guid: add147080812c4247aa6097f18ea5a40, type: 2}
+  - amount: 250
+    itemType: ItemWood
+    info: {fileID: 11400000, guid: f2d109ffd32e57d4a8bda6005e8be530, type: 2}

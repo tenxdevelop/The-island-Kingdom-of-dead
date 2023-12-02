@@ -9,6 +9,9 @@ public class UICraftButton : MonoBehaviour
     public static event Action OnCraftButtonEvent;
     public static UICraftButton instance { get; private set; }
 
+    [SerializeField] private AudioSource m_audioSource;
+    [SerializeField] private AudioClip m_audioClipCraft;
+
     private Button m_craftButton;
     private bool m_canCraft = true;
     private IInventoryItemCraft m_lastInfoCraft;
@@ -44,6 +47,7 @@ public class UICraftButton : MonoBehaviour
 
     public void Craft()
     {
+        m_audioSource.PlayOneShot(m_audioClipCraft, 0.7f);
         var countCraft = UIInputFeildCraft.instance.countCraft;
         foreach (var itemComponent in m_lastInfoCraft.craftComponents)
         {

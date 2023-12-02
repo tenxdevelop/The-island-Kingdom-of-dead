@@ -128,6 +128,10 @@ public class CraftingSystem : MonoBehaviour
         item = new ItemM4(itemInfo);
         AddItem(item);
 
+        itemInfo = GetItemInfo("stonePickAxe");
+        item = new StonePickAxe(itemInfo);
+        AddItem(item);
+
     }
 
     private InventoryItemInfo GetItemInfo(string typeId)

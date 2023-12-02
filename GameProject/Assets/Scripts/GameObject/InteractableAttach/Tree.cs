@@ -46,8 +46,8 @@ public class Tree : InteractableAttachRaycast
 
     private void UpdateTree()
     {
-        var item = new Apple(m_info);
-        item.state.amount = 2;
+        var item = new ItemWood(m_info);
+        item.state.amount = 45;
         m_playerInventory.inventory.TryToAdd(this, item);
         health -= 1;
         

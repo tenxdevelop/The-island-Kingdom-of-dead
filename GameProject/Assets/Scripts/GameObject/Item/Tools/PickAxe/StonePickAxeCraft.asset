@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80cb4a88a6355614ea45f5510e32afe9, type: 3}
+  m_Name: StonePickAxeCraft
+  m_EditorClassIdentifier: 
+  m_info: {fileID: 11400000, guid: d58420bde5c5ee34fa5d968af7b0b88f, type: 2}
+  m_amountCraft: 1
+  m_itemCraftType: StonePickAxe
+  m_category: 1
+  m_timeCraft: 5
+  m_craftComponents:
+  - amount: 200
+    itemType: ItemWood
+    info: {fileID: 11400000, guid: f2d109ffd32e57d4a8bda6005e8be530, type: 2}

@@ -10,8 +10,10 @@ public class UIDropItem : MonoBehaviour, IDropHandler
     private ReferenceSystem m_referenceSystem;
     private Vector3 m_positionPrefab;
     [SerializeField] private Vector3 m_positionOffset;
-    
-    
+
+    [SerializeField] private AudioSource m_audioSource;
+    [SerializeField] private AudioClip m_clipMove;
+
     private void Start()
     {
     
@@ -41,6 +43,7 @@ public class UIDropItem : MonoBehaviour, IDropHandler
 
     private void DeleteInvenotyItem(UIInventorySlot otherSlot, UIInventoryItem otherItem)
     {
+        m_audioSource.PlayOneShot(m_clipMove, 1);
         var uIStorage = otherSlot.GetComponentInParent<UIStorage>();
         var uIInventory = otherSlot.GetComponentInParent<UIInventory>();
         var inventory = uIStorage?.inventory;
