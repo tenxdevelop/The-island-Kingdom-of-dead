@@ -155,7 +155,8 @@ MonoBehaviour:
   m_redMat: {fileID: 2100000, guid: f4c7e02c0f679524ca6342bc7f00b442, type: 2}
   m_layerBuild: 12
   m_layerBuild2: 13
-  m_renderer: {fileID: 7559250124349175726}
+  m_renderer:
+  - {fileID: 7559250124349175726}
 --- !u!54 &6363262545527349378
 Rigidbody:
   m_ObjectHideFlags: 0

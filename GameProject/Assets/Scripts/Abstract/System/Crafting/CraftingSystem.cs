@@ -136,6 +136,10 @@ public class CraftingSystem : MonoBehaviour
         item = new ItemStorage(itemInfo);
         AddItem(item);
 
+        itemInfo = GetItemInfo("campFire");
+        item = new ItemCampFire(itemInfo);
+        AddItem(item);
+
     }
 
     private InventoryItemInfo GetItemInfo(string typeId)
