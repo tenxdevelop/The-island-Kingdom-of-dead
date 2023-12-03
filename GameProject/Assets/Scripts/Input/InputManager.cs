@@ -5,6 +5,7 @@ public class InputManager : MonoBehaviour
     private UIQuickSlot m_uIQuickSlot;
     private PlayerInput m_playerInput;
     private PlayerInput.OnFootActions m_onFoot;
+    private PlayerInput.MenuActions m_onMenu;
     private PlayerInput.InventoryActions m_inventoryActions;
 
     private PlayerMovement m_playerMovement;
@@ -16,6 +17,7 @@ public class InputManager : MonoBehaviour
     {
         m_playerInput = new PlayerInput();
         m_onFoot = m_playerInput.OnFoot;
+        m_onMenu = m_playerInput.Menu;
         m_inventoryActions = m_playerInput.Inventory;
         m_playerMovement = GetComponent<PlayerMovement>();
         m_playerLook = GetComponent<PlayerLook>();
@@ -32,6 +34,8 @@ public class InputManager : MonoBehaviour
         m_inventoryActions.LookInventory.performed += ctx => m_playerLook.ProcessLookInventory();
         m_inventoryActions.LookCraftingPanel.performed += ctx => m_playerLook.ProcessLookCraftingPanel();
 
+        m_onMenu.Open.performed += ctx => m_playerLook.ProcessLookMenu();
+
         m_inventoryActions.QuickSlot1.performed += ctx => m_uIQuickSlot.QuickSlotInputAction(0);
         m_inventoryActions.QuickSlot2.performed += ctx => m_uIQuickSlot.QuickSlotInputAction(1);
         m_inventoryActions.QuickSlot3.performed += ctx => m_uIQuickSlot.QuickSlotInputAction(2);
@@ -47,12 +51,14 @@ public class InputManager : MonoBehaviour
     private void OnEnable()
     {
         m_onFoot.Enable();
+        m_onMenu.Enable();
         m_inventoryActions.Enable();
     }
 
     private void OnDisable()
     {
         m_onFoot.Disable();
+        m_onMenu.Disable();
         m_inventoryActions.Disable();
     }
 }

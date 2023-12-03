@@ -130,7 +130,7 @@ public class MapGenerator : MonoBehaviour
         }
     }
 
-    private void OnTextureValuesUpdated()
+    public void OnTextureValuesUpdated()
     {
         m_textureData.ApplyToMaterial(m_terrainMaterial);
     }

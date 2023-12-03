@@ -1,9 +1,13 @@
+using System;
 using System.Collections.Generic;
 using TheIslandKOD;
 using UnityEngine;
 
 public class GenerateMap : MonoBehaviour
 {
+
+    public static event Action OnInitMapedEvent;
+
     [SerializeField] private int m_sizeMap = 2;
     
     [SerializeField] private LODInfo[] m_detailLevels;
@@ -21,6 +25,7 @@ public class GenerateMap : MonoBehaviour
     private float m_maxViewDst;
     private int m_chunkSize;
     private int m_chunkSizeFalloffMap;
+    private int m_countInitChunk = 0;
 
     private Dictionary<Vector2, Chunk> m_terrainChunkDictionary = new Dictionary<Vector2, Chunk>();
     
@@ -44,7 +49,7 @@ public class GenerateMap : MonoBehaviour
     {
         m_maxViewDst = m_detailLevels[m_detailLevels.Length - 1].visibleDstThreshold;
         m_mapGenerator = GetComponent<MapGenerator>();
-
+        m_mapGenerator.OnTextureValuesUpdated();
         m_chunkSize = MapGenerator.MAX_CHUNK_SIZE - 1;
         m_chunkSizeFalloffMap = m_chunkSize + 3;
 
@@ -123,6 +128,11 @@ public class GenerateMap : MonoBehaviour
     private void InitializedChunk()
     {
         m_currentChunkCreate.OnInitializedEvent -= InitializedChunk;
-        Debug.Log("InitChunk");
+        m_countInitChunk += 1;
+
+        if (m_countInitChunk == Mathf.Pow(m_sizeMap, m_sizeMap))
+        {
+            OnInitMapedEvent?.Invoke();
+        }
     }
 }
