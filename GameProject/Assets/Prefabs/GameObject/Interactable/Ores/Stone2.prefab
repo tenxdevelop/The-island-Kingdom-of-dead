@@ -165,6 +165,7 @@ MonoBehaviour:
   m_info: {fileID: 11400000, guid: 323fe1ccce66c7f4fa556af37ab076f8, type: 2}
   m_clipAttack: {fileID: 8300000, guid: a2fe58c9622945e49b87ecafaf9bd58b, type: 3}
   m_clipDestroy: {fileID: 8300000, guid: f4d4bef7b58849949bb53af5c4014ef0, type: 3}
+  m_typeOre: 1
 --- !u!82 &5316158527416568393
 AudioSource:
   m_ObjectHideFlags: 0

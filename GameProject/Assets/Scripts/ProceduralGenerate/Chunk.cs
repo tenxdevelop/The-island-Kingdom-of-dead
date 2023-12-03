@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,6 +14,8 @@ namespace TheIslandKOD
     }
     public class Chunk 
     {
+
+        public event Action OnInitializedEvent;
 
         private static int number;
         private Vector2 m_position;
@@ -133,6 +136,7 @@ namespace TheIslandKOD
                 {
                     GeneratePrefab(m_mapData);
                     m_hasRequestedGeneratePrefabs = true;
+                    OnInitializedEvent?.Invoke();
                 }
             }
         }
@@ -193,7 +197,7 @@ namespace TheIslandKOD
                 Vector2 rotationRange = m_prefabsTerrain[i].rotationRangeRandom;
                 float offsetHeigt = m_prefabsTerrain[i].offsetHeight;
                 Vector2 randomNoise = m_prefabsTerrain[i].NoiseRandomSpawn;
-                float scale = Random.Range(scaleRange.x, scaleRange.y);
+                float scale = UnityEngine.Random.Range(scaleRange.x, scaleRange.y);
                 for (int y = 0; y < size; y += step)
                 {
                     for (int x = 0; x < size; x += step)
@@ -201,13 +205,13 @@ namespace TheIslandKOD
                         var worldPos = Mathf.Lerp(m_mapGenerator.terrainData.minHeight, m_mapGenerator.terrainData.maxHeight, m_mapGenerator.terrainData.heightCurve.Evaluate(heightMap[x, y]));
                         if (worldPos > rangeSpawn.x && worldPos < rangeSpawn.y)
                         {
-                            var v = Random.Range(randomNoise.x, randomNoise.y);
+                            var v = UnityEngine.Random.Range(randomNoise.x, randomNoise.y);
                             if (noiseMap[x,y] > v)
                             {
                                 var gameObject = GameObject.Instantiate(prefab, m_meshObject.transform);
                                 
                                 gameObject.transform.localPosition = new Vector3(GetPosition(x, size), m_mapGenerator.terrainData.maxHeight, GetPosition(-y + size, size));
-                                gameObject.transform.rotation = Quaternion.Euler(0, Random.Range(rotationRange.x, rotationRange.y), 0);
+                                gameObject.transform.rotation = Quaternion.Euler(0, UnityEngine.Random.Range(rotationRange.x, rotationRange.y), 0);
                                 GetCorrectHeightPositionPrefab(gameObject, offsetHeigt);
                                 gameObject.transform.localScale = Vector3.one * scale;                            
                                 gameObject.transform.parent = m_gameObjectParent;

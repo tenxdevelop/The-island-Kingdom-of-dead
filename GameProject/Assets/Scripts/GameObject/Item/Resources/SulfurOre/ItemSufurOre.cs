@@ -2,7 +2,7 @@ using System;
 
 namespace TheIslandKOD
 {
-    public class ItemSulfurOver : IInventoryItem
+    public class ItemSulfurOre : IInventoryItem
     {
         public IInventoryItemInfo info { get; }
 
@@ -11,7 +11,7 @@ namespace TheIslandKOD
         public Type type => GetType();
 
 
-        public ItemSulfurOver(IInventoryItemInfo info)
+        public ItemSulfurOre(IInventoryItemInfo info)
         {
             this.info = info;
             state = new InventoryItemState();
@@ -19,7 +19,7 @@ namespace TheIslandKOD
 
         public IInventoryItem Clone()
         {
-            var newItem = new ItemSulfurOver(info);
+            var newItem = new ItemSulfurOre(info);
             newItem.state.amount = state.amount;
             return newItem;
         }

@@ -81,6 +81,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: add147080812c4247aa6097f18ea5a40, type: 2}
   - {fileID: 11400000, guid: 678eb3e183cdba1458baf30df366a712, type: 2}
   - {fileID: 11400000, guid: 5924c5a7782d0204a812b4d08d135a13, type: 2}
+  - {fileID: 11400000, guid: d58420bde5c5ee34fa5d968af7b0b88f, type: 2}
+  - {fileID: 11400000, guid: 05ac63c686b0a454d8e8a9140b6d4ff2, type: 2}
 --- !u!1 &1644780468226924638
 GameObject:
   m_ObjectHideFlags: 0
@@ -204,7 +206,7 @@ Transform:
   m_GameObject: {fileID: 3272325092919267470}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -71.78916, y: 18.009275, z: -316.42572}
+  m_LocalPosition: {x: -71.78916, y: 18.009275, z: -295.8757}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -249,7 +251,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 6103
+    m_Bits: 30679
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -363,6 +365,53 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!1 &3741486195408680929
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4458096289135145444}
+  - component: {fileID: 2932170611724546282}
+  m_Layer: 0
+  m_Name: PoolBullet
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4458096289135145444
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3741486195408680929}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3169679466043496406}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2932170611724546282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3741486195408680929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8781d2b191f1ef64f814fb9344f82418, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolAmount: 100
+  autoExpand: 0
+  prefab: {fileID: 5585726671809389243, guid: d45692b6ff47b1f48ad9bf4541daa159, type: 3}
 --- !u!1 &5842539720744075835
 GameObject:
   m_ObjectHideFlags: 0
@@ -538,6 +587,7 @@ Transform:
   - {fileID: 5284106520592304609}
   - {fileID: 7144502393389217234}
   - {fileID: 7521141344328251430}
+  - {fileID: 4458096289135145444}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8640854350438401284
@@ -802,6 +852,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_backGroundClips:
-  - {fileID: 8300000, guid: dc72aa3de8f4693478b46e41b111a9e7, type: 3}
-  - {fileID: 8300000, guid: c3b7e8febb6b4e14bbd43ae0eeb9f021, type: 3}
+  - {fileID: 8300000, guid: da5ae1f4a76967f42b5300c726bd44ed, type: 3}
+  - {fileID: 8300000, guid: fb5d195f38ba6f3488667bbb120fcb1f, type: 3}
+  - {fileID: 8300000, guid: 5277880927e4f2c458917c5242dd7f21, type: 3}
+  - {fileID: 8300000, guid: a98b69157d65a7d499f36a725b3099cf, type: 3}
+  - {fileID: 8300000, guid: 7b5fc7fe5cbf84743bcbbe5c870098df, type: 3}
+  - {fileID: 8300000, guid: 015f35f281f873f45abe862e41927931, type: 3}
+  m_backGroundEffect:
+  - {fileID: 8300000, guid: 6f8122e93c0991043b0d50367126fa32, type: 3}
+  - {fileID: 8300000, guid: 3805e266cc638d747a3cf0291fdb5171, type: 3}
+  - {fileID: 8300000, guid: dbca11fa92632e541b2c430d0a690535, type: 3}
+  m_rifleFires:
+  - key: m4
+    clip: {fileID: 8300000, guid: 8748014dd7ba21b4da34710b0f5f642c, type: 3}
   m_clipActivateItem: {fileID: 0}

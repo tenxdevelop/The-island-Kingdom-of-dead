@@ -18,9 +18,6 @@ MonoBehaviour:
   m_category: 2
   m_timeCraft: 3
   m_craftComponents:
-  - amount: 3
-    itemType: Apple
-    info: {fileID: 11400000, guid: 18c8aa2a17712864c9d45a30b1d3517b, type: 2}
-  - amount: 1
-    itemType: ItemStorage
-    info: {fileID: 11400000, guid: 05ac63c686b0a454d8e8a9140b6d4ff2, type: 2}
+  - amount: 300
+    itemType: ItemWood
+    info: {fileID: 11400000, guid: f2d109ffd32e57d4a8bda6005e8be530, type: 2}

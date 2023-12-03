@@ -14,6 +14,8 @@ public class SoundSystem : MonoBehaviour
     private AudioSource m_backGroundSource;
     public List<AudioList> rifleFires => m_rifleFires;
 
+    public AudioSource backGroundSource => m_backGroundSource;
+
     private void Awake()
     {
         if (instance != null && instance != this)

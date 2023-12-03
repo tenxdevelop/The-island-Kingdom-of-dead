@@ -29,6 +29,8 @@ public class GenerateMap : MonoBehaviour
 
     private static MapGenerator m_mapGenerator;
 
+    private Chunk m_currentChunkCreate;
+
     public Vector2 GetViewPosition()
     {
         return m_viewerPosition;
@@ -91,8 +93,11 @@ public class GenerateMap : MonoBehaviour
             {
                 Vector2 chunkCoordinate = new Vector2(xOffset, yOffset);
                 float[,] currentFalloffMap = GetFalloffMapOffset(m_falloffMap, m_chunkSizeFalloffMap, m_sizeMap, chunkCoordinate);
-                m_terrainChunkDictionary.Add(chunkCoordinate, new Chunk(chunkCoordinate, chunkSize, m_detailLevels, transform, m_gameObjectParent,  m_mapGenerator.terrainMaterial,
-                                                                        m_mapGenerator, this, currentFalloffMap, m_mapGenerator.terrainData.uniformScale, m_prefabData.prefabTerrains));
+
+                m_currentChunkCreate = new Chunk(chunkCoordinate, chunkSize, m_detailLevels, transform, m_gameObjectParent, m_mapGenerator.terrainMaterial,
+                                             m_mapGenerator, this, currentFalloffMap, m_mapGenerator.terrainData.uniformScale, m_prefabData.prefabTerrains);
+                m_currentChunkCreate.OnInitializedEvent += InitializedChunk;
+                m_terrainChunkDictionary.Add(chunkCoordinate, m_currentChunkCreate);
             }
         }
     }
@@ -112,5 +117,12 @@ public class GenerateMap : MonoBehaviour
         }
         
         return mapOffset;
+    }
+
+
+    private void InitializedChunk()
+    {
+        m_currentChunkCreate.OnInitializedEvent -= InitializedChunk;
+        Debug.Log("InitChunk");
     }
 }
