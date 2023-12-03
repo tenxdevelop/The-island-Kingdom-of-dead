@@ -87,6 +87,10 @@ namespace TheIslandKOD
         }
         public void SetVisible(bool visible)
         {
+            if (m_meshObject == null)
+            {
+                return;
+            }
             m_meshObject.SetActive(visible);
         }
 

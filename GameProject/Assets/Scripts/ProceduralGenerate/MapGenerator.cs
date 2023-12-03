@@ -24,11 +24,13 @@ public class MapGenerator : MonoBehaviour
     [SerializeField] private NoiseData m_noiseData;
     [SerializeField] private TextureTerrainData m_textureData;
     [SerializeField] private Material m_terrainMaterial;
-
+    [SerializeField] private bool m_isRandomSeed = false;
 
     [SerializeField] private bool m_autoUpdate = false;
 
     private float[,] m_falloffMap;
+
+    private int m_seed;
 
     private Queue<MapThreadInfo<MapData>> m_mapDataThreadInfoQueue = new Queue<MapThreadInfo<MapData>>();
     private Queue<MapThreadInfo<MeshData>> m_meshDataThreadInfoQueue = new Queue<MapThreadInfo<MeshData>>();
@@ -121,6 +123,8 @@ public class MapGenerator : MonoBehaviour
     {
         m_textureData.ApplyToMaterial(m_terrainMaterial);
         m_textureData.UpdatedMeshHeights(m_terrainMaterial, m_terrainData.minHeight, m_terrainData.maxHeight);
+
+        m_seed = m_isRandomSeed ? UnityEngine.Random.Range(-10000, 10000) : m_noiseData.seed;
     }
     private void OnValuesUpdated()
     {
@@ -157,8 +161,8 @@ public class MapGenerator : MonoBehaviour
 
     private MapData GenerateMapData(Vector2 centre)
     {
-        float[,] noiseMap = Noise.GenerateNoiseMap(MAX_CHUNK_SIZE + 2, MAX_CHUNK_SIZE + 2, m_noiseData.noiseScale, m_noiseData.seed, m_noiseData.normalizeMode,
-                                                   m_noiseData.octaves, m_noiseData.persistance, m_noiseData.lacunarity, centre + m_noiseData.offsetNoiseMap);
+        float[,] noiseMap = Noise.GenerateNoiseMap(MAX_CHUNK_SIZE + 2, MAX_CHUNK_SIZE + 2, m_noiseData.noiseScale, m_seed, m_noiseData.normalizeMode, m_noiseData.octaves, m_noiseData.persistance, m_noiseData.lacunarity, 
+                                                   centre + m_noiseData.offsetNoiseMap);
 
         noiseMap = GenerateFalloffMap(noiseMap);
 

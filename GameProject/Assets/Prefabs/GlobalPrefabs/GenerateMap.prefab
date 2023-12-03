@@ -146,6 +146,7 @@ MonoBehaviour:
   m_noiseData: {fileID: 11400000, guid: d314b0c881faf08478700cb5479d1efd, type: 2}
   m_textureData: {fileID: 11400000, guid: 4305af25fc07b454d81ed192d857a50e, type: 2}
   m_terrainMaterial: {fileID: 2100000, guid: dd6bf9b2db7919c4f8053374052f86cd, type: 2}
+  m_isRandomSeed: 1
   m_autoUpdate: 0
 --- !u!114 &2874717796328461514
 MonoBehaviour:

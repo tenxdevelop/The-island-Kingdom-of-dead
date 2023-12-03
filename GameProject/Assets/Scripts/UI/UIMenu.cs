@@ -31,6 +31,14 @@ public class UIMenu : MonoBehaviour
         m_gameManager.SetCursorVisible(state);
         gameObject.SetActive(state);
         m_playerMovement.SetMove(!state);
+        if (state)
+        {
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            Time.timeScale = 1f;
+        }
     }
 
 

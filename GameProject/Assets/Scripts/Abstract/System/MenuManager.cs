@@ -3,6 +3,12 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
+
+    private void Start()
+    {
+        GenerateMap.ClearChunk();
+    }
+
     public void PlayGame()
     {
         SceneManager.LoadScene("Game");

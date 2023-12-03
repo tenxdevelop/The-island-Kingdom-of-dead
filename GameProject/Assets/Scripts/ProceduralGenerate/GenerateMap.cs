@@ -9,10 +9,8 @@ public class GenerateMap : MonoBehaviour
     public static event Action OnInitMapedEvent;
 
     [SerializeField] private int m_sizeMap = 2;
-    
+
     [SerializeField] private LODInfo[] m_detailLevels;
-    
-    [SerializeField] private Transform m_viewer;
 
     [SerializeField] private float m_prefabNoiseSclae;
 
@@ -26,9 +24,10 @@ public class GenerateMap : MonoBehaviour
     private int m_chunkSize;
     private int m_chunkSizeFalloffMap;
     private int m_countInitChunk = 0;
+    private Transform m_viewer;
 
-    private Dictionary<Vector2, Chunk> m_terrainChunkDictionary = new Dictionary<Vector2, Chunk>();
-    
+    private static Dictionary<Vector2, Chunk> m_terrainChunkDictionary = new Dictionary<Vector2, Chunk>();
+
     public static List<Chunk> terrainChunksVisibleLastUpdate = new List<Chunk>();
     public float prefabNoiseScale => m_prefabNoiseSclae;
 
@@ -52,8 +51,8 @@ public class GenerateMap : MonoBehaviour
         m_mapGenerator.OnTextureValuesUpdated();
         m_chunkSize = MapGenerator.MAX_CHUNK_SIZE - 1;
         m_chunkSizeFalloffMap = m_chunkSize + 3;
-
-        m_falloffMap = FalloffGenerator.GenerateFalloffMap(m_chunkSizeFalloffMap * (m_sizeMap+1));
+        m_viewer = ReferenceSystem.instance.player.transform;
+        m_falloffMap = FalloffGenerator.GenerateFalloffMap(m_chunkSizeFalloffMap * (m_sizeMap + 1));
         GenerateTerrainMap(m_chunkSize);
         water.SetActive(true);
     }
@@ -71,9 +70,6 @@ public class GenerateMap : MonoBehaviour
             terrainChunksVisibleLastUpdate[i].SetVisible(false);
         }
         terrainChunksVisibleLastUpdate.Clear();
-
-        int currentChunkCoordX = Mathf.RoundToInt(m_viewerPosition.x / m_chunkSize);
-        int currentChunkCoordY = Mathf.RoundToInt(m_viewerPosition.y / m_chunkSize);
 
         for (int yOffset = 0; yOffset <= m_sizeMap; yOffset++)
         {
@@ -108,7 +104,7 @@ public class GenerateMap : MonoBehaviour
     }
 
 
-    private float[,] GetFalloffMapOffset(float[,] falloffMap, int chunkSize,int sizeMap, Vector2 chunkCoordinate)
+    private float[,] GetFalloffMapOffset(float[,] falloffMap, int chunkSize, int sizeMap, Vector2 chunkCoordinate)
     {
         int xOffset = (chunkSize) * (int)chunkCoordinate.x;
         int yOffset = (chunkSize) * (sizeMap - (int)chunkCoordinate.y);
@@ -117,10 +113,10 @@ public class GenerateMap : MonoBehaviour
         {
             for (int x = 0; x < mapOffset.GetLength(0); x++)
             {
-                mapOffset[x,y] = falloffMap[x + xOffset,y + yOffset];
+                mapOffset[x, y] = falloffMap[x + xOffset, y + yOffset];
             }
         }
-        
+
         return mapOffset;
     }
 
@@ -132,7 +128,12 @@ public class GenerateMap : MonoBehaviour
 
         if (m_countInitChunk == Mathf.Pow(m_sizeMap, m_sizeMap))
         {
-            OnInitMapedEvent?.Invoke();
+            OnInitMapedEvent?.Invoke();         
         }
+    }
+
+    public static void ClearChunk()
+    {
+        m_terrainChunkDictionary.Clear();
     }
 }
