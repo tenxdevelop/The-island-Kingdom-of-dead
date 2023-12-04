@@ -77,4 +77,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_pointSpawn: {fileID: 5289981271410931330}
-  m_player: {fileID: 2953448549048934995, guid: 90edf4b0aea5d6b4fa8ddf27bb0a309b, type: 3}
+  m_playerControl: {fileID: 8394158260035098362, guid: 90edf4b0aea5d6b4fa8ddf27bb0a309b, type: 3}

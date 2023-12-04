@@ -1,7 +1,6 @@
 using System;
 using TheIslandKOD;
 using UnityEngine;
-using UnityEngine.Animations.Rigging;
 using UnityEngine.UI;
 
 public class UICraftItem : MonoBehaviour

@@ -21,7 +21,7 @@ public class Stump : InteractableRaycast
     protected override void Interact()
     {
         var item = new ItemWood(m_info);
-        item.state.amount = 1000;
+        item.state.amount = 50;
         m_playerInventory.inventory.TryToAdd(this, item);
 
         SoundSystem.instance.backGroundSource.PlayOneShot(m_clipPickUp, 0.7f);

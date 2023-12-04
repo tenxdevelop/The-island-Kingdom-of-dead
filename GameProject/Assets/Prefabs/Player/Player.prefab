@@ -704,7 +704,7 @@ CharacterController:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Height: 1.7
   m_Radius: 0.45
@@ -769,7 +769,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c63ce10691bee3946b98732543c4f6b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_textPrompt: {fileID: 0}
 --- !u!114 &6210143246733472160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -796,8 +795,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_maxHealth: 100
-  m_healthBar: {fileID: 0}
-  m_overlayDamage: {fileID: 0}
   m_duration: 0.5
   m_fadeSpeed: 1
   m_clipTakeDamage: {fileID: 8300000, guid: 7cf3aa83834d68a47b796239eff164e7, type: 3}
