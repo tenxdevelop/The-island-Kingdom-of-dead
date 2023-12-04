@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class UIStorage : MonoBehaviour, IUIInventory
 {
-    public static UIStorage instance;
+    public static UIStorage instance { get; private set; }
 
     [SerializeField] private GameObject m_gridInventory;
 

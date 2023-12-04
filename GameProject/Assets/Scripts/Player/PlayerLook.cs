@@ -1,6 +1,8 @@
 using Cinemachine;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 public class PlayerLook : MonoBehaviour
 {
@@ -17,6 +19,7 @@ public class PlayerLook : MonoBehaviour
     private bool m_isOpenInventory = false;
     private bool m_isOpenCraftingPanel = false;
     private bool m_isOpenMenu = false;
+    private bool m_isOpenInteractableItem = false;
 
     private UIInventory m_uIInventory;
     private UICraftPanel m_uICraftingPanel;
@@ -49,7 +52,7 @@ public class PlayerLook : MonoBehaviour
     public void ProcessLookInventory()
     {
         m_isOpenInventory = !m_isOpenInventory;
-        if (!m_isOpenCraftingPanel)
+        if (!m_isOpenCraftingPanel && !m_isOpenInteractableItem)
         {
             m_uIInventory.SetVisible(m_isOpenInventory);
         }
@@ -73,6 +76,14 @@ public class PlayerLook : MonoBehaviour
 
     public void ProcessLookStorage(bool visible)
     {
+        m_isOpenInteractableItem = visible;
+        m_isOpenInventory = visible;
+        m_uIInventory.SetVisible(visible);
+    }
+
+    public void ProcessLookCampFire(bool visible)
+    {
+        m_isOpenInteractableItem = visible;
         m_isOpenInventory = visible;
         m_uIInventory.SetVisible(visible);
     }
