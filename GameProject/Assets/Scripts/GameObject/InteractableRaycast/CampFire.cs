@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using TheIslandKOD;
 using UnityEngine;
-using static UnityEngine.ParticleSystem;
 
 public class CampFire : InteractableRaycast
 {
