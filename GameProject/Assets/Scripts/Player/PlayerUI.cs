@@ -4,7 +4,11 @@ using UnityEngine.UI;
 public class PlayerUI : MonoBehaviour
 {
 
-    [SerializeField] private Text m_textPrompt;
+    private Text m_textPrompt;
+    private void Start()
+    {
+        m_textPrompt = ReferenceSystem.instance.TextPromtMessage;
+    }
 
     public void UpdateText(string textMassage)
     {

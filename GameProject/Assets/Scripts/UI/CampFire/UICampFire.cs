@@ -1,15 +1,12 @@
-using System;
 using TheIslandKOD;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class UICampFire : MonoBehaviour, IUIInventory
 {
-    
     public static UICampFire instance { get; private set; }
 
     [SerializeField] private UICampFireButton m_uIBbuttonFireOnOff;
-
+    [SerializeField] private Transform m_frame;
 
     private UIInventorySlot[] m_uISlots;
     private InventoryWithSlots m_contentsCampFire;
@@ -30,19 +27,24 @@ public class UICampFire : MonoBehaviour, IUIInventory
 
     private void Start()
     {
+        ReferenceSystem.OnFindedObjecs += OnInitPlayer;
+        GenerateMap.OnInitMapedEvent += OnInitMap;
+        
+    }
+
+    private void OnInitPlayer()
+    {
+        ReferenceSystem.OnFindedObjecs -= OnInitPlayer;
         m_playerLook = ReferenceSystem.instance.player.GetComponent<PlayerLook>();
         m_playerMovement = ReferenceSystem.instance.player.GetComponent<PlayerMovement>();
-        gameObject.SetActive(false);
     }
 
     public void SetVisible(bool visible)
     {
-        gameObject.SetActive(visible);
+        m_frame.gameObject.SetActive(visible);
         m_playerLook.ProcessLookCampFire(visible);
         m_playerMovement.SetMove(!visible);
     }
-
-
 
     public void SetupContentCampFireUI(InventoryWithSlots contents, CampFire campFire)
     {
@@ -60,12 +62,12 @@ public class UICampFire : MonoBehaviour, IUIInventory
         }
     }
 
-    public void UnSetupContentCampFireUI(CampFire campFire)
+    public void UnSetupContentCampFireUI()
     {
         if (m_contentsCampFire != null)
         {
             m_contentsCampFire.OnInventoryStateChangedEvent -= OnContentsCampFireStateChanged;
-            m_uIBbuttonFireOnOff.UnSetaupButton(campFire);
+            m_uIBbuttonFireOnOff.UnSetaupButton();
             m_contentsCampFire = null;       
         }
     }
@@ -78,6 +80,10 @@ public class UICampFire : MonoBehaviour, IUIInventory
         }
     }
 
-   
+    private void OnInitMap()
+    {
+        GenerateMap.OnInitMapedEvent -= OnInitMap;
+        m_frame.gameObject.SetActive(false);
+    }
 
 }

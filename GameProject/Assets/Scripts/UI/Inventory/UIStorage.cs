@@ -31,10 +31,17 @@ public class UIStorage : MonoBehaviour, IUIInventory
     private void Start()
     {
         m_uISlots = GetComponentsInChildren<UIInventorySlot>();
-        m_playerLook = ReferenceSystem.instance.player.GetComponent<PlayerLook>();
-        m_playerMovement = ReferenceSystem.instance.player.GetComponent<PlayerMovement>();
+        ReferenceSystem.OnFindedObjecs += OnInitPlayer;
         m_gridInventory.SetActive(false);
     }
+
+    private void OnInitPlayer()
+    {
+        ReferenceSystem.OnFindedObjecs -= OnInitPlayer;
+        m_playerLook = ReferenceSystem.instance.player.GetComponent<PlayerLook>();
+        m_playerMovement = ReferenceSystem.instance.player.GetComponent<PlayerMovement>();
+    }
+
     public void SetupStorageUI(InventoryWithSlots storage)
     {
         m_storage = storage;

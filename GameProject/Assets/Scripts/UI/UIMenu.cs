@@ -20,9 +20,16 @@ public class UIMenu : MonoBehaviour
     private void Start()
     {
         m_gameManager = GameManager.instance;
+        ReferenceSystem.OnFindedObjecs += OnInitPlayer;
+
+    }
+
+    private void OnInitPlayer()
+    {
+        ReferenceSystem.OnFindedObjecs -= OnInitPlayer;
+
         m_playerMovement = ReferenceSystem.instance.player.GetComponent<PlayerMovement>();
         m_playerLook = ReferenceSystem.instance.player.GetComponent<PlayerLook>();
-
         SetVisible(false);
     }
 

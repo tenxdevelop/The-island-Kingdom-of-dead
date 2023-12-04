@@ -9,6 +9,12 @@ public class Stump : InteractableRaycast
 
     private void Start()
     {
+        ReferenceSystem.OnFindedObjecs += OnInitPlayer;
+    }
+
+    private void OnInitPlayer()
+    {
+        ReferenceSystem.OnFindedObjecs -= OnInitPlayer;
         m_playerInventory = ReferenceSystem.instance.player.GetComponent<PlayerInventory>();
     }
 

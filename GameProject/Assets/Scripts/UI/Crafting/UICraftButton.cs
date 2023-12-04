@@ -28,9 +28,15 @@ public class UICraftButton : MonoBehaviour
 
     private void Start()
     {
-        m_playerInventory = ReferenceSystem.instance.player.GetComponent<PlayerInventory>();
+        ReferenceSystem.OnFindedObjecs += OnInitPlayer;
         m_removeItem = new List<IInventoryItem>();
         m_craftButton = GetComponent<Button>();
+    }
+
+    private void OnInitPlayer()
+    {
+        ReferenceSystem.OnFindedObjecs -= OnInitPlayer;
+        m_playerInventory = ReferenceSystem.instance.player.GetComponent<PlayerInventory>();
     }
 
     public void UpdateButton(IInventoryItemCraft infoCraft, int countCraft)

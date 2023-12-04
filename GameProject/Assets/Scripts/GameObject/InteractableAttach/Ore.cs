@@ -18,11 +18,16 @@ public class StoneOre : InteractableAttachRaycast
     private void Start()
     {
         m_quickSlot = UIQuickSlot.instance;
-        m_playerInventory = ReferenceSystem.instance.player.GetComponent<PlayerInventory>();
+        ReferenceSystem.OnFindedObjecs += OnInitPlayer;
         m_audioSource = GetComponent<AudioSource>();
 
     }
 
+    private void OnInitPlayer()
+    {
+        ReferenceSystem.OnFindedObjecs -= OnInitPlayer;
+        m_playerInventory = ReferenceSystem.instance.player.GetComponent<PlayerInventory>();
+    }
 
     protected override void Interact()
     {

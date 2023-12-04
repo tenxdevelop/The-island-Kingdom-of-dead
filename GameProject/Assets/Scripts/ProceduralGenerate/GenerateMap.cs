@@ -51,7 +51,7 @@ public class GenerateMap : MonoBehaviour
         m_mapGenerator.OnTextureValuesUpdated();
         m_chunkSize = MapGenerator.MAX_CHUNK_SIZE - 1;
         m_chunkSizeFalloffMap = m_chunkSize + 3;
-        m_viewer = ReferenceSystem.instance.player.transform;
+        m_viewer = transform;
         m_falloffMap = FalloffGenerator.GenerateFalloffMap(m_chunkSizeFalloffMap * (m_sizeMap + 1));
         GenerateTerrainMap(m_chunkSize);
         water.SetActive(true);

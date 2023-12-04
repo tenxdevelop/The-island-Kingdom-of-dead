@@ -14,7 +14,11 @@ namespace TheIslandKOD
             state = new InventoryItemState();
             m_poolArrow = PoolArrow.instance;
             m_playerLook = ReferenceSystem.instance.player.GetComponent<PlayerLook>();
+
         }
+
+           
+
 
         protected override void UpdateActiveItem()
         {          

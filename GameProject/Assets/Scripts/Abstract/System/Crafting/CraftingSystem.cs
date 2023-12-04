@@ -31,6 +31,13 @@ public class CraftingSystem : MonoBehaviour
     private void Start()
     {
         m_allCrafting = new List<CraftInfoCoroutine>();
+        ReferenceSystem.OnFindedObjecs += OnPlayerInit;
+        
+    }
+
+    private void OnPlayerInit()
+    {
+        ReferenceSystem.OnFindedObjecs -= OnPlayerInit;
         m_playerInventory = ReferenceSystem.instance.player.GetComponent<PlayerInventory>();
         InitItemList();
     }

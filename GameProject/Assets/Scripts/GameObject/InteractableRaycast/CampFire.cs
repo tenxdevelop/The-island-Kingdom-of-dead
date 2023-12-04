@@ -16,6 +16,8 @@ public class CampFire : InteractableRaycast
     private bool m_isCanFire = false;
     private AudioSource m_audioSource;
     private Light m_light;
+    private UICampFire m_uICampFire;
+
     public bool isFire = false;
 
     private void Start()
@@ -23,6 +25,7 @@ public class CampFire : InteractableRaycast
         m_audioSource = GetComponent<AudioSource>();
         m_light = GetComponent<Light>();
         m_contentsCampFire = new InventoryWithSlots(5);
+        m_uICampFire = UICampFire.instance;
         m_contentsCampFire.OnInventoryItemAddedEvent += AddedInventoryItems;
         m_contentsCampFire.OnInventoryItemRemovedEvent += RemoveInventoryItems;
     }
@@ -41,16 +44,16 @@ public class CampFire : InteractableRaycast
 
     private void OpenCampFire()
     {
-        UICampFire.instance.SetupContentCampFireUI(m_contentsCampFire, this);
-        UICampFire.instance.SetVisible(true);
+        m_uICampFire.SetupContentCampFireUI(m_contentsCampFire, this);
+        m_uICampFire.SetVisible(true);
         m_isOpen = true;
         
     }
 
     public void CloseCampFire()
     {
-        UICampFire.instance.UnSetupContentCampFireUI(this);
-        UICampFire.instance.SetVisible(false);
+        m_uICampFire.UnSetupContentCampFireUI();
+        m_uICampFire.SetVisible(false);
         m_isOpen = false;
         
     }
@@ -99,7 +102,7 @@ public class CampFire : InteractableRaycast
         while (true)
         {
             m_contentsCampFire.Remove(this, typeof(ItemWood), 2);
-            UICampFire.instance.OnContentsCampFireStateChanged(this);
+            m_uICampFire.OnContentsCampFireStateChanged(this);
             yield return new WaitForSeconds(4f);
         }
     }

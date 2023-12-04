@@ -9,9 +9,14 @@ public class Water : MonoBehaviour
     private Player m_player;
     private void Start()
     {
-        m_player = ReferenceSystem.instance.player.GetComponent<Player>();
+        ReferenceSystem.OnFindedObjecs += OnInitPlayer;
     }
 
+    private void OnInitPlayer()
+    {
+        ReferenceSystem.OnFindedObjecs -= OnInitPlayer;
+        m_player = ReferenceSystem.instance.player.GetComponent<Player>();
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == (int)LayerType.Player)

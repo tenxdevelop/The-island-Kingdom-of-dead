@@ -6,10 +6,10 @@ public class Player : MonoBehaviour
 {
     [Header("Health Info")]
     [SerializeField] private float m_maxHealth;
-    [SerializeField] private UIBar m_healthBar;
+    private UIBar m_healthBar;
 
     [Header("TakeDamage")]
-    [SerializeField] private Image m_overlayDamage;
+    private Image m_overlayDamage;
     [SerializeField] private float m_duration;
     [SerializeField] private float m_fadeSpeed;
     [SerializeField] private AudioClip m_clipTakeDamage;
@@ -46,6 +46,8 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        m_healthBar = ReferenceSystem.instance.healthBar;
+        m_overlayDamage = ReferenceSystem.instance.damageOverlay;
         m_audioSource = GetComponent<AudioSource>();
         m_currentHealth = m_maxHealth;
         m_isDead = false;

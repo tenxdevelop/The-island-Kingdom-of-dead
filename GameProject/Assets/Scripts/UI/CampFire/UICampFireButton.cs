@@ -30,9 +30,9 @@ public class UICampFireButton : MonoBehaviour
         }
     }
 
-    public void UnSetaupButton(CampFire campFire)
+    public void UnSetaupButton()
     {
-        campFire.OnChangeContents -= UpdateButton;
+        m_campFire.OnChangeContents -= UpdateButton;
         m_campFire = null;
         m_backGroundImage.color = m_buttonOffColor;
     }
