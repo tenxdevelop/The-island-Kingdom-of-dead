@@ -5,6 +5,8 @@ namespace TheIslandKOD
     public class ItemM4 : ActiveItem
     {
         private PlayerLook m_playerLook;
+
+        private PoolBullet m_poolBullet;
         public ItemM4(IInventoryItemInfo info)
         {
             this.info = info;
@@ -12,7 +14,7 @@ namespace TheIslandKOD
             m_tagItemArm = "M4";
             state = new InventoryItemState();
             m_playerLook = ReferenceSystem.instance.player.GetComponent<PlayerLook>();
-            
+            m_poolBullet = PoolBullet.instance;
         }
 
         protected override void UpdateActiveItem()
@@ -45,7 +47,13 @@ namespace TheIslandKOD
 
         private void Fire()
         {
-
+            var currentBullet = m_poolBullet.CreateBullet();
+            if (currentBullet != null)
+            {
+                currentBullet.transform.position = m_playerLook.Camera.transform.position + m_playerLook.Camera.transform.forward;
+                currentBullet.transform.localRotation = m_playerLook.Camera.transform.rotation * Quaternion.Euler(90, 0, 0);
+                currentBullet.Fire(m_playerLook.Camera.transform.forward);
+            }
         }
 
     }

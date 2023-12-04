@@ -164,8 +164,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 407cc4c6e65147b448968d3f4050d9b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_arrowForce: 20
-  m_timeToLive: 5
+  m_arrowForce: 60
+  m_timeToLive: 4
   m_clipArrow: {fileID: 8300000, guid: b6e5aeef776d7b34196ba3067ae40a02, type: 3}
 --- !u!65 &7066598317255210736
 BoxCollider:

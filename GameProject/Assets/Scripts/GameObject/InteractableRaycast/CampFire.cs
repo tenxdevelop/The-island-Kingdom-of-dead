@@ -101,6 +101,11 @@ public class CampFire : InteractableRaycast
     {
         while (true)
         {
+            var haveItemWood = m_contentsCampFire.GetItemAmount(typeof(ItemWood));
+            if (haveItemWood <= 0)
+            {
+                StopFire();
+            }
             m_contentsCampFire.Remove(this, typeof(ItemWood), 2);
             m_uICampFire.OnContentsCampFireStateChanged(this);
             yield return new WaitForSeconds(4f);

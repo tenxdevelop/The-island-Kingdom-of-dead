@@ -78,9 +78,9 @@ MonoBehaviour:
     scaleRangeRandom: {x: 3, y: 4}
   - prefab: {fileID: 2069339591929959347, guid: f4630bc2abcef054ea6adb1cb54414f5, type: 3}
     offsetHeight: 0
-    rangePrefabs: 10
-    SpawnRangeHeight: {x: 2, y: 3}
-    NoiseRandomSpawn: {x: 0.3, y: 0.5}
+    rangePrefabs: 12
+    SpawnRangeHeight: {x: 9, y: 12}
+    NoiseRandomSpawn: {x: 0.3, y: 0.9}
     rotationRangeRandom: {x: 0, y: 0}
     scaleRangeRandom: {x: 1, y: 1}
   - prefab: {fileID: 8641451458661663641, guid: d5a0e3eb5f6e4ed498712dc2aea85edd, type: 3}
