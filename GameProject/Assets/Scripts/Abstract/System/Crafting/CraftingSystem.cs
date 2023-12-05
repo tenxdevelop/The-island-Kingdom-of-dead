@@ -155,6 +155,10 @@ public class CraftingSystem : MonoBehaviour
         item = new ItemBullet(itemInfo);
         AddItem(item);
 
+        itemInfo = GetItemInfo("furance");
+        item = new ItemFurance(itemInfo);
+        AddItem(item);
+
     }
 
     private InventoryItemInfo GetItemInfo(string typeId)
