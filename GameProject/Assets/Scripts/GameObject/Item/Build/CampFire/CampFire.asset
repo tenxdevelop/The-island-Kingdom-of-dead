@@ -17,7 +17,7 @@ MonoBehaviour:
   m_desctription: CampFire
   m_maxItemsInInventorySlot: 1
   m_sprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  m_dropPrefab: {fileID: 1191358423309082348, guid: ef271e31e55bf00449b24a35f17d9066, type: 3}
+  m_dropPrefab: {fileID: 3783073228192960811, guid: a2ed6c39e2fbf764986621b588d7dc66, type: 3}
   m_itemType: 2
   m_buildPrefabs:
   - buildObject: {fileID: 4393662264521978433, guid: 4fbcc3239e9a81840b16142e726cf291, type: 3}

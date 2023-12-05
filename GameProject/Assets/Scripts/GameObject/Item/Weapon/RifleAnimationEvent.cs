@@ -4,8 +4,9 @@ using UnityEngine;
 public class RifleAnimationEvent : MonoBehaviour
 {
     public static RifleAnimationEvent instance;
-
+    
     public event Action OnFireEvent;
+    public event Action OnReloadedEvent;
     public AudioClip m_clipFire;
 
     [SerializeField] private AudioClip m_clipRifleDropClip;
@@ -60,5 +61,7 @@ public class RifleAnimationEvent : MonoBehaviour
     {
         m_audioSource.pitch = UnityEngine.Random.Range(0.9f, 1.1f);
         m_audioSource.PlayOneShot(m_clipReloadRifle, 0.7f);
+        OnReloadedEvent?.Invoke();
+
     }
 }

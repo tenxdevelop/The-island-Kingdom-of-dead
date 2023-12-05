@@ -162,10 +162,10 @@ MonoBehaviour:
   m_layer: 14
   m_effectAttack: {fileID: 100002, guid: 56bfc2f4b4a0c534c8ef3d0fd1124c44, type: 3}
   health: 10
-  m_info: {fileID: 11400000, guid: 323fe1ccce66c7f4fa556af37ab076f8, type: 2}
+  m_info: {fileID: 11400000, guid: dd84249997461b347992128ff57feb65, type: 2}
   m_clipAttack: {fileID: 8300000, guid: a2fe58c9622945e49b87ecafaf9bd58b, type: 3}
   m_clipDestroy: {fileID: 8300000, guid: f4d4bef7b58849949bb53af5c4014ef0, type: 3}
-  m_typeOre: 1
+  m_typeOre: 3
 --- !u!82 &2147517359864987407
 AudioSource:
   m_ObjectHideFlags: 0

@@ -17,6 +17,6 @@ MonoBehaviour:
   m_desctription: M4
   m_maxItemsInInventorySlot: 1
   m_sprite: {fileID: 21300000, guid: 16764f36ddb786d4bbf68047e5d0dde0, type: 3}
-  m_dropPrefab: {fileID: 1191358423309082348, guid: ef271e31e55bf00449b24a35f17d9066, type: 3}
+  m_dropPrefab: {fileID: 3783073228192960811, guid: a2ed6c39e2fbf764986621b588d7dc66, type: 3}
   m_itemType: 4
   m_buildPrefabs: []

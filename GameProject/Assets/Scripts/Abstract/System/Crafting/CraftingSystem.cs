@@ -147,6 +147,14 @@ public class CraftingSystem : MonoBehaviour
         item = new ItemCampFire(itemInfo);
         AddItem(item);
 
+        itemInfo = GetItemInfo("arrow");
+        item = new ItemArrow(itemInfo);
+        AddItem(item);
+
+        itemInfo = GetItemInfo("bullet");
+        item = new ItemBullet(itemInfo);
+        AddItem(item);
+
     }
 
     private InventoryItemInfo GetItemInfo(string typeId)

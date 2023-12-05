@@ -43,7 +43,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5365829977733208155}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: -8678823145569952518, guid: cef71261e515f9441912ca824e928eb0, type: 3}
 --- !u!23 &2327918510843505498
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -122,6 +122,8 @@ MonoBehaviour:
   m_greenMat: {fileID: 2100000, guid: 6bf54ed31a1ec994a9fed9f4c534bd39, type: 2}
   m_redMat: {fileID: 2100000, guid: f4c7e02c0f679524ca6342bc7f00b442, type: 2}
   m_layerBuild: 12
+  m_layerBuild2: 0
+  m_renderer: []
 --- !u!54 &-6697252337480283335
 Rigidbody:
   m_ObjectHideFlags: 0
