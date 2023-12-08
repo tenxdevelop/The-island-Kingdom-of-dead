@@ -84,6 +84,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d58420bde5c5ee34fa5d968af7b0b88f, type: 2}
   - {fileID: 11400000, guid: 05ac63c686b0a454d8e8a9140b6d4ff2, type: 2}
   - {fileID: 11400000, guid: 03b8d7b1aa9a86c4e832dd94d7d783e2, type: 2}
+  - {fileID: 11400000, guid: c1f00a935a191a341ac12d9ccb516a1d, type: 2}
+  - {fileID: 11400000, guid: 7368886f7dd165541ba37350b4544e9c, type: 2}
+  - {fileID: 11400000, guid: ebee118c3f58d4c44bf7ae6adafd188e, type: 2}
 --- !u!1 &1644780468226924638
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,7 +210,7 @@ Transform:
   m_GameObject: {fileID: 3272325092919267470}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -29.282766, y: 47.725277, z: -352.48657}
+  m_LocalPosition: {x: -172.35191, y: 20.244795, z: 386.13834}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -504,7 +507,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ecfee1c35e757342919c9c78102d28f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  TextPromtMessage: {fileID: 0}
+  healthBar: {fileID: 0}
+  hungerBar: {fileID: 0}
+  damageOverlay: {fileID: 0}
+  MainCamera: {fileID: 6070105667349412440}
 --- !u!1 &7546041793358477272
 GameObject:
   m_ObjectHideFlags: 0

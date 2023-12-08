@@ -21,6 +21,8 @@ public class PlayerAnimation : MonoBehaviour
     private const string TAG_AMIMATION_RIFLE_FIRE = "RifleFire";
     private const string TAG_ANIMATION_RIFLE_RELOAD = "RifleReload";
 
+    private const string TAG_ANIMATION_DEAD = "isDead";
+
     [SerializeField] private MultiAimConstraint m_bodyRotation;
     [SerializeField] private MultiAimConstraint m_RightTriger;
     private Animator m_animatorPLayer;
@@ -28,6 +30,12 @@ public class PlayerAnimation : MonoBehaviour
     private void Start()
     {
         m_animatorPLayer = GetComponentInChildren<Animator>();
+        Player.OnPlayerDeadEvent += PlayerDeadEvent;
+    }
+
+    private void PlayerDeadEvent()
+    {
+        m_animatorPLayer.SetBool(TAG_ANIMATION_DEAD, true);
     }
 
     public void SetItemState(bool state, ItemType type)

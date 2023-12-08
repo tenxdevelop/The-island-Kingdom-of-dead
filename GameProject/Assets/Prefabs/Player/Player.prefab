@@ -795,6 +795,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_maxHealth: 100
+  m_maxHunger: 400
   m_duration: 0.5
   m_fadeSpeed: 1
   m_clipTakeDamage: {fileID: 8300000, guid: 7cf3aa83834d68a47b796239eff164e7, type: 3}

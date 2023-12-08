@@ -54,7 +54,7 @@ public class StoneOre : InteractableAttachRaycast
         var item = GetItemType();
 
         m_playerInventory.inventory.TryToAdd(this, item);
-        health -= 1;
+        health -= Random.Range(1, 2);
 
         if (health <= 0)
         {

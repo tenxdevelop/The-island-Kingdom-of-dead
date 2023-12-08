@@ -1,12 +1,18 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    public static event Action OnPlayerDeadEvent;
     [Header("Health Info")]
     [SerializeField] private float m_maxHealth;
     private UIBar m_healthBar;
+
+    [Header("Hunger info")]
+    [SerializeField] private float m_maxHunger;
+    private UIBar m_hungerBar;
 
     [Header("TakeDamage")]
     private Image m_overlayDamage;
@@ -17,12 +23,12 @@ public class Player : MonoBehaviour
     private float m_currentAlphaDamageOverlay;
 
     private float m_currentHealth;
+    private float m_currentHunger;
+    private Coroutine m_routine;
 
     private AudioSource m_audioSource;
 
     private bool m_isDead;
-    public bool isDead => m_isDead;
-
     public void TakeDamage(float damage)
     {
         if (damage < 0)
@@ -44,15 +50,39 @@ public class Player : MonoBehaviour
         DisableDamageOverlayEffect();
     }
 
+    public void HungerUp(float amountHunger)
+    {
+        if (amountHunger < 0)
+            return;
+
+        if (amountHunger + m_currentHunger > m_maxHunger)
+        {
+            m_currentHunger = m_maxHunger;
+        }
+        else
+        {
+            m_currentHunger = amountHunger;
+        }
+        m_hungerBar.SetValueBar(m_currentHunger / m_maxHunger);
+    }
+
     private void Start()
     {
         m_healthBar = ReferenceSystem.instance.healthBar;
+        m_hungerBar = ReferenceSystem.instance.hungerBar;
         m_overlayDamage = ReferenceSystem.instance.damageOverlay;
         m_audioSource = GetComponent<AudioSource>();
         m_currentHealth = m_maxHealth;
+        m_currentHunger = m_maxHunger;
         m_isDead = false;
         m_currentAlphaDamageOverlay = 0;
         DisableDamageOverlayEffect();
+        m_routine = StartCoroutine(UpdateHungerState());
+    }
+
+    private void OnDestroy()
+    {
+        StopCoroutine(m_routine);
     }
 
     private void UpdateHealth(float health)
@@ -66,11 +96,12 @@ public class Player : MonoBehaviour
         
         m_healthBar.SetValueBar(m_currentHealth / m_maxHealth);
 
-        m_isDead = m_currentHealth <= 0;
-
-        if (m_isDead)
+        if (!m_isDead && m_currentHealth <= 0)
         {
             m_currentHealth = 0;
+            OnPlayerDeadEvent?.Invoke();
+            m_isDead = true;
+            Destroy(gameObject);
         }
 
         if (m_currentHealth < 30)
@@ -84,6 +115,20 @@ public class Player : MonoBehaviour
 
     }
 
+    private IEnumerator UpdateHungerState()
+    {
+        while (true)
+        {
+            m_currentHunger -= 2;
+            if (m_currentHunger <= 0)
+            {
+                m_currentHunger = 0;
+                TakeDamage(2);
+            }
+            m_hungerBar.SetValueBar(m_currentHunger / m_maxHunger);
+            yield return new WaitForSeconds(1f);
+        }
+    }
     private IEnumerator UpdateDamageOverlay()
     {
         yield return new WaitForSeconds(m_duration);

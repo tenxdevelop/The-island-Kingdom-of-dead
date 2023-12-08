@@ -16,8 +16,8 @@ MonoBehaviour:
   m_amountCraft: 1
   m_itemCraftType: ItemM4
   m_category: 2
-  m_timeCraft: 2
+  m_timeCraft: 15
   m_craftComponents:
-  - amount: 450
-    itemType: ItemMetalOre
-    info: {fileID: 11400000, guid: a930a401899f4dd48b2337ab15273568, type: 2}
+  - amount: 250
+    itemType: ItemMetal
+    info: {fileID: 11400000, guid: 790e38df1a199454dad52e69b674c7b5, type: 2}

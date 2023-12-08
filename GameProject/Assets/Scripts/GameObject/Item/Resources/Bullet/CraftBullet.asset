@@ -18,9 +18,9 @@ MonoBehaviour:
   m_category: 4
   m_timeCraft: 3
   m_craftComponents:
-  - amount: 25
-    itemType: ItemMetalOre
-    info: {fileID: 11400000, guid: a930a401899f4dd48b2337ab15273568, type: 2}
   - amount: 15
-    itemType: ItemSulfurOre
-    info: {fileID: 11400000, guid: dd84249997461b347992128ff57feb65, type: 2}
+    itemType: ItemMetal
+    info: {fileID: 11400000, guid: 790e38df1a199454dad52e69b674c7b5, type: 2}
+  - amount: 5
+    itemType: ItemSulfur
+    info: {fileID: 11400000, guid: ff9dfddeacef2764b82d73a35c804cad, type: 2}

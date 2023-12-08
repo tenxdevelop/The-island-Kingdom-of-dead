@@ -11,6 +11,7 @@ public class ReferenceSystem : MonoBehaviour
 
     [SerializeField] public Text TextPromtMessage;
     [SerializeField] public UIBar healthBar;
+    [SerializeField] public UIBar hungerBar;
     [SerializeField] public Image damageOverlay;
     [SerializeField] public Camera MainCamera;
     public GameObject player { get; private set; }

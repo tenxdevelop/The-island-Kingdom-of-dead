@@ -7,6 +7,7 @@ public class Tree : InteractableAttachRaycast
     private const string TAG_ANIMATION_DESTROY = "Destroy";
     [SerializeField] private float health;
     [SerializeField] private InventoryItemInfo m_info;
+    [SerializeField] private InventoryItemInfo m_infoApple;
     [SerializeField] private AudioClip m_clipAttack;
     [SerializeField] private AudioClip m_clipDestroy;
 
@@ -52,10 +53,15 @@ public class Tree : InteractableAttachRaycast
 
     private void UpdateTree()
     {
-        var item = new ItemWood(m_info);
+        IInventoryItem item = new ItemWood(m_info);
         item.state.amount = 45;
         m_playerInventory.inventory.TryToAdd(this, item);
-        health -= 1;
+
+        item = new Apple(m_infoApple);
+        item.state.amount = 1;
+        m_playerInventory.inventory.TryToAdd(this, item);
+
+        health -= Random.Range(1, 3);
         
         if (health <= 0)
         {
