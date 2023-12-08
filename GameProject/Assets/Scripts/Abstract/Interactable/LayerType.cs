@@ -17,6 +17,7 @@ namespace TheIslandKOD
         Foundation = 12,
         Floor = 13,
         Ore = 14,
+        Entity = 15,
         LastLayer
     }
 }

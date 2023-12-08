@@ -464,7 +464,7 @@ ModelImporter:
     second: Wolf_Skeleton|Wolf_creep_cycle
   - first:
       74: 7400004
-    second: Wolf_Skeleton|Wolf_Idle_
+    second: WolfIdle
   - first:
       74: 7400006
     second: Wolf_Skeleton|Wolf_Run_Cycle_
@@ -508,7 +508,39 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: 
+    animationImportWarnings: "\nClip 'Wolf_Skeleton|Wolf_creep_cycle' has import
+      animation warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'Schalterplatte_L' has translation
+      animation that will be discarded.\n\t'Schalterplatte_R' has translation animation
+      that will be discarded.\n\t'Oberschenkel_L' has translation animation that
+      will be discarded.\n\t'Oberschenkel_R' has translation animation that will
+      be discarded.\n\nClip 'Wolf_Skeleton|Wolf_Idle_' has import animation warnings
+      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'Unterkiefer' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hals_fett' has translation
+      animation that will be discarded.\n\t'MundW_L' has translation animation that
+      will be discarded.\n\t'MundW_R' has translation animation that will be discarded.\n\t'Bauch.003'
+      has translation animation that will be discarded.\n\nClip 'Wolf_Skeleton|Wolf_Run_Cycle_'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Bauch'
+      has translation animation that will be discarded.\n\t'Bauch.001' has translation
+      animation that will be discarded.\n\t'Brust' has translation animation that
+      will be discarded.\n\t'Hals' has translation animation that will be discarded.\n\t'Oberschenkel_L'
+      has translation animation that will be discarded.\n\t'Oberschenkel_R' has translation
+      animation that will be discarded.\n\nClip 'Wolf_Skeleton|Wolf_seat_' has import
+      animation warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'Bauch' has translation animation
+      that will be discarded.\n\t'Bauch.001' has translation animation that will
+      be discarded.\n\t'Brust' has translation animation that will be discarded.\n\t'Hals'
+      has translation animation that will be discarded.\n\t'Oberschenkel_L' has translation
+      animation that will be discarded.\n\t'Oberschenkel_R' has translation animation
+      that will be discarded.\n\nClip 'Wolf_Skeleton|Wolf_Walk_cycle_' has import
+      animation warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'Schalterplatte_L' has translation
+      animation that will be discarded.\n\t'Schalterplatte_R' has translation animation
+      that will be discarded.\n\t'Oberschenkel_L' has translation animation that
+      will be discarded.\n\t'Oberschenkel_R' has translation animation that will
+      be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -872,7 +904,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Wolf_Skeleton|Wolf_Idle_
+      name: WolfIdle
       takeName: Wolf_Skeleton|Wolf_Idle_
       internalID: 0
       firstFrame: 0
@@ -1620,8 +1652,565 @@ ModelImporter:
   importAnimation: 1
   humanDescription:
     serializedVersion: 3
-    human: []
-    skeleton: []
+    human:
+    - boneName: Becken
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Oberschenkel_L
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Oberschenkel_R
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Unterschenkel_L
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Unterschenkel_R
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Pfote1_L
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Pfote1_R
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bauch
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bauch.001
+      humanName: Chest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Hals
+      humanName: Neck
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Kopf
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Schalterplatte_R
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Schalterplatte_L
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Oberarm_R
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Oberarm_L
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Unterarm_R
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Unterarm_L
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Vorderpfote_R
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Pfote2_L
+      humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Pfote2_R
+      humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: MundW_L
+      humanName: LeftEye
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: MundW_R
+      humanName: RightEye
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Hals_fett
+      humanName: Jaw
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Brust
+      humanName: UpperChest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: Wolf(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Wolf_Skeleton
+      parentName: Wolf(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 1, y: -1.1102229e-16, z: 1.110223e-16, w: -0.00000013315805}
+      scale: {x: 100, y: 100, z: 100}
+    - name: Becken
+      parentName: Wolf_Skeleton
+      position: {x: -0.00006998438, y: -0.0023680446, z: 0.00023355323}
+      rotation: {x: -0.9749856, y: -0.0035328353, z: -0.1850363, w: 0.12309427}
+      scale: {x: 1, y: 1.000001, z: 1.000001}
+    - name: Bauch
+      parentName: Becken
+      position: {x: -0, y: 0.00094041653, z: -0.00035590792}
+      rotation: {x: -0.10978104, y: -1.2998549e-23, z: 1.9516465e-23, w: 0.9939558}
+      scale: {x: 1, y: 1.0000002, z: 1.0000002}
+    - name: Bauch.001
+      parentName: Bauch
+      position: {x: -0, y: 0.0010818995, z: -6.4173944e-11}
+      rotation: {x: -0.020588482, y: -1.8408393e-23, z: -9.567136e-25, w: 0.99978805}
+      scale: {x: 1, y: 0.99999946, z: 0.99999946}
+    - name: Brust
+      parentName: Bauch.001
+      position: {x: -0, y: 0.0010698346, z: 8.381903e-11}
+      rotation: {x: -0.13402414, y: 5.9021958e-24, z: 2.1868614e-23, w: 0.99097806}
+      scale: {x: 1, y: 1.0000014, z: 1.000001}
+    - name: Hals
+      parentName: Brust
+      position: {x: -0, y: 0.0012580226, z: 0.0006079602}
+      rotation: {x: -0.33266953, y: 0.00028842856, z: -0.0045675756, w: 0.9430324}
+      scale: {x: 1, y: 1.0000004, z: 1}
+    - name: Kopf.002
+      parentName: Hals
+      position: {x: -0, y: 0.0015830154, z: 2.2351741e-10}
+      rotation: {x: 0.98757505, y: -5.8497326e-24, z: -4.652712e-23, w: 0.15714808}
+      scale: {x: 1, y: 1.0000024, z: 1.0000029}
+    - name: Kopf
+      parentName: Kopf.002
+      position: {x: -0, y: 0.001015777, z: 0}
+      rotation: {x: -0.83498204, y: -0.0005439107, z: 0.0005988065, w: 0.55027664}
+      scale: {x: 1, y: 1.0000012, z: 1.0000025}
+    - name: Unterkiefer
+      parentName: Kopf
+      position: {x: 0.0000045603288, y: 0.00063704624, z: 0.00040606695}
+      rotation: {x: 0.56221545, y: -0.023792934, z: -0.004170723, w: 0.8266379}
+      scale: {x: 1, y: 0.9999995, z: 1.0000019}
+    - name: Hals_fett
+      parentName: Unterkiefer
+      position: {x: 0.000007721951, y: 0.00029982394, z: 0.000120649034}
+      rotation: {x: 0.49596778, y: 0.014200306, z: -0.020356584, w: 0.8679862}
+      scale: {x: 1.0000001, y: 1.0000031, z: 0.9999998}
+    - name: Hals_fett_end
+      parentName: Hals_fett
+      position: {x: -0, y: 0.00066080346, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Maulunten
+      parentName: Unterkiefer
+      position: {x: -0.000007721903, y: 0.00008318625, z: -0.000120649034}
+      rotation: {x: -0.33362484, y: 0.024690337, z: -0.0025350854, w: 0.9423792}
+      scale: {x: 1.0000001, y: 0.9999983, z: 1.0000019}
+    - name: Maulunten_end
+      parentName: Maulunten
+      position: {x: -0, y: 0.0006784149, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mauloben
+      parentName: Kopf
+      position: {x: 0.000000413116, y: 0.0009101534, z: 0.00040035977}
+      rotation: {x: 0.24849623, y: 0.00080519693, z: -0.00007788501, w: 0.9686326}
+      scale: {x: 1, y: 1.0000004, z: 1.0000029}
+    - name: Mauloben_end
+      parentName: Mauloben
+      position: {x: -0, y: 0.0006608006, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: MundW_L
+      parentName: Kopf
+      position: {x: -0.00036184856, y: 0.0006730549, z: 0.00037513836}
+      rotation: {x: 0.21292026, y: 0.9644862, z: 0.15023299, w: 0.043144267}
+      scale: {x: 1.0000025, y: 1.0000015, z: 1.0000029}
+    - name: MundW_L_end
+      parentName: MundW_L
+      position: {x: -0, y: 0.0003183338, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: MundW_R
+      parentName: Kopf
+      position: {x: 0.0003627105, y: 0.0006732355, z: 0.0003739801}
+      rotation: {x: -0.21293338, y: 0.9643605, z: 0.15056211, w: -0.044715308}
+      scale: {x: 1.0000029, y: 1.000001, z: 1.0000023}
+    - name: MundW_R_end
+      parentName: MundW_R
+      position: {x: -0, y: 0.00031833776, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aug_R
+      parentName: Kopf
+      position: {x: 0.00022077863, y: 0.0010351582, z: -0.00009606234}
+      rotation: {x: 0.14508185, y: 0.97734797, z: 0.15229452, w: -0.023425339}
+      scale: {x: 1.0000029, y: 1.0000018, z: 1.000003}
+    - name: Aug_R_end
+      parentName: Aug_R
+      position: {x: -0, y: 0.000057833793, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: aug_L
+      parentName: Kopf
+      position: {x: -0.00022160076, y: 0.0010350479, z: -0.00009535514}
+      rotation: {x: -0.14508203, y: 0.9773479, z: 0.15253207, w: 0.02182491}
+      scale: {x: 1.0000032, y: 1.0000021, z: 1.0000026}
+    - name: aug_L_end
+      parentName: aug_L
+      position: {x: -0, y: 0.000057833793, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Ohr_L
+      parentName: Kopf
+      position: {x: -0.0003660122, y: 0.00064077944, z: -0.00068932853}
+      rotation: {x: -0.45767733, y: 0.13033198, z: 0.020699034, w: 0.87927055}
+      scale: {x: 0.99999964, y: 1.000002, z: 0.9999993}
+    - name: Ohr_L_end
+      parentName: Ohr_L
+      position: {x: -0, y: 0.00031248888, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Ohr_R
+      parentName: Kopf
+      position: {x: 0.00036348685, y: 0.0006409612, z: -0.00069049466}
+      rotation: {x: -0.45767733, y: -0.12904038, z: -0.019748257, w: 0.87948287}
+      scale: {x: 0.99999976, y: 1.0000021, z: 0.99999845}
+    - name: Ohr_R_end
+      parentName: Ohr_R
+      position: {x: -0, y: 0.00031248888, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Braun_O_L
+      parentName: Kopf
+      position: {x: -0.0003706112, y: 0.0009801871, z: -0.0003292478}
+      rotation: {x: 0.4845739, y: 0.770199, z: 0.119712904, w: 0.39705208}
+      scale: {x: 1.0000024, y: 0.9999992, z: 1.0000001}
+    - name: Braun_O_L_end
+      parentName: Braun_O_L
+      position: {x: -0, y: 0.00037008157, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Braun_O_R
+      parentName: Kopf
+      position: {x: 0.0003690679, y: 0.0009803715, z: -0.0003304302}
+      rotation: {x: 0.48457396, y: -0.7694426, z: -0.12038818, w: 0.39831263}
+      scale: {x: 1.0000033, y: 1.0000006, z: 1.0000013}
+    - name: Braun_O_R_end
+      parentName: Braun_O_R
+      position: {x: -0, y: 0.00037008157, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: aug_lied_O_L
+      parentName: Kopf
+      position: {x: -0.00032714647, y: 0.0010388853, z: -0.00016080608}
+      rotation: {x: 0.5002129, y: 0.84717566, z: 0.13170412, w: 0.12138577}
+      scale: {x: 1.0000013, y: 1.0000002, z: 1.0000012}
+    - name: aug_lied_O_L_end
+      parentName: aug_lied_O_L
+      position: {x: -0, y: 0.00018368942, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: aug_lied_O_R
+      parentName: Kopf
+      position: {x: 0.0003261127, y: 0.0010390478, z: -0.00016185046}
+      rotation: {x: -0.50021297, y: 0.84685576, z: 0.13247325, w: -0.122772574}
+      scale: {x: 1.0000014, y: 1.0000002, z: 1.0000011}
+    - name: aug_lied_O_R_end
+      parentName: aug_lied_O_R
+      position: {x: -0, y: 0.00018368942, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: aug_lied_U_L
+      parentName: Kopf
+      position: {x: -0.00033128908, y: 0.0010219183, z: -0.000133835}
+      rotation: {x: 0.516139, y: 0.80254745, z: 0.12473166, w: 0.27195638}
+      scale: {x: 1.0000021, y: 1.0000002, z: 1.0000011}
+    - name: aug_lied_U_L_end
+      parentName: aug_lied_U_L
+      position: {x: -0, y: 0.0001923817, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: aug_lied_U_R
+      parentName: Kopf
+      position: {x: 0.00033035007, y: 0.0010220832, z: -0.00013489269}
+      rotation: {x: 0.51613903, y: -0.8019829, z: -0.12548853, w: 0.27327}
+      scale: {x: 1.000003, y: 1.0000013, z: 1.0000018}
+    - name: aug_lied_U_R_end
+      parentName: aug_lied_U_R
+      position: {x: -0, y: 0.0001923817, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Bauch.003
+      parentName: Brust
+      position: {x: -0, y: 0.0012768653, z: -0.0006079589}
+      rotation: {x: 0.932576, y: 5.963137e-24, z: -3.88928e-23, w: 0.3609737}
+      scale: {x: 1, y: 1.0000011, z: 1.0000012}
+    - name: Schalterplatte_L
+      parentName: Bauch.003
+      position: {x: -0.00038208, y: 0.0008925688, z: -1.4901161e-10}
+      rotation: {x: -0.3507206, y: 0.330946, z: 0.7349677, w: 0.47675186}
+      scale: {x: 1.0000004, y: 1.0000017, z: 1.0000008}
+    - name: Oberarm_L
+      parentName: Schalterplatte_L
+      position: {x: 7.4505804e-11, y: 0.0014186343, z: -2.0489097e-10}
+      rotation: {x: 0.0114578875, y: 0.14244929, z: -0.0015464422, w: 0.9897346}
+      scale: {x: 1.0000035, y: 0.99999946, z: 1.0000005}
+    - name: Unterarm_L
+      parentName: Oberarm_L
+      position: {x: -0, y: 0.0020282322, z: -1.13504935e-10}
+      rotation: {x: -0.1993266, y: -0.042760994, z: 0.12608157, w: 0.970847}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: Vorderpfote_L
+      parentName: Unterarm_L
+      position: {x: -8.745701e-11, y: 0.0017059478, z: 2.0372681e-10}
+      rotation: {x: -0.64388543, y: 0.011857617, z: 0.0000036931588, w: 0.76503}
+      scale: {x: 1.0000002, y: 0.9999992, z: 1.0000001}
+    - name: Vorderpfote_L_end
+      parentName: Vorderpfote_L
+      position: {x: -0, y: 0.0004503601, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Schalterplatte_R
+      parentName: Bauch.003
+      position: {x: 0.00038208, y: 0.0008925688, z: -1.4901161e-10}
+      rotation: {x: -0.31643954, y: -0.10142383, z: -0.4632445, w: 0.82157403}
+      scale: {x: 1.0000001, y: 1.0000023, z: 1.0000007}
+    - name: Oberarm_R
+      parentName: Schalterplatte_R
+      position: {x: -7.4505804e-11, y: 0.0014186343, z: -2.0489097e-10}
+      rotation: {x: 0.10603998, y: -0.044895988, z: -0.10397994, w: 0.9878908}
+      scale: {x: 1.000003, y: 0.99999577, z: 0.9999963}
+    - name: Unterarm_R
+      parentName: Oberarm_R
+      position: {x: -0, y: 0.0020282322, z: -1.13504935e-10}
+      rotation: {x: -0.038981788, y: -0.003083038, z: -0.006559407, w: 0.9992137}
+      scale: {x: 1.0000002, y: 1.0000024, z: 1.0000026}
+    - name: Vorderpfote_R
+      parentName: Unterarm_R
+      position: {x: -8.9639796e-11, y: 0.0017059383, z: 1.2805685e-11}
+      rotation: {x: -0.059955154, y: 0.0034307318, z: -0.062475942, w: 0.9962381}
+      scale: {x: 0.9999998, y: 1.0000005, z: 1.000002}
+    - name: Vorderpfote_R_end
+      parentName: Vorderpfote_R
+      position: {x: -0, y: 0.00045037008, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Schwanz
+      parentName: Becken
+      position: {x: -0, y: -0.00002794951, z: 0.00012527306}
+      rotation: {x: -0.9631523, y: 6.273336e-24, z: -4.604309e-23, w: -0.26895675}
+      scale: {x: 1, y: 1.0000006, z: 1.0000012}
+    - name: Schwanz.001
+      parentName: Schwanz
+      position: {x: -0, y: 0.0009104286, z: 7.4505804e-11}
+      rotation: {x: 0.06614375, y: 3.0515377e-23, z: -6.002817e-23, w: 0.9978102}
+      scale: {x: 1, y: 1, z: 1.0000002}
+    - name: Schwanz.002
+      parentName: Schwanz.001
+      position: {x: -0, y: 0.0007855696, z: -2.2351741e-10}
+      rotation: {x: 0.12027494, y: -3.0883564e-23, z: 1.8917142e-23, w: 0.99274063}
+      scale: {x: 1, y: 1.0000012, z: 1.0000014}
+    - name: Schwanz.003
+      parentName: Schwanz.002
+      position: {x: -0, y: 0.00083503395, z: -9.3132255e-12}
+      rotation: {x: 0.101087414, y: 8.760385e-24, z: -6.2600956e-24, w: 0.99487764}
+      scale: {x: 1, y: 1.0000008, z: 1.0000025}
+    - name: Schwanz.003_end
+      parentName: Schwanz.003
+      position: {x: -0, y: 0.0008224313, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Oberschenkel_L
+      parentName: Becken
+      position: {x: -0.0005837, y: 0.00054299884, z: 0.00011531731}
+      rotation: {x: 0.9771692, y: -0.042265628, z: 0.04323037, w: 0.2036791}
+      scale: {x: 0.9999999, y: 1.0000001, z: 1.0000005}
+    - name: Unterschenkel_L
+      parentName: Oberschenkel_L
+      position: {x: -5.5879353e-11, y: 0.0016864412, z: 2.2351741e-10}
+      rotation: {x: 0.3220167, y: 0.038518876, z: -0.06449199, w: 0.9437491}
+      scale: {x: 1.0000001, y: 1.0000008, z: 1.0000014}
+    - name: Pfote1_L
+      parentName: Unterschenkel_L
+      position: {x: -1.5133991e-11, y: 0.0011909027, z: 2.7939677e-11}
+      rotation: {x: -0.83853334, y: -0.073364615, z: 0.021329258, w: 0.53946704}
+      scale: {x: 1.0000011, y: 1.0000014, z: 1.0000011}
+    - name: Pfote2_L
+      parentName: Pfote1_L
+      position: {x: 5.3551046e-11, y: 0.0009876252, z: 6.344635e-11}
+      rotation: {x: -0.7088637, y: 0.054626234, z: 0.000012025468, w: 0.7032271}
+      scale: {x: 0.9999997, y: 1.0000025, z: 1.0000027}
+    - name: Pfote2_L_end
+      parentName: Pfote2_L
+      position: {x: -0, y: 0.00045418012, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Oberschenkel_R
+      parentName: Becken
+      position: {x: 0.0005837, y: 0.00054299884, z: 0.00011531731}
+      rotation: {x: 0.97534335, y: 0.01183565, z: -0.0017837582, w: 0.22036839}
+      scale: {x: 0.99999994, y: 1.0000007, z: 1.0000012}
+    - name: Unterschenkel_R
+      parentName: Oberschenkel_R
+      position: {x: -8.381903e-11, y: 0.0016864507, z: -1.3504177e-10}
+      rotation: {x: 0.30070493, y: -0.03631347, z: 0.052826267, w: 0.9515605}
+      scale: {x: 0.99999964, y: 1.0000027, z: 1.0000035}
+    - name: Pfote1_R
+      parentName: Unterschenkel_R
+      position: {x: -8.032657e-11, y: 0.0011909024, z: -6.810296e-11}
+      rotation: {x: -0.8183093, y: 0.076492414, z: -0.04395815, w: 0.5679671}
+      scale: {x: 1.0000004, y: 1.0000011, z: 0.9999999}
+    - name: Pfote2_R
+      parentName: Pfote1_R
+      position: {x: -8.032657e-11, y: 0.0009876252, z: 3.2814568e-10}
+      rotation: {x: -0.70886725, y: -0.054625943, z: -0.000012039205, w: 0.7032236}
+      scale: {x: 1.0000004, y: 1.0000014, z: 1.0000007}
+    - name: Pfote2_R_end
+      parentName: Pfote2_R
+      position: {x: -0, y: 0.00045417997, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: root
+      parentName: Wolf_Skeleton
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -1, y: 1.1703209e-14, z: 0.000000075497894, w: 0.000000007906934}
+      scale: {x: 1, y: 1, z: 1}
+    - name: root_end
+      parentName: root
+      position: {x: -0, y: 0.00096548995, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Wolf_obj_body.003
+      parentName: Wolf(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 100, y: 100, z: 100}
+    - name: Wolf_obj_body.002
+      parentName: Wolf(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 100, y: 100, z: 100}
+    - name: Wolf_obj_body.001
+      parentName: Wolf(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 100, y: 100, z: 100}
+    - name: Wolf_obj_body
+      parentName: Wolf(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 100, y: 100, z: 100}
+    - name: Wolf_obj_fur
+      parentName: Wolf(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 100, y: 100, z: 100}
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5

@@ -16,7 +16,7 @@ MonoBehaviour:
   m_title: Metal
   m_desctription: Metal
   m_maxItemsInInventorySlot: 1000
-  m_sprite: {fileID: 21300000, guid: 161b2b1bc2ed2ff43bf17895398a96f6, type: 3}
+  m_sprite: {fileID: 21300000, guid: 213e7d66440a3c14daad4bc0403c4746, type: 3}
   m_dropPrefab: {fileID: 3783073228192960811, guid: a2ed6c39e2fbf764986621b588d7dc66, type: 3}
   m_itemType: 1
   m_buildPrefabs: []

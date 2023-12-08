@@ -16,7 +16,7 @@ MonoBehaviour:
   m_title: Sulfur
   m_desctription: Sulfur
   m_maxItemsInInventorySlot: 1000
-  m_sprite: {fileID: 21300000, guid: f75db6a55651e3c4d94aa2918fdc4118, type: 3}
+  m_sprite: {fileID: 21300000, guid: 6e625e95524268e4eb3949e6eabf63e0, type: 3}
   m_dropPrefab: {fileID: 3783073228192960811, guid: a2ed6c39e2fbf764986621b588d7dc66, type: 3}
   m_itemType: 1
   m_buildPrefabs: []

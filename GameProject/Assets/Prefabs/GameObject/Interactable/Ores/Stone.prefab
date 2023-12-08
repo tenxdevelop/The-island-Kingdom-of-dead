@@ -163,8 +163,9 @@ MonoBehaviour:
   m_effectAttack: {fileID: 100002, guid: 56bfc2f4b4a0c534c8ef3d0fd1124c44, type: 3}
   health: 10
   m_info: {fileID: 11400000, guid: dd84249997461b347992128ff57feb65, type: 2}
-  m_clipAttack: {fileID: 8300000, guid: dffe110dc9a95f04e81489d6705fa50e, type: 3}
-  m_clipDestroy: {fileID: 8300000, guid: 96d19d49b6432e54db5556e2f6ad1543, type: 3}
+  m_clipAttacks:
+  - {fileID: 8300000, guid: cac6c5647c809f545af1935c571cdd0b, type: 3}
+  - {fileID: 8300000, guid: 96d19d49b6432e54db5556e2f6ad1543, type: 3}
   m_typeOre: 3
 --- !u!82 &2147517359864987407
 AudioSource:

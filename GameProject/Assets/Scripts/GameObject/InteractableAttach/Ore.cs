@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TheIslandKOD;
 using UnityEngine;
 
@@ -5,8 +6,7 @@ public class StoneOre : InteractableAttachRaycast
 {
     [SerializeField] private float health;
     [SerializeField] private InventoryItemInfo m_info;
-    [SerializeField] private AudioClip m_clipAttack;
-    [SerializeField] private AudioClip m_clipDestroy;
+    [SerializeField] private List<AudioClip> m_clipAttacks;
     [SerializeField] private OreType m_typeOre;
 
     private AudioSource m_audioSource;
@@ -42,7 +42,7 @@ public class StoneOre : InteractableAttachRaycast
         if (!m_isDestory)
         {
             m_audioSource.pitch = Random.Range(0.9f, 1.1f);
-            m_audioSource.clip = m_clipAttack;
+            m_audioSource.clip = m_clipAttacks[Random.Range(0, m_clipAttacks.Count)];
             m_audioSource.Play();
             base.OnEffects(position, rotation);
         }
@@ -59,7 +59,6 @@ public class StoneOre : InteractableAttachRaycast
         if (health <= 0)
         {
             m_audioSource.pitch = 1;
-            m_audioSource.clip = m_clipDestroy;
             m_audioSource.Play();
             m_isDestory = true;
             Destroy(gameObject);

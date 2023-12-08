@@ -61,7 +61,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            m_currentHunger = amountHunger;
+            m_currentHunger += amountHunger;
         }
         m_hungerBar.SetValueBar(m_currentHunger / m_maxHunger);
     }

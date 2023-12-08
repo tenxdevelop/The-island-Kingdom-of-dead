@@ -2899,7 +2899,7 @@ MonoBehaviour:
     m_Bits: 64
   m_layerAttachMask:
     serializedVersion: 2
-    m_Bits: 16512
+    m_Bits: 49280
 --- !u!114 &1058050504476427890
 MonoBehaviour:
   m_ObjectHideFlags: 0

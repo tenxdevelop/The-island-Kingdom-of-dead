@@ -16,7 +16,7 @@ MonoBehaviour:
   m_title: Furance
   m_desctription: Furance
   m_maxItemsInInventorySlot: 1
-  m_sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_sprite: {fileID: 21300000, guid: 010f158c4552b634d9686c6418ccc6ab, type: 3}
   m_dropPrefab: {fileID: 3783073228192960811, guid: a2ed6c39e2fbf764986621b588d7dc66, type: 3}
   m_itemType: 2
   m_buildPrefabs:
@@ -24,5 +24,5 @@ MonoBehaviour:
     prefab: {fileID: 6515343502804069029, guid: c6e68884379f5f141b062514a0299709, type: 3}
     tagObject: furance
     objectOffset: {x: 0, y: 0, z: 0}
-    objectRotation: {x: 0, y: 0, z: 0}
+    objectRotation: {x: 0, y: 45, z: 0}
     snapPointType: 0

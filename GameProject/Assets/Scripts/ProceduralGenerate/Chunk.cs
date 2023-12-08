@@ -212,13 +212,16 @@ namespace TheIslandKOD
                             var v = UnityEngine.Random.Range(randomNoise.x, randomNoise.y);
                             if (noiseMap[x,y] > v)
                             {
-                                var gameObject = GameObject.Instantiate(prefab, m_meshObject.transform);
-                                
-                                gameObject.transform.localPosition = new Vector3(GetPosition(x, size), m_mapGenerator.terrainData.maxHeight, GetPosition(-y + size, size));
-                                gameObject.transform.rotation = Quaternion.Euler(0, UnityEngine.Random.Range(rotationRange.x, rotationRange.y), 0);
-                                GetCorrectHeightPositionPrefab(gameObject, offsetHeigt);
-                                gameObject.transform.localScale = Vector3.one * scale;                            
-                                gameObject.transform.parent = m_gameObjectParent;
+                                if (prefab != null)
+                                {
+                                    var gameObject = GameObject.Instantiate(prefab, m_meshObject.transform);
+
+                                    gameObject.transform.localPosition = new Vector3(GetPosition(x, size), m_mapGenerator.terrainData.maxHeight, GetPosition(-y + size, size));
+                                    gameObject.transform.rotation = Quaternion.Euler(0, UnityEngine.Random.Range(rotationRange.x, rotationRange.y), 0);
+                                    GetCorrectHeightPositionPrefab(gameObject, offsetHeigt);
+                                    gameObject.transform.localScale = Vector3.one * scale;
+                                    gameObject.transform.parent = m_gameObjectParent;
+                                }
                             }
                         }
                     }

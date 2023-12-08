@@ -102,6 +102,7 @@ public class Furance : InteractableRaycast
     {
         while (true)
         {
+            yield return new WaitForSeconds(3f);
             var haveItemWood = m_contentsFurance.GetItemAmount(typeof(ItemWood));
             if (haveItemWood <= 0)
             {
@@ -109,8 +110,7 @@ public class Furance : InteractableRaycast
             }
             FurancedOre();
             m_contentsFurance.Remove(this, typeof(ItemWood), 2);
-            m_uIFurance.OnContentsCampFireStateChanged(this);
-            yield return new WaitForSeconds(3f);
+            m_uIFurance.OnContentsCampFireStateChanged(this); 
         }
     }
 
